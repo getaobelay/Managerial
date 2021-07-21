@@ -66,7 +66,7 @@ import { RoleEditorComponent } from './components/controls/role-editor.component
 import { ProductViewComponent } from './components/controls/product/product-view.component';
 import { ProductService } from './services/product/product.service';
 import { ProductFormComponent } from './components/controls/product/forms/product/product-form/product-form.component';
-import { ProductEndpoint} from './services/product/product-endpoint.service';
+import { ProductEndpoint } from './services/product/product-endpoint.service';
 
 @NgModule({
   imports: [

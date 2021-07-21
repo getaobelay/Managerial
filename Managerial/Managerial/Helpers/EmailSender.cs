@@ -17,24 +17,22 @@ namespace Managerial.Helpers
     public interface IEmailSender
     {
         Task<(bool success, string errorMsg)> SendEmailAsync(MailboxAddress sender, MailboxAddress[] recepients, string subject, string body, SmtpConfig config = null, bool isHtml = true);
+
         Task<(bool success, string errorMsg)> SendEmailAsync(string recepientName, string recepientEmail, string subject, string body, SmtpConfig config = null, bool isHtml = true);
+
         Task<(bool success, string errorMsg)> SendEmailAsync(string senderName, string senderEmail, string recepientName, string recepientEmail, string subject, string body, SmtpConfig config = null, bool isHtml = true);
     }
 
-
-
     public class EmailSender : IEmailSender
     {
-        readonly SmtpConfig _config;
-        readonly ILogger _logger;
-
+        private readonly SmtpConfig _config;
+        private readonly ILogger _logger;
 
         public EmailSender(IOptions<AppSettings> config, ILogger<EmailSender> logger)
         {
             _config = config.Value.SmtpConfig;
             _logger = logger;
         }
-
 
         public async Task<(bool success, string errorMsg)> SendEmailAsync(
             string recepientName,
@@ -49,8 +47,6 @@ namespace Managerial.Helpers
 
             return await SendEmailAsync(from, new MailboxAddress[] { to }, subject, body, config, isHtml);
         }
-
-
 
         public async Task<(bool success, string errorMsg)> SendEmailAsync(
             string senderName,
@@ -67,7 +63,6 @@ namespace Managerial.Helpers
 
             return await SendEmailAsync(from, new MailboxAddress[] { to }, subject, body, config, isHtml);
         }
-
 
         //For background tasks such as sending emails, its good practice to use job runners such as hangfire https://www.hangfire.io
         //or a service such as SendGrid https://sendgrid.com/

@@ -3,7 +3,6 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using AutoMapper;
 using DAL;
 using DAL.Core;
 using DAL.Core.Interfaces;
@@ -15,8 +14,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,13 +30,11 @@ namespace Managerial
         private IWebHostEnvironment _env { get; }
         public IConfiguration Configuration { get; }
 
-
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             _env = env;
             Configuration = configuration;
         }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -70,7 +65,6 @@ namespace Managerial
                 //    //options.Lockout.MaxFailedAccessAttempts = 10;
             });
 
-
             // Adds IdentityServer.
             services.AddIdentityServer()
                 // The AddDeveloperSigningCredential extension creates temporary key material for signing tokens.
@@ -86,7 +80,6 @@ namespace Managerial
                 .AddInMemoryClients(IdentityServerConfig.GetClients())
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddProfileService<ProfileService>();
-
 
             var applicationUrl = Configuration["ApplicationUrl"].TrimEnd('/');
 
@@ -110,7 +103,6 @@ namespace Managerial
 
                 options.AddPolicy(Authorization.Policies.AssignAllowedRolesPolicy, policy => policy.Requirements.Add(new AssignRolesAuthorizationRequirement()));
             });
-
 
             // Add cors
             services.AddCors();
@@ -149,10 +141,8 @@ namespace Managerial
             // Configurations
             services.Configure<AppSettings>(Configuration);
 
-
             // Business Services
             services.AddScoped<IEmailSender, EmailSender>();
-
 
             // Repositories
             services.AddScoped(typeof(IUnitOfWork<>), typeof(HttpUnitOfWork<>));
@@ -167,7 +157,6 @@ namespace Managerial
             // DB Creation and Seeding
             services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

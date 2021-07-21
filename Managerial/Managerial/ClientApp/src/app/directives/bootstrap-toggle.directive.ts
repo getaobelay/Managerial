@@ -6,7 +6,6 @@
 import { Directive, ElementRef, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription, fromEvent } from 'rxjs';
 
-
 declare var $: any;
 
 @Directive({
@@ -14,7 +13,6 @@ declare var $: any;
   exportAs: 'bootstrap-toggle'
 })
 export class BootstrapToggleDirective implements OnInit, OnDestroy {
-
   private checkedSubscription: Subscription;
 
   @Input()
@@ -25,12 +23,10 @@ export class BootstrapToggleDirective implements OnInit, OnDestroy {
   @Output()
   ngModelChange = new EventEmitter();
 
-
   constructor(private el: ElementRef) {
     this.checkedSubscription = fromEvent($(this.el.nativeElement), 'change')
       .subscribe((e: any) => this.ngModelChange.emit(e.target.checked));
   }
-
 
   ngOnInit() {
     setTimeout(() => this.initialize());
@@ -39,7 +35,6 @@ export class BootstrapToggleDirective implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy();
   }
-
 
   initialize(options?: any) {
     $(this.el.nativeElement).bootstrapToggle(options);

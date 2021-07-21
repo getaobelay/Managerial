@@ -1,12 +1,9 @@
-﻿using DAL.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DAL.Models
 {
     public class Location : AuditableEntity
     {
-      
         public string LocationRow { get; set; }
         public string LocationColum { get; set; }
         public string LocationShelf { get; set; }

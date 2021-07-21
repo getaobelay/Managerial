@@ -1,7 +1,6 @@
 ﻿using Autofac;
-using DAL.Core.Helpers.BaseDtos;
-using DAL.Core.loC;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 
 namespace DAL.Core.loC
 {
@@ -17,6 +16,5 @@ namespace DAL.Core.loC
 
             return builder;
         }
-
     }
 }

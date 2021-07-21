@@ -1,7 +1,7 @@
-﻿using DAL.Core.Helpers.BaseDtos;
-using DAL.Models;
+﻿using DAL.Models;
+using DAL.ViewModels.Interfaces;
 
-namespace DAL.Core.CommonCQRS.Commands.Requests
+namespace DAL.Core.Cqrs.Common.Commands.Requests
 {
     /// <summary>
     /// this command creates source and destination entities
@@ -14,5 +14,4 @@ namespace DAL.Core.CommonCQRS.Commands.Requests
     {
         public TDto CreateObject { get; set; }
     }
-
 }

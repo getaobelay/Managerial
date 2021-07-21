@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using DAL.Core.Helpers.InventoryViewModels;
-using DAL.Core.ViewModels;
 using DAL.Models;
 using DAL.ViewModels;
-using Managerial.ViewModels;
 
-namespace ADAL.Core.Helpers.MappingProfiles
+namespace DAL.Core.Helpers
 {
     public class AutoMapperProfiles : Profile
     {

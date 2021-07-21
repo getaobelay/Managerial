@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using DAL.Core.CommonCQRS.Commands.Validation;
-using DAL.Core.Helpers.BaseDtos;
+using DAL.Core.Cqrs.Common.Commands.Validation;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using FluentValidation;
 
 namespace DAL.Core.loC
@@ -19,6 +19,5 @@ namespace DAL.Core.loC
 
             return builder;
         }
-
     }
 }

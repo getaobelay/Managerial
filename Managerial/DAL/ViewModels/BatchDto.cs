@@ -1,12 +1,10 @@
-﻿using System;
+﻿using DAL.Models;
+using DAL.ViewModels.Interfaces;
+using System;
 using System.Collections.Generic;
-using DAL.Models;
-using DAL.Core.Helpers.BaseDtos;
-using DAL.ViewModels;
-using DAL.Core.Helpers.InventoryViewModels;
-using Managerial.ViewModels;
+using DAL.Core.Helpers;
 
-namespace DAL.Core.Helpers.ProductDtos
+namespace DAL.ViewModels
 {
     public class BatchDto : IBaseViewModel, IMapFrom<Batch>
     {

@@ -31,8 +31,6 @@
     margin: 0px 0px 0px 0px;
   }
 
-
-
 .prebootShow {
   opacity: 1 !important;
 }
@@ -42,10 +40,8 @@
   transition: .5s ease-in-out all;
 }
 
-
 /*loader*/
 /* Absolute Center Spinner */
-
 
 .cs-loader {
   position: absolute;

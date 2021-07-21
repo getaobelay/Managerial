@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using DAL.Core.Helpers;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Collections.Generic;
-using DAL.Core.Helpers;
 
 namespace DAL.Models
 {
@@ -17,7 +16,6 @@ namespace DAL.Models
         public int OrderID { get; set; }
         public virtual Order Order { get; set; }
     }
-
 
     public class AllocationConfig : IEntityTypeConfiguration<Allocation>
     {

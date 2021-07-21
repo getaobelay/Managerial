@@ -3,13 +3,7 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Managerial.ViewModels
+namespace DAL.ViewModels
 {
     public class PageHeader
     {
@@ -20,7 +14,6 @@ namespace Managerial.ViewModels
             this.TotalItems = totalItems;
             this.TotalPages = totalPages;
         }
-
 
         public int CurrentPage { get; set; }
         public int ItemsPerPage { get; set; }

@@ -1,7 +1,7 @@
-﻿using DAL.Core.Helpers.BaseDtos;
-using DAL.Models;
+﻿using DAL.Models;
+using DAL.ViewModels.Interfaces;
 
-namespace DAL.Core.CommonCQRS.Commands.Requests
+namespace DAL.Core.Cqrs.Common.Commands.Requests
 {
     /// <summary>
     /// this command deletes source and destination entities

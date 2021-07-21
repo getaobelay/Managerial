@@ -3,15 +3,10 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using FluentValidation;
-using Managerial.Helpers;
-using System;
-using System.Collections.Generic;
+using DAL.Core.Helpers;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
-
-namespace Managerial.ViewModels
+namespace DAL.ViewModels
 {
     public class UserViewModel : UserBaseViewModel
     {
@@ -20,8 +15,6 @@ namespace Managerial.ViewModels
         [MinimumCount(1, ErrorMessage = "Roles cannot be empty")]
         public string[] Roles { get; set; }
     }
-
-
 
     public class UserEditViewModel : UserBaseViewModel
     {
@@ -34,8 +27,6 @@ namespace Managerial.ViewModels
         public string[] Roles { get; set; }
     }
 
-
-
     public class UserPatchViewModel
     {
         public string FullName { get; set; }
@@ -46,8 +37,6 @@ namespace Managerial.ViewModels
 
         public string Configuration { get; set; }
     }
-
-
 
     public abstract class UserBaseViewModel
     {
@@ -69,9 +58,6 @@ namespace Managerial.ViewModels
 
         public bool IsEnabled { get; set; }
     }
-
-
-
 
     //public class UserViewModelValidator : AbstractValidator<UserViewModel>
     //{

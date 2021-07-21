@@ -5,7 +5,6 @@
 
 using DAL.Core;
 using Microsoft.AspNetCore.Authorization;
-using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -14,10 +13,7 @@ namespace Managerial.Authorization
 {
     public class AssignRolesAuthorizationRequirement : IAuthorizationRequirement
     {
-
     }
-
-
 
     public class AssignRolesAuthorizationHandler : AuthorizationHandler<AssignRolesAuthorizationRequirement, (string[] newRoles, string[] currentRoles)>
     {
@@ -31,15 +27,12 @@ namespace Managerial.Authorization
             {
                 if (context.User.HasClaim(ClaimConstants.Permission, ApplicationPermissions.ViewRoles)) // If user has ViewRoles permission, then he can assign any roles
                     context.Succeed(requirement);
-
                 else if (GetIsUserInAllAddedRoles(context.User, roles.newRoles, roles.currentRoles)) // Else user can only assign roles they're part of
                     context.Succeed(requirement);
             }
 
-
             return Task.CompletedTask;
         }
-
 
         private bool GetIsRolesChanged(string[] newRoles, string[] currentRoles)
         {
@@ -49,13 +42,11 @@ namespace Managerial.Authorization
             if (currentRoles == null)
                 currentRoles = new string[] { };
 
-
             bool roleAdded = newRoles.Except(currentRoles).Any();
             bool roleRemoved = currentRoles.Except(newRoles).Any();
 
             return roleAdded || roleRemoved;
         }
-
 
         private bool GetIsUserInAllAddedRoles(ClaimsPrincipal contextUser, string[] newRoles, string[] currentRoles)
         {
@@ -64,7 +55,6 @@ namespace Managerial.Authorization
 
             if (currentRoles == null)
                 currentRoles = new string[] { };
-
 
             var addedRoles = newRoles.Except(currentRoles);
 

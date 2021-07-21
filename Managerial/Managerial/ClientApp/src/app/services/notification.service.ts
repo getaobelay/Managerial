@@ -29,17 +29,14 @@ export class NotificationService {
   }
 
   constructor(private notificationEndpoint: NotificationEndpoint, private authService: AuthService) {
-
   }
 
   getNotification(notificationId?: number) {
-
     return this.notificationEndpoint.getNotificationEndpoint(notificationId).pipe(
       map(response => Notification.Create(response)));
   }
 
   getNotifications(page: number, pageSize: number) {
-
     return this.notificationEndpoint.getNotificationsEndpoint(page, pageSize).pipe(
       map(response => {
         return this.getNotificationsFromResponse(response);
@@ -47,7 +44,6 @@ export class NotificationService {
   }
 
   getUnreadNotifications(userId?: string) {
-
     return this.notificationEndpoint.getUnreadNotificationsEndpoint(userId).pipe(
       map(response => this.getNotificationsFromResponse(response)));
   }
@@ -67,7 +63,6 @@ export class NotificationService {
   }
 
   pinUnpinNotification(notificationOrNotificationId: number | Notification, isPinned?: boolean): Observable<any> {
-
     if (typeof notificationOrNotificationId === 'number' || notificationOrNotificationId instanceof Number) {
       return this.notificationEndpoint.getPinUnpinNotificationEndpoint(notificationOrNotificationId as number, isPinned);
     } else {
@@ -76,12 +71,10 @@ export class NotificationService {
   }
 
   readUnreadNotification(notificationIds: number[], isRead: boolean): Observable<any> {
-
     return this.notificationEndpoint.getReadUnreadNotificationEndpoint(notificationIds, isRead);
   }
 
   deleteNotification(notificationOrNotificationId: number | Notification): Observable<Notification> {
-
     if (typeof notificationOrNotificationId === 'number' || notificationOrNotificationId instanceof Number) { // Todo: Test me if its check is valid
       return this.notificationEndpoint.getDeleteNotificationEndpoint(notificationOrNotificationId as number).pipe(
         map(response => {

@@ -17,13 +17,10 @@ export class AlertService {
 
   private loadingMessageTimeoutId: any;
 
-
-
   showDialog(message: string);
   showDialog(message: string, type: DialogType, okCallback: (val?: any) => any);
   showDialog(message: string, type: DialogType, okCallback?: (val?: any) => any, cancelCallback?: () => any, okLabel?: string, cancelLabel?: string, defaultValue?: string);
   showDialog(message: string, type?: DialogType, okCallback?: (val?: any) => any, cancelCallback?: () => any, okLabel?: string, cancelLabel?: string, defaultValue?: string) {
-
     if (!type) {
       type = DialogType.alert;
     }
@@ -62,7 +59,6 @@ export class AlertService {
   showStickyMessage(summaryAndDetails: string[], summaryAndDetailsSeparator: string, severity: MessageSeverity);
   showStickyMessage(response: HttpResponseBase, ignoreValueUseNull: string, severity: MessageSeverity);
   showStickyMessage(data: string | string[] | HttpResponseBase, separatorOrDetail?: string, severity?: MessageSeverity, error?: any, onRemove?: () => any) {
-
     if (!severity) {
       severity = MessageSeverity.default;
     }
@@ -109,7 +105,6 @@ export class AlertService {
   }
 
   private showMessageHelper(summary: string, detail: string, severity: MessageSeverity, isSticky: boolean, onRemove?: () => any) {
-
     const alertCommand: AlertCommand = {
       operation: isSticky ? 'add_sticky' : 'add',
       message: { severity, summary, detail },
@@ -135,8 +130,6 @@ export class AlertService {
     clearTimeout(this.loadingMessageTimeoutId);
     this.resetStickyMessage();
   }
-
-
 
   logDebug(msg) {
     console.debug(msg);
@@ -171,7 +164,6 @@ export class AlertService {
   }
 }
 
-
 // ******************** Dialog ********************//
 export class AlertDialog {
   constructor(
@@ -182,7 +174,6 @@ export class AlertDialog {
     public defaultValue: string,
     public okLabel: string,
     public cancelLabel: string) {
-
   }
 }
 
@@ -192,7 +183,6 @@ export enum DialogType {
   prompt
 }
 // ******************** End ********************//
-
 
 // ******************** Growls ********************//
 export class AlertCommand {

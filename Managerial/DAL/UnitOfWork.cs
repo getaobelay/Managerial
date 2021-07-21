@@ -3,34 +3,27 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Models;
 using DAL.Repositories;
 using DAL.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace DAL
 {
     public class UnitOfWork<TEntity> : IUnitOfWork<TEntity>
-        where TEntity: AuditableEntity, new()
+        where TEntity : AuditableEntity, new()
     {
-        readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        ICustomerRepository _customers;
-        IProductRepository _products;
-        IOrdersRepository _orders;
-        IRepository<TEntity> _generic;
-
+        private ICustomerRepository _customers;
+        private IProductRepository _products;
+        private IOrdersRepository _orders;
+        private IRepository<TEntity> _generic;
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
         }
-
-
 
         public ICustomerRepository Customers
         {
@@ -42,8 +35,6 @@ namespace DAL
                 return _customers;
             }
         }
-
-
 
         public IProductRepository Products
         {
@@ -60,17 +51,14 @@ namespace DAL
         {
             get
             {
-                if(_generic == null)
+                if (_generic == null)
                 {
                     _generic = new Repository<TEntity>(_context);
                 }
 
                 return _generic;
-
             }
         }
-
-
 
         public IOrdersRepository Orders
         {
@@ -82,9 +70,6 @@ namespace DAL
                 return _orders;
             }
         }
-
-
-
 
         public async Task<int> SaveChangesAsync()
         {

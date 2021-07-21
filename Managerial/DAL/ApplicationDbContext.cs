@@ -8,10 +8,8 @@ using DAL.Models.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +17,6 @@ namespace DAL
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
                 : base(options)
         {
@@ -52,12 +49,12 @@ namespace DAL
                     b.MigrationsAssembly("Managerial"));
             }
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-
 
         public override int SaveChanges()
         {
@@ -65,13 +62,11 @@ namespace DAL
             return base.SaveChanges();
         }
 
-
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             UpdateAuditEntities();
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
-
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -79,19 +74,16 @@ namespace DAL
             return base.SaveChangesAsync(cancellationToken);
         }
 
-
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
         {
             UpdateAuditEntities();
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
-
         private void UpdateAuditEntities()
         {
             var modifiedEntries = ChangeTracker.Entries()
                 .Where(x => x.Entity is IAuditableEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
-
 
             foreach (var entry in modifiedEntries)
             {
@@ -113,7 +105,5 @@ namespace DAL
                 entity.UpdatedBy = CurrentUserId;
             }
         }
-
-
     }
 }

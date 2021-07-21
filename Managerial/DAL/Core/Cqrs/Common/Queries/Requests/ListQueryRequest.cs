@@ -1,10 +1,7 @@
-﻿using DAL.Core.CommonCQRS.Queries.Responses;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
-using System;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace DAL.Core.Cqrs.Common.Queries.Requests
 {

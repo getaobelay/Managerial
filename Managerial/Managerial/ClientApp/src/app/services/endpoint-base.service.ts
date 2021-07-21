@@ -12,14 +12,12 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class EndpointBase {
-
   private taskPauser: Subject<any>;
   private isRefreshingLogin: boolean;
 
   constructor(
     protected http: HttpClient,
     private authService: AuthService) {
-
   }
 
   protected get requestHeaders(): { headers: HttpHeaders | { [header: string]: string | string[]; } } {
@@ -76,8 +74,6 @@ export class EndpointBase {
     }
   }
 
-
-
   private pauseTask(continuation: () => Observable<any>) {
     if (!this.taskPauser) {
       this.taskPauser = new Subject();
@@ -87,7 +83,6 @@ export class EndpointBase {
       return continueOp ? continuation() : throwError('session expired');
     }));
   }
-
 
   private resumeTasks(continueOp: boolean) {
     setTimeout(() => {

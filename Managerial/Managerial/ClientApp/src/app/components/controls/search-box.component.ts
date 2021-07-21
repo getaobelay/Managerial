@@ -11,7 +11,6 @@ import { Component, ViewChild, ElementRef, Input, Output, EventEmitter, HostList
   styleUrls: ['./search-box.component.scss']
 })
 export class SearchBoxComponent {
-
   @Input()
   placeholder = 'Search...';
 
@@ -20,7 +19,6 @@ export class SearchBoxComponent {
 
   @ViewChild('searchInput', { static: true })
   searchInput: ElementRef;
-
 
   onValueChange(value: string) {
     setTimeout(() => this.searchChange.emit(value));

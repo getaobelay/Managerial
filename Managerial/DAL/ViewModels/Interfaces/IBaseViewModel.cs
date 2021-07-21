@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace DAL.Core.Helpers.BaseDtos
+﻿namespace DAL.ViewModels.Interfaces
 {
-
     public interface IBaseViewModel
     {
         public int Id { get; set; }

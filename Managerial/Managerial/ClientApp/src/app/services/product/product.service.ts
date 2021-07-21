@@ -10,8 +10,6 @@ import { Product } from 'src/app/models/Product.model';
 import { AuthService } from '../auth.service';
 import { ProductEndpoint } from './product-endpoint.service';
 
-
-
 @Injectable()
 export class ProductService {
   constructor(
@@ -19,17 +17,13 @@ export class ProductService {
     private productEndpoint: ProductEndpoint) {
   }
 
-
   getProduct(productId?: number) {
     return this.productEndpoint.getProductEndpoint<Product>(productId);
   }
 
-
   getProducts(page?: number, pageSize?: number) {
-
     return this.productEndpoint.getProductsEndpoint<Product[]>(page, pageSize);
   }
-
 
   updateProduct(product: Product) {
     if (product.id) {
@@ -48,9 +42,6 @@ export class ProductService {
   }
 
   deleteProduct(productId?: number): Observable<Product> {
-
     return this.productEndpoint.getDeleteProductEndpoint<Product>(productId);
   }
-
-
 }

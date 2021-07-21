@@ -5,7 +5,6 @@
 
 import { Directive, ElementRef, OnInit } from '@angular/core';
 
-
 @Directive({
   selector: '[appAutofocus]'
 })

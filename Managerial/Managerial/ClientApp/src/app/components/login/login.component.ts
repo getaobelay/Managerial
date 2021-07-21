@@ -18,7 +18,6 @@ import { UserLogin } from '../../models/user-login.model';
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
-
   userLogin = new UserLogin();
   isLoading = false;
   formResetToggle = true;
@@ -28,14 +27,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   @Input()
   isModal = false;
 
-
   constructor(private alertService: AlertService, private authService: AuthService, private configurations: ConfigurationService) {
-
   }
 
-
   ngOnInit() {
-
     this.userLogin.rememberMe = this.authService.rememberMe;
 
     if (this.getShouldRedirect()) {
@@ -49,18 +44,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-
   ngOnDestroy() {
     if (this.loginStatusSubscription) {
       this.loginStatusSubscription.unsubscribe();
     }
   }
 
-
   getShouldRedirect() {
     return !this.isModal && this.authService.isLoggedIn && !this.authService.isSessionExpired;
   }
-
 
   showErrorAlert(caption: string, message: string) {
     this.alertService.showMessage(caption, message, MessageSeverity.error);
@@ -71,7 +63,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.modalClosedCallback();
     }
   }
-
 
   login() {
     this.isLoading = true;
@@ -98,7 +89,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           }, 500);
         },
         error => {
-
           this.alertService.stopLoadingMessage();
 
           if (Utilities.checkNoNetwork(error)) {
@@ -120,9 +110,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
   }
 
-
   offerAlternateHost() {
-
     if (Utilities.checkIsLocalHost(location.origin) && Utilities.checkIsLocalHost(this.configurations.baseUrl)) {
       this.alertService.showDialog('Dear Developer!\nIt appears your backend Web API service is not running...\n' +
         'Would you want to temporarily switch to the online Demo API below?(Or specify another)',
@@ -139,9 +127,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-
   mapLoginErrorMessage(error: string) {
-
     if (error === 'invalid_username_or_password') {
       return 'Invalid username or password';
     }
@@ -152,7 +138,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     return error;
   }
-
 
   reset() {
     this.formResetToggle = false;

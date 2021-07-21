@@ -1,18 +1,13 @@
 ﻿using Autofac;
-using DAL.Core.CommonCQRS;
-using DAL.Core.CommonCQRS.Commands.Handlers;
-using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Commands.Responses;
-using DAL.Core.CommonCQRS.Queries.Handlers;
-using DAL.Core.CommonCQRS.Queries.Requests;
-using DAL.Core.CommonCQRS.Queries.Responses;
 using DAL.Core.Cqrs.Common.Commands.Handlers;
+using DAL.Core.Cqrs.Common.Commands.Requests;
+using DAL.Core.Cqrs.Common.Commands.Responses;
+using DAL.Core.Cqrs.Common.Queries.Handlers;
 using DAL.Core.Cqrs.Common.Queries.Requests;
-using DAL.Core.Helpers.BaseDtos;
+using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
-using System.Collections.Generic;
-using WarehouseAngularApp.Mediator.CommonCQRS.Commands.Handlers;
 
 namespace DAL.Core.loC
 {
@@ -23,7 +18,6 @@ namespace DAL.Core.loC
             where TDto : class, IBaseViewModel, new()
 
         {
-
             builder.RegisterType<CreateCommandHandler<TEntity, TDto, CreateCommandRequest<TEntity, TDto>>>()
                    .As<IRequestHandler<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
 
@@ -43,6 +37,5 @@ namespace DAL.Core.loC
 
             return builder;
         }
-
     }
 }

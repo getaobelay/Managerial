@@ -3,18 +3,18 @@
 // www.ebenmonney.com/templates
 // =============================
 
+using AutoMapper;
+using DAL;
+using DAL.Models;
+using DAL.ViewModels;
+using Managerial.Helpers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using DAL;
-using AutoMapper;
-using Microsoft.Extensions.Logging;
-using DAL.Models;
-using Managerial.Helpers;
-using DAL.Core.ViewModels;
 
-namespace QuickApp.Controllers
+namespace Managerial.Controllers
 {
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase
@@ -22,7 +22,7 @@ namespace QuickApp.Controllers
         private readonly ILogger _logger;
         private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork<Customer> _unitOfWork; 
+        private readonly IUnitOfWork<Customer> _unitOfWork;
 
         public CustomerController(IMapper mapper, IUnitOfWork<Customer> unitOfWork, ILogger<CustomerController> logger, IEmailSender emailSender)
         {
@@ -32,8 +32,6 @@ namespace QuickApp.Controllers
             _emailSender = emailSender;
         }
 
-
-
         // GET: api/values
         [HttpGet]
         public IActionResult Get()
@@ -42,15 +40,11 @@ namespace QuickApp.Controllers
             return Ok(_mapper.Map<IEnumerable<CustomerViewModel>>(allCustomers));
         }
 
-
-
         [HttpGet("throw")]
         public IEnumerable<CustomerViewModel> Throw()
         {
             throw new InvalidOperationException("This is a test exception: " + DateTime.Now);
         }
-
-
 
         [HttpGet("email")]
         public async Task<string> Email()
@@ -68,8 +62,6 @@ namespace QuickApp.Controllers
             return "Error: " + errorMsg;
         }
 
-
-
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -77,23 +69,17 @@ namespace QuickApp.Controllers
             return "value: " + id;
         }
 
-
-
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody] string value)
         {
         }
-
-
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
-
-
 
         // DELETE api/values/5
         [HttpDelete("{id}")]

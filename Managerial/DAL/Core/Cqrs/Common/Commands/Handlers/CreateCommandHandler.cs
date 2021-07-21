@@ -1,14 +1,14 @@
-﻿using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Commands.Responses;
+﻿using DAL.Core.Cqrs.Common.Commands.Requests;
+using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Core.Helpers;
-using DAL.Core.Helpers.BaseDtos;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DAL.Core.CommonCQRS.Commands.Handlers
+namespace DAL.Core.Cqrs.Common.Commands.Handlers
 {
     /// <summary>
     /// Generic mediator handler creates a new record in the database
@@ -31,7 +31,6 @@ namespace DAL.Core.CommonCQRS.Commands.Handlers
         {
             try
             {
-
                 var mappedInsertObject = MappingHelper.Mapper.Map<TEntity>(request.CreateObject);
                 await _unitOfWork.Generic.AddAsync(mappedInsertObject);
                 await _unitOfWork.SaveChangesAsync();
@@ -43,7 +42,6 @@ namespace DAL.Core.CommonCQRS.Commands.Handlers
             {
                 throw;
             }
-
         }
     }
 }

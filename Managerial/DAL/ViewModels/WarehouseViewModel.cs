@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using DAL.Core.Helpers.ProductDtos;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.Core.Helpers;
-using Managerial.ViewModels;
+using DAL.ViewModels.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace DAL.ViewModels
 {

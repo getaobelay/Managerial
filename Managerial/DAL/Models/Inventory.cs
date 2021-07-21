@@ -1,8 +1,7 @@
 ﻿using DAL.Core.Helpers;
-using DAL.Models;
+using DAL.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 using System.Collections.Generic;
 
 namespace DAL.Models

@@ -4,10 +4,8 @@
 // =============================
 
 using DAL.Core;
-using System;
-using System.Linq;
 
-namespace Managerial.ViewModels
+namespace DAL.ViewModels
 {
     public class PermissionViewModel
     {
@@ -15,7 +13,6 @@ namespace Managerial.ViewModels
         public string Value { get; set; }
         public string GroupName { get; set; }
         public string Description { get; set; }
-
 
         public static explicit operator PermissionViewModel(ApplicationPermission permission)
         {

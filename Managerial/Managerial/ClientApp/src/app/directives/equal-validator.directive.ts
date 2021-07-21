@@ -6,8 +6,6 @@
 import { Directive, forwardRef, Attribute } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
-
-
 @Directive({
   selector: '[appValidateEqual][formControlName],[appValidateEqual][formControl],[appValidateEqual][ngModel]',
   providers: [
@@ -16,7 +14,7 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 })
 export class EqualValidator implements Validator {
   constructor(@Attribute('appValidateEqual') public validateEqual: string,
-              @Attribute('reverse') public reverse: string) {
+    @Attribute('reverse') public reverse: string) {
   }
 
   validate(c: AbstractControl): { [key: string]: any } {

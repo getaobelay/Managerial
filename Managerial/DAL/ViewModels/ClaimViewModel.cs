@@ -3,10 +3,7 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using System;
-using System.Linq;
-
-namespace Managerial.ViewModels
+namespace DAL.ViewModels
 {
     public class ClaimViewModel
     {

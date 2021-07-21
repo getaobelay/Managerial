@@ -1,9 +1,9 @@
-﻿using DAL.Core.CommonCQRS.Commands.Responses;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 
-namespace DAL.Core.CommonCQRS.Commands.Requests
+namespace DAL.Core.Cqrs.Common.Commands.Requests
 {
     public interface ICommandRequest<TEntity, TDto> : IRequest<CommandResponse<TDto>>
         where TEntity : AuditableEntity, new()

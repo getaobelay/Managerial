@@ -13,7 +13,6 @@ import { Permission } from '../../models/permission.model';
 import { Utilities } from '../../services/utilities';
 import { Notification } from '../../models/notification.model';
 
-
 @Component({
   selector: 'app-notifications-viewer',
   templateUrl: './notifications-viewer.component.html',
@@ -27,13 +26,11 @@ export class NotificationsViewerComponent implements OnInit, OnDestroy {
   dataLoadingConsecutiveFailurs = 0;
   dataLoadingSubscription: any;
 
-
   @Input()
   isViewOnly: boolean;
 
   @Input()
   verticalScrollbar = false;
-
 
   @ViewChild('statusHeaderTemplate', { static: true })
   statusHeaderTemplate: TemplateRef<any>;
@@ -56,9 +53,7 @@ export class NotificationsViewerComponent implements OnInit, OnDestroy {
   constructor(private alertService: AlertService, private translationService: AppTranslationService, private accountService: AccountService, private notificationService: NotificationService) {
   }
 
-
   ngOnInit() {
-
     if (this.isViewOnly) {
       this.columns = [
         { prop: 'date', cellTemplate: this.dateTemplate, width: 100, resizeable: false, canAutoResize: false, sortable: false, draggable: false },
@@ -75,10 +70,8 @@ export class NotificationsViewerComponent implements OnInit, OnDestroy {
       ];
     }
 
-
     this.initDataLoading();
   }
-
 
   ngOnDestroy() {
     if (this.dataLoadingSubscription) {
@@ -86,10 +79,7 @@ export class NotificationsViewerComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
   initDataLoading() {
-
     if (this.isViewOnly && this.notificationService.recentNotifications) {
       this.rows = this.processResults(this.notificationService.recentNotifications);
       return;
@@ -117,18 +107,14 @@ export class NotificationsViewerComponent implements OnInit, OnDestroy {
           } else {
             this.alertService.showStickyMessage('Load Error', 'Loading new notifications from the server failed!', MessageSeverity.error);
           }
-
         });
-
 
     if (this.isViewOnly) {
       this.dataLoadingSubscription = null;
     }
   }
 
-
   private processResults(notifications: Notification[]) {
-
     if (this.isViewOnly) {
       notifications.sort((a, b) => {
         return b.date.valueOf() - a.date.valueOf();
@@ -138,22 +124,17 @@ export class NotificationsViewerComponent implements OnInit, OnDestroy {
     return notifications;
   }
 
-
-
   getPrintedDate(value: Date) {
     if (value) {
       return Utilities.printTimeOnly(value) + ' on ' + Utilities.printDateOnly(value);
     }
   }
 
-
   deleteNotification(row: Notification) {
     this.alertService.showDialog('Are you sure you want to delete the notification \"' + row.header + '\"?', DialogType.confirm, () => this.deleteNotificationHelper(row));
   }
 
-
   deleteNotificationHelper(row: Notification) {
-
     this.alertService.startLoadingMessage('Deleting...');
     this.loadingIndicator = true;
 
@@ -173,9 +154,7 @@ export class NotificationsViewerComponent implements OnInit, OnDestroy {
         });
   }
 
-
   togglePin(row: Notification) {
-
     const pin = !row.isPinned;
     const opText = pin ? 'Pinning' : 'Unpinning';
 
@@ -198,9 +177,7 @@ export class NotificationsViewerComponent implements OnInit, OnDestroy {
         });
   }
 
-
   get canManageNotifications() {
     return this.accountService.userHasPermission(Permission.manageRolesPermission); // Todo: Consider creating separate permission for notifications
   }
-
 }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using DAL.Core.Helpers;
-using DAL.Core.Helpers.BaseDtos;
-using DAL.Core.ViewModels;
+﻿using DAL.Core.Helpers;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace DAL.ViewModels
 {

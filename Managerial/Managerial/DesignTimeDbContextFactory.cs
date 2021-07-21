@@ -3,16 +3,11 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using AutoMapper;
 using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Managerial
 {

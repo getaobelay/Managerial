@@ -6,11 +6,9 @@
 
 @import "app-theme";
 
-
 .bg-light {
   background-color: $primary !important;
 }
-
 
 .ngx-datatable.material.table-striped {
   .datatable-row-even {
@@ -18,10 +16,8 @@
   }
 }
 
-
 .app-component {
   .navbar {
-
     a.user-name {
       border: none;
     }

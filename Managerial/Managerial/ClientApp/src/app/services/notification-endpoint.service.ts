@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-
-
 @Injectable()
 export class NotificationEndpoint {
   private demoNotifications = [
@@ -39,7 +37,6 @@ export class NotificationEndpoint {
   ];
 
   getNotificationEndpoint<T>(notificationId: number): Observable<T> {
-
     const notification = this.demoNotifications.find(val => val.id === notificationId);
     let response: HttpResponse<T>;
 
@@ -53,7 +50,6 @@ export class NotificationEndpoint {
   }
 
   getNotificationsEndpoint<T>(page: number, pageSize: number): Observable<T> {
-
     const notifications = this.demoNotifications;
     const response = this.createResponse<T>(this.demoNotifications, 200);
 
@@ -61,7 +57,6 @@ export class NotificationEndpoint {
   }
 
   getUnreadNotificationsEndpoint<T>(userId?: string): Observable<T> {
-
     const unreadNotifications = this.demoNotifications.filter(val => !val.isRead);
     const response = this.createResponse<T>(unreadNotifications, 200);
 
@@ -69,15 +64,13 @@ export class NotificationEndpoint {
   }
 
   getNewNotificationsEndpoint<T>(lastNotificationDate?: Date): Observable<T> {
-
     const unreadNotifications = this.demoNotifications;
     const response = this.createResponse<T>(unreadNotifications, 200);
 
     return of(response.body);
   }
 
-  getPinUnpinNotificationEndpoint<T>(notificationId: number, isPinned?: boolean, ): Observable<T> {
-
+  getPinUnpinNotificationEndpoint<T>(notificationId: number, isPinned?: boolean,): Observable<T> {
     const notification = this.demoNotifications.find(val => val.id === notificationId);
     let response: HttpResponse<T>;
 
@@ -94,13 +87,11 @@ export class NotificationEndpoint {
       response = this.createResponse<T>(null, 404);
     }
 
-
     return of(response.body);
   }
 
-  getReadUnreadNotificationEndpoint<T>(notificationIds: number[], isRead: boolean, ): Observable<T> {
+  getReadUnreadNotificationEndpoint<T>(notificationIds: number[], isRead: boolean,): Observable<T> {
     for (const notificationId of notificationIds) {
-
       const notification = this.demoNotifications.find(val => val.id === notificationId);
 
       if (notification) {
@@ -113,7 +104,6 @@ export class NotificationEndpoint {
   }
 
   getDeleteNotificationEndpoint<T>(notificationId: number): Observable<T> {
-
     const notification = this.demoNotifications.find(val => val.id === notificationId);
     let response: HttpResponse<T>;
 

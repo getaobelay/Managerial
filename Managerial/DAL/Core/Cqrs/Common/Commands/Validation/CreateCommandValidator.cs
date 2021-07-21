@@ -1,12 +1,10 @@
-﻿using DAL;
-using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Cqrs.Common.Commands.Requests;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using FluentValidation;
 
-namespace DAL.Core.CommonCQRS.Commands.Validation
+namespace DAL.Core.Cqrs.Common.Commands.Validation
 {
-
     public class CreateCommandValidator<TEntity, TDto> : AbstractValidator<CreateCommandRequest<TEntity, TDto>>
         where TEntity : AuditableEntity, new()
         where TDto : class, IBaseViewModel, new()
@@ -20,9 +18,6 @@ namespace DAL.Core.CommonCQRS.Commands.Validation
             RuleFor(x => x.CreateObject.Id)
               .Empty()
               .WithMessage("Id should null");
-
         }
-
-
     }
 }

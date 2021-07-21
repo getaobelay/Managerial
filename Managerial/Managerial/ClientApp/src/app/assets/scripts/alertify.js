@@ -21,7 +21,6 @@
 	    Alertify;
 
 	Alertify = function () {
-
 		var _alertify = {},
 		    dialogs   = {},
 		    isopen    = false,
@@ -90,7 +89,6 @@
 		 * @type {Object}
 		 */
 		_alertify = {
-
 			/**
 			 * Labels object
 			 * @type {Object}
@@ -637,5 +635,4 @@
 	} else if (typeof global.alertify === "undefined") {
 		global.alertify = new Alertify();
 	}
-
 }(window));

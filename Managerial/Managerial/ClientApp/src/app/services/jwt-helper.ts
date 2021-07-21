@@ -8,10 +8,8 @@
  */
 import { Injectable } from '@angular/core';
 
-
 @Injectable()
 export class JwtHelper {
-
   public urlBase64Decode(str: string): string {
     let output = str.replace(/-/g, '+').replace(/_/g, '/');
     switch (output.length % 4) {

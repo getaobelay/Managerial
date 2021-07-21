@@ -1,12 +1,9 @@
-﻿using DAL.Models;
-using DAL.Models.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace DAL.Models
+namespace DAL.Models.Interfaces
 {
     public interface IStockEntity : IAuditableEntity
     {
-
         public string Name { get; set; }
         public bool IsQuanityAvailable { get; set; }
         public decimal TotalUnitsQuantity { get; set; }

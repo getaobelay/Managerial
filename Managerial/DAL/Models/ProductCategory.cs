@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DAL.Models
 {
@@ -25,15 +24,11 @@ namespace DAL.Models
     {
         public void Configure(EntityTypeBuilder<ProductCategory> builder)
         {
-
             builder.BaseEntityBuilder();
-
 
             //builder.Property(p => p.Name).IsRequired().HasMaxLength(100);
             //builder.Property(p => p.Description).HasMaxLength(500);
             builder.ToTable($"product_categories");
-
         }
     }
 }
-

@@ -1,8 +1,3 @@
-
-
-
-
-
 import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Product } from 'src/app/models/Product.model';
@@ -11,7 +6,6 @@ import { AppTranslationService } from 'src/app/services/app-translation.service'
 import { ProductService } from 'src/app/services/product/product.service';
 import { Utilities } from 'src/app/services/utilities';
 import { ProductFormComponent } from './forms/product/product-form/product-form.component';
-
 
 @Component({
   selector: 'app-product-view',
@@ -26,8 +20,6 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
   sourceProduct: Product;
   editingProductName: { name: string };
   loadingIndicator: boolean;
-
-
 
   @ViewChild('indexTemplate', { static: true })
   indexTemplate: TemplateRef<any>;
@@ -62,32 +54,24 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
   constructor(private alertService: AlertService, private translationService: AppTranslationService, private productService: ProductService) {
   }
 
-
   ngOnInit() {
-
     const gT = (key: string) => this.translationService.getTranslation(key);
 
-
     this.columns = [
-      { prop: 'name', name: 'name', width: 50, cellTemplate: this.ProductNameTemplate  },
+      { prop: 'name', name: 'name', width: 50, cellTemplate: this.ProductNameTemplate },
       { prop: 'sellingPrice', name: 'Sell', width: 90, cellTemplate: this.SellingPriceTemplate },
       { prop: 'buyingPrice', name: 'Buy', width: 90, cellTemplate: this.BuyingPriceTemplate },
       { prop: 'measurement', name: 'Mesasurement', width: 120 },
-      { prop: 'weight', name: 'Weight', width: 140, cellTemplate: this.WeightTemplate  },
-      { prop: 'height', name: 'Heigher', width: 120, cellTemplate: this.HeightTemplate  },
+      { prop: 'weight', name: 'Weight', width: 140, cellTemplate: this.WeightTemplate },
+      { prop: 'height', name: 'Heigher', width: 120, cellTemplate: this.HeightTemplate },
     ];
 
-
-      this.columns.push({ name: '', width: 160, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
+    this.columns.push({ name: '', width: 160, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
 
     this.loadData();
   }
 
-
-
-
   ngAfterViewInit() {
-
     this.ProductEditor.changesSavedCallback = () => {
       this.AddNewProduct();
       this.editorModal.hide();
@@ -99,7 +83,6 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
       this.editorModal.hide();
     };
   }
-
 
   AddNewProduct() {
     if (this.sourceProduct) {
@@ -118,7 +101,6 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
       this.editedProduct = null;
       this.editedProduct = null;
     } else {
-
       const product = new Product();
       Object.assign(product, this.editedProduct);
       this.editedProduct = null;
@@ -137,9 +119,6 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
       this.rows = [...this.rows];
     }
   }
-
-
-
 
   loadData() {
     this.alertService.startLoadingMessage();
@@ -164,17 +143,14 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
         });
   }
 
-
   onSearchChanged(value: string) {
     this.rows = this.rowsCache.filter(r => Utilities.searchArray(value, false, r.name, r.description));
   }
-
 
   onEditorModalHidden() {
     this.editingProductName = null;
     this.ProductEditor.resetForm(true);
   }
-
 
   newProduct() {
     this.editingProductName = null;
@@ -182,7 +158,6 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
     this.editedProduct = this.ProductEditor.newProduct();
     this.editorModal.show();
   }
-
 
   editProduct(row: Product) {
     this.editingProductName = { name: row.name };
@@ -193,12 +168,10 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
 
   deleteProduct(row: any) {
     this.alertService.showDialog('Are you sure you want to delete the \"' + row.name + '\" product?',
-     DialogType.confirm, () => this.deleteProductHelper(row));
+      DialogType.confirm, () => this.deleteProductHelper(row));
   }
 
-
   deleteProductHelper(row: any) {
-
     this.alertService.startLoadingMessage('Deleting...');
     this.loadingIndicator = true;
 
@@ -218,5 +191,4 @@ export class ProductViewComponent implements OnInit, AfterViewInit {
             MessageSeverity.error, error);
         });
   }
-
 }

@@ -7,7 +7,6 @@ using DAL.Core;
 using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Models;
-using System;
 using System.Collections.Generic;
 
 namespace Managerial
@@ -73,7 +72,7 @@ namespace Managerial
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword, // Resource Owner Password Credential grant.
                     AllowAccessTokensViaBrowser = true,
                     RequireClientSecret = false, // This client does not need a secret to request tokens from the token endpoint.
-                    
+
                     AllowedScopes = {
                         IdentityServerConstants.StandardScopes.OpenId, // For UserInfo endpoint.
                         IdentityServerConstants.StandardScopes.Profile,

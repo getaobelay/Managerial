@@ -4,17 +4,12 @@
 // =============================
 
 using DAL.Core.Helpers;
-using DAL.Core.Helpers.BaseDtos;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using FluentValidation;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-
-namespace DAL.Core.ViewModels
+namespace DAL.ViewModels
 {
     public class CustomerViewModel : IBaseViewModel, IMapFrom<Product>
     {

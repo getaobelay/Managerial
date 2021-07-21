@@ -1,9 +1,9 @@
 ﻿using Autofac;
-using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Commands.Responses;
-using DAL.Core.Helpers.BaseDtos;
-using DAL.Core.Proccessors;
+using DAL.Core.Cqrs.Common.Commands.Requests;
+using DAL.Core.Cqrs.Common.Commands.Responses;
+using DAL.Core.Cqrs.Proccessors;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -14,7 +14,6 @@ namespace DAL.Core.loC
 {
     public static class RegisterCommandProccessorHelper
     {
-
         public static void RegisterContext<TContext>(ContainerBuilder builder)
             where TContext : DbContext
         {
@@ -40,10 +39,10 @@ namespace DAL.Core.loC
                 .AsSelf()
                 .InstancePerLifetimeScope();
         }
-    
-    public static ContainerBuilder RegisterCommandProccessors<TEntity, TDto>(this ContainerBuilder builder)
-     where TEntity : AuditableEntity, new()
-     where TDto : class, IBaseViewModel, new()
+
+        public static ContainerBuilder RegisterCommandProccessors<TEntity, TDto>(this ContainerBuilder builder)
+         where TEntity : AuditableEntity, new()
+         where TDto : class, IBaseViewModel, new()
         {
             builder.RegisterType<CommandTransactionProccessor<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
               .As<IPipelineBehavior<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
@@ -55,7 +54,5 @@ namespace DAL.Core.loC
                                 .As<IPipelineBehavior<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
             return builder;
         }
-
-
     }
 }

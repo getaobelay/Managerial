@@ -3,11 +3,7 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using System;
-using System.Linq;
-
-
-namespace DAL.Core.ViewModels
+namespace DAL.ViewModels
 {
     public class OrderViewModel
     {

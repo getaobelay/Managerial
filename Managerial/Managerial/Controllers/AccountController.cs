@@ -7,10 +7,10 @@ using AutoMapper;
 using DAL.Core;
 using DAL.Core.Interfaces;
 using DAL.Models;
+using DAL.ViewModels;
 using IdentityServer4.AccessTokenValidation;
 using Managerial.Authorization;
 using Managerial.Helpers;
-using Managerial.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -42,14 +42,12 @@ namespace Managerial.Controllers
             _logger = logger;
         }
 
-
         [HttpGet("users/me")]
         [ProducesResponseType(200, Type = typeof(UserViewModel))]
         public async Task<IActionResult> GetCurrentUser()
         {
             return await GetUserById(Utilities.GetUserId(this.User));
         }
-
 
         [HttpGet("users/{id}", Name = GetUserByIdActionName)]
         [ProducesResponseType(200, Type = typeof(UserViewModel))]
@@ -60,7 +58,6 @@ namespace Managerial.Controllers
             if (!(await _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Read)).Succeeded)
                 return new ChallengeResult();
 
-
             UserViewModel userVM = await GetUserViewModelHelper(id);
 
             if (userVM != null)
@@ -68,7 +65,6 @@ namespace Managerial.Controllers
             else
                 return NotFound(id);
         }
-
 
         [HttpGet("users/username/{userName}")]
         [ProducesResponseType(200, Type = typeof(UserViewModel))]
@@ -87,7 +83,6 @@ namespace Managerial.Controllers
             return await GetUserById(appUser.Id);
         }
 
-
         [HttpGet("users")]
         [Authorize(Authorization.Policies.ViewAllUsersPolicy)]
         [ProducesResponseType(200, Type = typeof(List<UserViewModel>))]
@@ -95,7 +90,6 @@ namespace Managerial.Controllers
         {
             return await GetUsers(-1, -1);
         }
-
 
         [HttpGet("users/{pageNumber:int}/{pageSize:int}")]
         [Authorize(Authorization.Policies.ViewAllUsersPolicy)]
@@ -117,7 +111,6 @@ namespace Managerial.Controllers
             return Ok(usersVM);
         }
 
-
         [HttpPut("users/me")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -126,7 +119,6 @@ namespace Managerial.Controllers
         {
             return await UpdateUser(Utilities.GetUserId(this.User), user);
         }
-
 
         [HttpPut("users/{id}")]
         [ProducesResponseType(204)]
@@ -141,10 +133,8 @@ namespace Managerial.Controllers
             var manageUsersPolicy = _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Update);
             var assignRolePolicy = _authorizationService.AuthorizeAsync(this.User, (user.Roles, currentRoles), Authorization.Policies.AssignAllowedRolesPolicy);
 
-
             if ((await Task.WhenAll(manageUsersPolicy, assignRolePolicy)).Any(r => !r.Succeeded))
                 return new ChallengeResult();
-
 
             if (ModelState.IsValid)
             {
@@ -203,7 +193,6 @@ namespace Managerial.Controllers
             return BadRequest(ModelState);
         }
 
-
         [HttpPatch("users/me")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -211,7 +200,6 @@ namespace Managerial.Controllers
         {
             return await UpdateUser(Utilities.GetUserId(this.User), patch);
         }
-
 
         [HttpPatch("users/{id}")]
         [ProducesResponseType(204)]
@@ -223,18 +211,15 @@ namespace Managerial.Controllers
             if (!(await _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Update)).Succeeded)
                 return new ChallengeResult();
 
-
             if (ModelState.IsValid)
             {
                 if (patch == null)
                     return BadRequest($"{nameof(patch)} cannot be null");
 
-
                 ApplicationUser appUser = await _accountManager.GetUserByIdAsync(id);
 
                 if (appUser == null)
                     return NotFound(id);
-
 
                 UserPatchViewModel userPVM = _mapper.Map<UserPatchViewModel>(appUser);
                 patch.ApplyTo(userPVM, (e) => AddError(e.ErrorMessage));
@@ -247,14 +232,12 @@ namespace Managerial.Controllers
                     if (result.Succeeded)
                         return NoContent();
 
-
                     AddError(result.Errors);
                 }
             }
 
             return BadRequest(ModelState);
         }
-
 
         [HttpPost("users")]
         [Authorize(Authorization.Policies.ManageAllUsersPolicy)]
@@ -266,12 +249,10 @@ namespace Managerial.Controllers
             if (!(await _authorizationService.AuthorizeAsync(this.User, (user.Roles, new string[] { }), Authorization.Policies.AssignAllowedRolesPolicy)).Succeeded)
                 return new ChallengeResult();
 
-
             if (ModelState.IsValid)
             {
                 if (user == null)
                     return BadRequest($"{nameof(user)} cannot be null");
-
 
                 ApplicationUser appUser = _mapper.Map<ApplicationUser>(user);
 
@@ -288,7 +269,6 @@ namespace Managerial.Controllers
             return BadRequest(ModelState);
         }
 
-
         [HttpDelete("users/{id}")]
         [ProducesResponseType(200, Type = typeof(UserViewModel))]
         [ProducesResponseType(400)]
@@ -299,7 +279,6 @@ namespace Managerial.Controllers
             if (!(await _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Delete)).Succeeded)
                 return new ChallengeResult();
 
-
             ApplicationUser appUser = await _accountManager.GetUserByIdAsync(id);
 
             if (appUser == null)
@@ -308,17 +287,14 @@ namespace Managerial.Controllers
             if (!await _accountManager.TestCanDeleteUserAsync(id))
                 return BadRequest("User cannot be deleted. Delete all orders associated with this user and try again");
 
-
             UserViewModel userVM = await GetUserViewModelHelper(appUser.Id);
 
             var result = await _accountManager.DeleteUserAsync(appUser);
             if (!result.Succeeded)
                 throw new Exception("The following errors occurred whilst deleting user: " + string.Join(", ", result.Errors));
 
-
             return Ok(userVM);
         }
-
 
         [HttpPut("users/unblock/{id}")]
         [Authorize(Authorization.Policies.ManageAllUsersPolicy)]
@@ -336,10 +312,8 @@ namespace Managerial.Controllers
             if (!result.Succeeded)
                 throw new Exception("The following errors occurred whilst unblocking user: " + string.Join(", ", result.Errors));
 
-
             return NoContent();
         }
-
 
         [HttpGet("users/me/preferences")]
         [ProducesResponseType(200, Type = typeof(string))]
@@ -350,7 +324,6 @@ namespace Managerial.Controllers
 
             return Ok(appUser.Configuration);
         }
-
 
         [HttpPut("users/me/preferences")]
         [ProducesResponseType(204)]
@@ -367,10 +340,6 @@ namespace Managerial.Controllers
 
             return NoContent();
         }
-
-
-
-
 
         [HttpGet("roles/{id}", Name = GetRoleByIdActionName)]
         [ProducesResponseType(200, Type = typeof(RoleViewModel))]
@@ -389,7 +358,6 @@ namespace Managerial.Controllers
             return await GetRoleByName(appRole.Name);
         }
 
-
         [HttpGet("roles/name/{name}")]
         [ProducesResponseType(200, Type = typeof(RoleViewModel))]
         [ProducesResponseType(403)]
@@ -399,7 +367,6 @@ namespace Managerial.Controllers
             if (!(await _authorizationService.AuthorizeAsync(this.User, name, Authorization.Policies.ViewRoleByRoleNamePolicy)).Succeeded)
                 return new ChallengeResult();
 
-
             RoleViewModel roleVM = await GetRoleViewModelHelper(name);
 
             if (roleVM == null)
@@ -407,7 +374,6 @@ namespace Managerial.Controllers
 
             return Ok(roleVM);
         }
-
 
         [HttpGet("roles")]
         [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
@@ -417,7 +383,6 @@ namespace Managerial.Controllers
             return await GetRoles(-1, -1);
         }
 
-
         [HttpGet("roles/{pageNumber:int}/{pageSize:int}")]
         [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(List<RoleViewModel>))]
@@ -426,7 +391,6 @@ namespace Managerial.Controllers
             var roles = await _accountManager.GetRolesLoadRelatedAsync(pageNumber, pageSize);
             return Ok(_mapper.Map<List<RoleViewModel>>(roles));
         }
-
 
         [HttpPut("roles/{id}")]
         [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
@@ -443,13 +407,10 @@ namespace Managerial.Controllers
                 if (!string.IsNullOrWhiteSpace(role.Id) && id != role.Id)
                     return BadRequest("Conflicting role id in parameter and model data");
 
-
-
                 ApplicationRole appRole = await _accountManager.GetRoleByIdAsync(id);
 
                 if (appRole == null)
                     return NotFound(id);
-
 
                 _mapper.Map<RoleViewModel, ApplicationRole>(role, appRole);
 
@@ -458,12 +419,10 @@ namespace Managerial.Controllers
                     return NoContent();
 
                 AddError(result.Errors);
-
             }
 
             return BadRequest(ModelState);
         }
-
 
         [HttpPost("roles")]
         [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
@@ -475,7 +434,6 @@ namespace Managerial.Controllers
             {
                 if (role == null)
                     return BadRequest($"{nameof(role)} cannot be null");
-
 
                 ApplicationRole appRole = _mapper.Map<ApplicationRole>(role);
 
@@ -492,7 +450,6 @@ namespace Managerial.Controllers
             return BadRequest(ModelState);
         }
 
-
         [HttpDelete("roles/{id}")]
         [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(RoleViewModel))]
@@ -508,17 +465,14 @@ namespace Managerial.Controllers
             if (!await _accountManager.TestCanDeleteRoleAsync(id))
                 return BadRequest("Role cannot be deleted. Remove all users from this role and try again");
 
-
             RoleViewModel roleVM = await GetRoleViewModelHelper(appRole.Name);
 
             var result = await _accountManager.DeleteRoleAsync(appRole);
             if (!result.Succeeded)
                 throw new Exception("The following errors occurred whilst deleting role: " + string.Join(", ", result.Errors));
 
-
             return Ok(roleVM);
         }
-
 
         [HttpGet("permissions")]
         [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
@@ -527,8 +481,6 @@ namespace Managerial.Controllers
         {
             return Ok(_mapper.Map<List<PermissionViewModel>>(ApplicationPermissions.AllPermissions));
         }
-
-
 
         private async Task<UserViewModel> GetUserViewModelHelper(string userId)
         {
@@ -542,17 +494,14 @@ namespace Managerial.Controllers
             return userVM;
         }
 
-
         private async Task<RoleViewModel> GetRoleViewModelHelper(string roleName)
         {
             var role = await _accountManager.GetRoleLoadRelatedAsync(roleName);
             if (role != null)
                 return _mapper.Map<RoleViewModel>(role);
 
-
             return null;
         }
-
 
         private void AddError(IEnumerable<string> errors, string key = "")
         {
@@ -566,6 +515,5 @@ namespace Managerial.Controllers
         {
             ModelState.AddModelError(key, error);
         }
-
     }
 }

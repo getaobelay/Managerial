@@ -1,5 +1,4 @@
-﻿using DAL.Models;
-using DAL.Models.Interfaces;
+﻿using DAL.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -7,8 +6,6 @@ namespace DAL.Core.Helpers
 {
     public static class EntityBuilderHelper
     {
-
-
         public static EntityTypeBuilder BaseStockBuilder<TStock>(this EntityTypeBuilder<TStock> builder)
             where TStock : class, IStockEntity, new()
         {
@@ -29,14 +26,9 @@ namespace DAL.Core.Helpers
             return builder;
         }
 
-
         public static EntityTypeBuilder BaseEntityBuilder<TBaseEntity>(this EntityTypeBuilder<TBaseEntity> builder)
             where TBaseEntity : class, IAuditableEntity, new()
         {
-
-
-   
-
             builder.Property(e => e.CreatedBy)
                    .HasMaxLength(50)
                    .IsUnicode(true)
@@ -45,7 +37,6 @@ namespace DAL.Core.Helpers
             builder.Property(e => e.UpdatedBy)
                   .HasMaxLength(50)
                   .IsUnicode(true);
-      
 
             return builder;
         }

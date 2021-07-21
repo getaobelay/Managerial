@@ -10,9 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Models
 {
@@ -31,7 +28,6 @@ namespace DAL.Models
             }
         }
 
-
         public string JobTitle { get; set; }
         public string FullName { get; set; }
         public string Configuration { get; set; }
@@ -42,8 +38,6 @@ namespace DAL.Models
         public string UpdatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-
-
 
         /// <summary>
         /// Navigation property for the roles this user belongs to.
@@ -60,8 +54,6 @@ namespace DAL.Models
         /// </summary>
         public ICollection<Order> Orders { get; set; }
     }
-
-
 
     public class ApplicationUserConfig : IEntityTypeConfiguration<ApplicationUser>
     {

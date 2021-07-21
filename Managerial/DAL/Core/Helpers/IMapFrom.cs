@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using DAL.Models;
 
 namespace DAL.Core.Helpers
 {

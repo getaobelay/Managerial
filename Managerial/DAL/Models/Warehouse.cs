@@ -1,14 +1,12 @@
 ﻿using DAL.Core.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 using System.Collections.Generic;
 
 namespace DAL.Models
 {
     public class Warehouse : AuditableEntity
     {
-
         public string WarehouseName { get; set; }
         public int? WarehouseItemID { get; set; }
         public int? LocationID { get; set; }
@@ -19,7 +17,6 @@ namespace DAL.Models
         public ICollection<Location> Locations { get; set; }
         public ICollection<Product> Products { get; set; }
         public ICollection<Batch> Batches { get; set; }
-
     }
 
     internal class WarehouseConfig : IEntityTypeConfiguration<Warehouse>
@@ -33,7 +30,6 @@ namespace DAL.Models
                 .IsUnicode(true)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
-
         }
     }
 }

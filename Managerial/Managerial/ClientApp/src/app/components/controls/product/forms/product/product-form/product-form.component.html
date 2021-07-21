@@ -20,7 +20,7 @@
           <label class="col-form-label col-md-3" for="description">description</label>
           <div class="col-md-9">
             <input type="text" id="description" name="description" placeholder="Enter product description"
-            class="form-control" [(ngModel)]="productEdit.description" />
+                   class="form-control" [(ngModel)]="productEdit.description" />
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
       <div class="col-sm-12">
         <div ngPreserveWhitespaces class="float-right">
           <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'roles.editor.Cancel' | translate}}</button>
-          <button  type="submit" class="btn btn-primary" [disabled]="isSaving">
+          <button type="submit" class="btn btn-primary" [disabled]="isSaving">
             <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('roles.editor.Saving' | translate) : ('roles.editor.Save' | translate)}}
           </button>
         </div>

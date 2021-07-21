@@ -1,8 +1,8 @@
-﻿using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Commands.Responses;
+﻿using DAL.Core.Cqrs.Common.Commands.Requests;
+using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Core.Helpers;
-using DAL.Core.Helpers.BaseDtos;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
@@ -31,7 +31,6 @@ namespace DAL.Core.Cqrs.Common.Commands.Handlers
         {
             try
             {
-
                 var entity = await _unitOfWork.Generic.SingleOrDefaultAsync(p => p.Id == request.Id);
 
                 if (entity == null)
@@ -49,7 +48,6 @@ namespace DAL.Core.Cqrs.Common.Commands.Handlers
                 return new CommandResponse<TDto>(model: MappingHelper.Mapper.Map<TDto>(entity),
                     success: true);
             }
-
             catch (Exception)
             {
                 throw;

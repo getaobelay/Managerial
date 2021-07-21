@@ -1,7 +1,6 @@
-﻿using DAL.Core.Helpers.BaseDtos;
-using System.Collections.Generic;
+﻿using DAL.ViewModels.Interfaces;
 
-namespace DAL.Core.CommonCQRS.Queries.Responses
+namespace DAL.Core.Cqrs.Common.Queries.Responses
 {
     public class SingleQueryResponse<TDto>
         where TDto : class, IBaseViewModel, new()

@@ -1,9 +1,9 @@
 ﻿using Autofac;
-using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Commands.Responses;
-using DAL.Core.Helpers.BaseDtos;
-using DAL.Core.Proccessors;
+using DAL.Core.Cqrs.Common.Commands.Requests;
+using DAL.Core.Cqrs.Common.Commands.Responses;
+using DAL.Core.Cqrs.Proccessors;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 
 namespace DAL.Core.loC
@@ -24,6 +24,5 @@ namespace DAL.Core.loC
                                        .As<IPipelineBehavior<UpdateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();
             return builder;
         }
-
     }
 }

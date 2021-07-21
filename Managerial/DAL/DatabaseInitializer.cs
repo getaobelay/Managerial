@@ -3,17 +3,14 @@
 // www.ebenmonney.com/templates
 // =============================
 
+using DAL.Core;
+using DAL.Core.Interfaces;
 using DAL.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DAL.Core;
-using DAL.Core.Interfaces;
 
 namespace DAL
 {
@@ -21,9 +18,6 @@ namespace DAL
     {
         Task SeedAsync();
     }
-
-
-
 
     public class DatabaseInitializer : IDatabaseInitializer
     {
@@ -57,8 +51,6 @@ namespace DAL
 
                 _logger.LogInformation("Inbuilt account generation completed");
             }
-
-
 
             if (!await _context.Customers.AnyAsync() && !await _context.ProductCategories.AnyAsync())
             {
@@ -111,8 +103,6 @@ namespace DAL
                     UpdatedDate = DateTime.UtcNow
                 };
 
-
-
                 ProductCategory prodCat_1 = new ProductCategory
                 {
                     Name = "None",
@@ -120,8 +110,6 @@ namespace DAL
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow
                 };
-
-
 
                 Product prod_1 = new Product
                 {
@@ -146,8 +134,6 @@ namespace DAL
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow
                 };
-
-
 
                 Order ordr_1 = new Order
                 {
@@ -175,7 +161,6 @@ namespace DAL
                     }
                 };
 
-
                 _context.Customers.Add(cust_1);
                 _context.Customers.Add(cust_2);
                 _context.Customers.Add(cust_3);
@@ -192,8 +177,6 @@ namespace DAL
                 _logger.LogInformation("Seeding initial data completed");
             }
         }
-
-
 
         private async Task EnsureRoleAsync(string roleName, string description, string[] claims)
         {
@@ -224,7 +207,6 @@ namespace DAL
 
             if (!result.Succeeded)
                 throw new Exception($"Seeding \"{userName}\" user failed. Errors: {string.Join(Environment.NewLine, result.Errors)}");
-
 
             return applicationUser;
         }

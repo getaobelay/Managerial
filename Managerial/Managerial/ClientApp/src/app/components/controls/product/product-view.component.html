@@ -27,7 +27,6 @@
                  [columnMode]="'force'">
   </ngx-datatable>
 
-
   <ng-template #indexTemplate let-value="value">
     <strong>{{value}}</strong>
   </ng-template>
@@ -38,7 +37,6 @@
       <a class="btn btn-link btn-sm" href="javascript:;" (click)="deleteProduct(row)"><i class="fa fa-trash-o" aria-hidden="true"></i> {{'users.management.Delete' | translate}}</a>
     </div>
   </ng-template>
-
 
   <div class="modal fade" bsModal #editorModal="bs-modal" (onHidden)="onEditorModalHidden()" [config]="{backdrop: 'static'}" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -51,7 +49,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <app-product-form #productEditor ></app-product-form>
+          <app-product-form #productEditor></app-product-form>
         </div>
       </div>
     </div>

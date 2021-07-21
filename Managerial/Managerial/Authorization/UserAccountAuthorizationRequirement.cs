@@ -6,9 +6,7 @@
 using DAL.Core;
 using Managerial.Helpers;
 using Microsoft.AspNetCore.Authorization;
-using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Managerial.Authorization
@@ -20,11 +18,8 @@ namespace Managerial.Authorization
             this.OperationName = operationName;
         }
 
-
         public string OperationName { get; private set; }
     }
-
-
 
     public class ViewUserAuthorizationHandler : AuthorizationHandler<UserAccountAuthorizationRequirement, string>
     {
@@ -39,7 +34,6 @@ namespace Managerial.Authorization
             return Task.CompletedTask;
         }
 
-
         private bool GetIsSameUser(ClaimsPrincipal user, string targetUserId)
         {
             if (string.IsNullOrWhiteSpace(targetUserId))
@@ -48,8 +42,6 @@ namespace Managerial.Authorization
             return Utilities.GetUserId(user) == targetUserId;
         }
     }
-
-
 
     public class ManageUserAuthorizationHandler : AuthorizationHandler<UserAccountAuthorizationRequirement, string>
     {
@@ -66,7 +58,6 @@ namespace Managerial.Authorization
 
             return Task.CompletedTask;
         }
-
 
         private bool GetIsSameUser(ClaimsPrincipal user, string targetUserId)
         {

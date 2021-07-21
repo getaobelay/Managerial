@@ -1,12 +1,10 @@
 ﻿using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
-using DAL.Core.Helpers.ProductDtos;
-using DAL.ViewModels;
-using DAL.ViewModels.Interfaces;
-using Managerial.ViewModels;
+using DAL.Core.Helpers;
 
-namespace DAL.Core.Helpers.InventoryViewModels
+namespace DAL.ViewModels
 {
     public class InventoryViewModel : IBaseStockViewModel, IMapFrom<Inventory>
     {
@@ -26,6 +24,5 @@ namespace DAL.Core.Helpers.InventoryViewModels
         public IEnumerable<ProductViewModel> Products { get; set; }
         public IEnumerable<BatchDto> Batches { get; set; }
         public IEnumerable<WarehouseViewModel> Warehouses { get; set; }
-
     }
 }

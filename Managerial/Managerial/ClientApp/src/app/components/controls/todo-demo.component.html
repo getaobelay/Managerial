@@ -52,7 +52,6 @@
     <input *ngIf="editing[row.$$index + '-description']" class="inline-editor" appAutofocus (blur)="updateValue($event, 'description', value, row)" type="text" [value]="value" />
   </ng-template>
 
-
   <ng-template #actionsTemplate let-row="row">
     <a class="btn btn-link btn-sm" href="javascript:;" tooltip="{{'todoDemo.management.Delete' | translate}}" container="body" (click)="delete(row)"><i class="fa fa-times"></i></a>
     <a class="btn btn-link btn-sm" href="javascript:;" tooltip="{{'todoDemo.management.Important' | translate}}" container="body" (click)="row.important = !row.important" (mouseover)="row.isMouseOver=true" (mouseout)="row.isMouseOver=false">
@@ -60,10 +59,6 @@
       <i *ngIf="!row.important && !row.isMouseOver" class="fa fa-bookmark-o"></i>
     </a>
   </ng-template>
-
-
-
-
 
   <div class="modal fade" bsModal #editorModal="bs-modal" tabindex="-1">
     <div class="modal-dialog">
@@ -78,7 +73,6 @@
           <form *ngIf="formResetToggle" name="taskEditorForm" #f="ngForm" novalidate
                 (ngSubmit)="f.form.valid ? save() :
                       (!taskName.valid && showErrorAlert('Task name is required', 'Please enter a name for the task'));">
-
 
             <div class="form-group row">
               <label class="col-form-label col-md-3" for="taskName">{{'todoDemo.editor.Name' | translate}}:</label>
@@ -113,7 +107,6 @@
                 <hr class="edit-last-separator-hr" />
               </div>
             </div>
-
 
             <div class="form-group actionBtn-form-group">
               <div class="float-right">

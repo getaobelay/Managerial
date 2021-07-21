@@ -5,8 +5,8 @@
 
 using AutoMapper;
 using DAL.Core;
-using DAL.Core.ViewModels;
 using DAL.Models;
+using DAL.ViewModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace Managerial.ViewModels

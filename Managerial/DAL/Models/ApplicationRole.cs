@@ -10,8 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DAL.Models
 {
@@ -25,7 +23,6 @@ namespace DAL.Models
         /// </remarks>
         public ApplicationRole()
         {
-
         }
 
         /// <summary>
@@ -37,9 +34,7 @@ namespace DAL.Models
         /// </remarks>
         public ApplicationRole(string roleName) : base(roleName)
         {
-
         }
-
 
         /// <summary>
         /// Initializes a new instance of <see cref="ApplicationRole"/>.
@@ -54,20 +49,15 @@ namespace DAL.Models
             Description = description;
         }
 
-
-
-
-
         /// <summary>
         /// Gets or sets the description for this role.
         /// </summary>
         public string Description { get; set; }
+
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-
-
 
         /// <summary>
         /// Navigation property for the users in this role.

@@ -4,13 +4,12 @@
 // =============================
 
 using DAL.Core.Helpers;
-using DAL.Core.Helpers.BaseDtos;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using System;
-using System.Linq;
+using DAL.Core.Helpers;
 
-
-namespace Managerial.ViewModels
+namespace DAL.ViewModels
 {
     public class ProductViewModel : IBaseViewModel, IMapFrom<Product>
     {

@@ -6,12 +6,7 @@
 using DAL.Core.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Models
 {
@@ -39,7 +34,6 @@ namespace DAL.Models
         public virtual Inventory Inventory { get; set; }
         public virtual ICollection<WarehouseItem> WarehouseItems { get; set; } = new HashSet<WarehouseItem>();
         public virtual ICollection<Batch> Batches { get; set; } = new HashSet<Batch>();
-
     }
 
     internal class ProductConfig : IEntityTypeConfiguration<Product>
@@ -49,7 +43,6 @@ namespace DAL.Models
             const string priceDecimalType = "decimal(18,2)";
 
             builder.BaseEntityBuilder();
-
 
             builder.Property(p => p.Name).IsRequired().HasMaxLength(100);
             builder.HasIndex(p => p.Name);

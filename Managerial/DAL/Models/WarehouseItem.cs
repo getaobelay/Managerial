@@ -1,19 +1,16 @@
 ﻿using DAL.Core.Helpers;
-using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace DAL.Models
 {
     public class WarehouseItem : AuditableEntity
     {
-      
         public int? ProductID { get; set; }
         public int? BatchID { get; set; }
         public int? LocationID { get; set; }
         public int? AllocationId { get; set; }
-        public int?  WarehouseId { get; set; }
+        public int? WarehouseId { get; set; }
         public virtual Product Product { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         public virtual Allocation Allocation { get; set; }
@@ -26,7 +23,6 @@ namespace DAL.Models
         public void Configure(EntityTypeBuilder<WarehouseItem> builder)
         {
             builder.BaseEntityBuilder();
-
 
             builder.HasOne(d => d.Product)
                  .WithMany(p => p.WarehouseItems)
@@ -43,8 +39,6 @@ namespace DAL.Models
             builder.HasOne(d => d.Batch)
               .WithMany(p => p.WarehouseItems)
               .HasForeignKey(d => d.BatchID);
-
-
         }
     }
 }

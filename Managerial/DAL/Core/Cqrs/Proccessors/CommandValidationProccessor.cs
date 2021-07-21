@@ -1,7 +1,7 @@
-﻿using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Commands.Responses;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Cqrs.Common.Commands.Requests;
+using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using FluentValidation;
 using MediatR;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DAL.Core.Proccessors
+namespace DAL.Core.Cqrs.Proccessors
 {
     public class CommandValidationProccessor<TRequest, TResponse, TEntity, TDto> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : BaseCommandRequest<TEntity, TDto>
@@ -40,7 +40,6 @@ namespace DAL.Core.Proccessors
             }
 
             return await next();
-
         }
     }
 }

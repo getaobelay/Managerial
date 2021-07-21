@@ -1,9 +1,9 @@
-﻿using DAL.Core.CommonCQRS.Queries.Requests;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Cqrs.Common.Queries.Requests;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using FluentValidation;
 
-namespace DAL.Core.CommonCQRS.Queries.Validation
+namespace DAL.Core.Cqrs.Common.Queries.Validation
 {
     /// <summary>
     /// validater
@@ -19,7 +19,4 @@ namespace DAL.Core.CommonCQRS.Queries.Validation
                 .WithMessage("Id should not be null");
         }
     }
-
-
-
 }

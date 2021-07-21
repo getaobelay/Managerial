@@ -1,15 +1,14 @@
-﻿using DAL;
-using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Commands.Responses;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Cqrs.Common.Commands.Requests;
+using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DAL.Core.Proccessors
+namespace DAL.Core.Cqrs.Proccessors
 {
     public class CommandTransactionProccessor<TRequest, TResponse, TEntity, TDto> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : BaseCommandRequest<TEntity, TDto>
@@ -17,10 +16,10 @@ namespace DAL.Core.Proccessors
         where TEntity : AuditableEntity, new()
         where TDto : class, IBaseViewModel, new()
     {
-
         private IUnitOfWork<TEntity> _unitOfWork;
 
         private readonly ILogger<CommandTransactionProccessor<TRequest, TResponse, TEntity, TDto>> _logger;
+
         public CommandTransactionProccessor(
             ILogger<CommandTransactionProccessor<TRequest, TResponse, TEntity, TDto>> logger,
             IUnitOfWork<TEntity> unitOfWork)
@@ -28,7 +27,6 @@ namespace DAL.Core.Proccessors
             _logger = logger ?? throw new ArgumentException(nameof(ILogger));
             _unitOfWork = unitOfWork;
         }
-
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
             RequestHandlerDelegate<TResponse> next)
@@ -45,7 +43,6 @@ namespace DAL.Core.Proccessors
 
                 return response;
             }
-
             catch (Exception e)
             {
                 _logger.LogInformation($"Failed request at {typeof(TRequest).Name}");

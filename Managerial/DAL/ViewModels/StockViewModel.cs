@@ -1,10 +1,9 @@
-﻿using DAL.Models;
+﻿using DAL.Core.Helpers;
+using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
-using DAL.Core.Helpers.ProductDtos;
-using DAL.ViewModels.Interfaces;
 using DAL.Core.Helpers;
-using Managerial.ViewModels;
 
 namespace DAL.ViewModels
 {
@@ -23,6 +22,5 @@ namespace DAL.ViewModels
         public IEnumerable<ProductViewModel> Products { get; set; }
         public IEnumerable<BatchDto> Batches { get; set; }
         public IEnumerable<WarehouseViewModel> Warehouses { get; set; }
-
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.Core.Helpers.BaseDtos;
+using DAL.ViewModels.Interfaces;
+using System;
 
-namespace DAL.Core.Helpers.ProductDtos
+namespace DAL.ViewModels
 {
     public class ProductCategoryDto : IBaseViewModel, IMapFrom<ProductCategory>
     {

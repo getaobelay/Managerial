@@ -1,15 +1,14 @@
-﻿using AutoMapper;
-using DAL.Core.CommonCQRS.Queries.Responses;
-using DAL.Core.Cqrs.Common.Queries.Requests;
+﻿using DAL.Core.Cqrs.Common.Queries.Requests;
+using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Core.Helpers;
-using DAL.Core.Helpers.BaseDtos;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DAL.Core.CommonCQRS.Queries.Handlers
+namespace DAL.Core.Cqrs.Common.Queries.Handlers
 {
     public class ListQueryHandler<TEntity, TDto, TQuery> : IRequestHandler<TQuery, ListQueryResponse<TDto>>
         where TEntity : AuditableEntity, new()
@@ -25,7 +24,6 @@ namespace DAL.Core.CommonCQRS.Queries.Handlers
 
         public async Task<ListQueryResponse<TDto>> Handle(TQuery request, CancellationToken cancellationToken)
         {
-
             var result = await _unitOfWork.Generic.GetAllAsync();
             return new ListQueryResponse<TDto>
             {
@@ -33,8 +31,6 @@ namespace DAL.Core.CommonCQRS.Queries.Handlers
              await _unitOfWork.Generic.GetAllAsync()
              )
             };
-
-
         }
     }
 }

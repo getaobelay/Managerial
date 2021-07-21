@@ -1,16 +1,13 @@
-﻿using DAL;
-using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Commands.Responses;
-using DAL.Core.Helpers;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Cqrs.Common.Commands.Requests;
+using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WarehouseAngularApp.Mediator.CommonCQRS.Commands.Handlers
+namespace DAL.Core.Cqrs.Common.Commands.Handlers
 {
     /// <summary>
     /// Generic mediator handler creates a new record in the database
@@ -29,13 +26,10 @@ namespace WarehouseAngularApp.Mediator.CommonCQRS.Commands.Handlers
             _unitOfWork = unitOfWork;
         }
 
-
-
         public async Task<CommandResponse<TDto>> Handle(TCommand request, CancellationToken cancellationToken)
         {
             try
             {
-
                 var entity = await _unitOfWork.Generic.SingleOrDefaultAsync(p => p.Id == request.Id);
 
                 if (entity == null)
@@ -47,14 +41,11 @@ namespace WarehouseAngularApp.Mediator.CommonCQRS.Commands.Handlers
                     };
                 }
 
-
-                 _unitOfWork.Generic.Remove(entity);
+                _unitOfWork.Generic.Remove(entity);
                 await _unitOfWork.SaveChangesAsync();
 
                 return new CommandResponse<TDto>(model: default,
                     success: true);
-            
-
             }
             catch (Exception)
             {

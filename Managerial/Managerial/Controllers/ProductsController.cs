@@ -1,22 +1,19 @@
-﻿using DAL.Core.CommonCQRS.Commands.Requests;
-using DAL.Core.CommonCQRS.Queries.Requests;
+﻿using DAL.Core.Cqrs.Common.Commands.Requests;
 using DAL.Core.Cqrs.Common.Queries.Requests;
 using DAL.Core.loC;
 using DAL.Models;
+using DAL.ViewModels;
 using IdentityServer4.AccessTokenValidation;
-using Managerial.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ManagerialAngularApp.Controllers
+namespace Managerial.Controllers
 {
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
-
     public class ProductsController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -34,7 +31,6 @@ namespace ManagerialAngularApp.Controllers
             var result = await mediator.Send(query);
 
             return Ok(result.Dtos);
-
         }
 
         [HttpGet("{Id:int}")]
@@ -59,7 +55,6 @@ namespace ManagerialAngularApp.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] ProductViewModel createdObject)
         {
-
             var query = new CreateCommandRequest<Product, ProductViewModel>()
             {
                 CreateObject = createdObject
@@ -96,8 +91,6 @@ namespace ManagerialAngularApp.Controllers
             }
 
             return Ok(result.ViewModel);
-
-
         }
 
         [HttpDelete("{Id:int}")]
@@ -107,7 +100,6 @@ namespace ManagerialAngularApp.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteAsync([FromRoute] int Id)
         {
-
             var query = new DeleteCommandRequest<Product, ProductViewModel>()
             {
                 Id = Id
@@ -121,7 +113,6 @@ namespace ManagerialAngularApp.Controllers
             }
 
             return Ok(result.ViewModel);
-
         }
     }
 }

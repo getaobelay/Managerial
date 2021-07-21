@@ -1,17 +1,14 @@
-﻿using DAL;
-using DAL.Core.CommonCQRS;
-using DAL.Core.CommonCQRS.Queries.Requests;
-using DAL.Core.CommonCQRS.Queries.Responses;
+﻿using DAL.Core.Cqrs.Common.Queries.Requests;
+using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Core.Helpers;
-using DAL.Core.Helpers.BaseDtos;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DAL.Core.CommonCQRS.Queries.Handlers
+namespace DAL.Core.Cqrs.Common.Queries.Handlers
 {
     public class SingleQueryHandler<TEntity, TDto, TQuery> : IRequestHandler<TQuery, SingleQueryResponse<TDto>>
         where TEntity : AuditableEntity, new()
@@ -27,7 +24,6 @@ namespace DAL.Core.CommonCQRS.Queries.Handlers
 
         public async Task<SingleQueryResponse<TDto>> Handle(TQuery request, CancellationToken cancellationToken)
         {
-
             try
             {
                 var entity = await _unitOfWork.Generic.GetAsync(request.Id);
@@ -38,17 +34,13 @@ namespace DAL.Core.CommonCQRS.Queries.Handlers
                     {
                         ViewModal = default,
                         Succes = false
-
                     };
                 }
-
-
 
                 return new SingleQueryResponse<TDto>
                 {
                     ViewModal = MappingHelper.Mapper.Map<TDto>(entity),
                     Succes = true
-
                 };
             }
             catch (Exception)

@@ -1,9 +1,7 @@
-﻿using DAL.Core.Helpers.BaseDtos;
-using System.Collections.Generic;
+﻿using DAL.ViewModels.Interfaces;
 
-namespace DAL.Core.CommonCQRS.Commands.Responses
+namespace DAL.Core.Cqrs.Common.Commands.Responses
 {
-   
     public abstract class BaseCommandResponse<TDto> : ICommandResponse<TDto>
         where TDto : class, IBaseViewModel, new()
 
@@ -11,6 +9,7 @@ namespace DAL.Core.CommonCQRS.Commands.Responses
         public TDto ViewModel { get; set; } = new TDto();
         public bool Success { get; set; } = false;
     }
+
     public class CommandResponse<TDto> : BaseCommandResponse<TDto>
         where TDto : class, IBaseViewModel, new()
     {

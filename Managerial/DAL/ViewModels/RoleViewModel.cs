@@ -5,7 +5,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Managerial.ViewModels
+namespace DAL.ViewModels
 {
     public class RoleViewModel
     {

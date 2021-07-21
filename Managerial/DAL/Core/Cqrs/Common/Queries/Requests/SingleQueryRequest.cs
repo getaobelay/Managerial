@@ -1,12 +1,11 @@
-﻿using DAL.Core.CommonCQRS;
-using DAL.Core.CommonCQRS.Queries.Responses;
-using DAL.Core.Helpers.BaseDtos;
+﻿using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Models;
+using DAL.ViewModels.Interfaces;
 using MediatR;
 using System;
 using System.Linq.Expressions;
 
-namespace DAL.Core.CommonCQRS.Queries.Requests
+namespace DAL.Core.Cqrs.Common.Queries.Requests
 {
     public class SingleQueryRequest<TEntity, TDto> : IRequest<SingleQueryResponse<TDto>>
        where TEntity : AuditableEntity, new()

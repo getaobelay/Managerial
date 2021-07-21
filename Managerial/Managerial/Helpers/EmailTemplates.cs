@@ -12,22 +12,19 @@ namespace Managerial.Helpers
 {
     public static class EmailTemplates
     {
-        static IWebHostEnvironment _hostingEnvironment;
-        static string testEmailTemplate;
-        static string plainTextTestEmailTemplate;
-
+        private static IWebHostEnvironment _hostingEnvironment;
+        private static string testEmailTemplate;
+        private static string plainTextTestEmailTemplate;
 
         public static void Initialize(IWebHostEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
         }
 
-
         public static string GetTestEmail(string recepientName, DateTime testDate)
         {
             if (testEmailTemplate == null)
                 testEmailTemplate = ReadPhysicalFile("Helpers/Templates/TestEmail.template");
-
 
             string emailMessage = testEmailTemplate
                 .Replace("{user}", recepientName)
@@ -36,22 +33,16 @@ namespace Managerial.Helpers
             return emailMessage;
         }
 
-
-
         public static string GetPlainTextTestEmail(DateTime date)
         {
             if (plainTextTestEmailTemplate == null)
                 plainTextTestEmailTemplate = ReadPhysicalFile("Helpers/Templates/PlainTextTestEmail.template");
-
 
             string emailMessage = plainTextTestEmailTemplate
                 .Replace("{date}", date.ToString());
 
             return emailMessage;
         }
-
-
-
 
         private static string ReadPhysicalFile(string path)
         {

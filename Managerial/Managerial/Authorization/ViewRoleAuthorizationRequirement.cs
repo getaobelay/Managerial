@@ -5,18 +5,13 @@
 
 using DAL.Core;
 using Microsoft.AspNetCore.Authorization;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Managerial.Authorization
 {
     public class ViewRoleAuthorizationRequirement : IAuthorizationRequirement
     {
-
     }
-
-
 
     public class ViewRoleAuthorizationHandler : AuthorizationHandler<ViewRoleAuthorizationRequirement, string>
     {

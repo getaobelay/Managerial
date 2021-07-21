@@ -9,8 +9,6 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent {
-
-
   private isNewProduct = false;
   public isSaving: boolean;
   public showValidationErrors = true;
@@ -24,21 +22,15 @@ export class ProductFormComponent {
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
 
-
   @ViewChild('f')
   private form;
-
-
 
   constructor(private alertService: AlertService, private productService: ProductService) {
   }
 
-
-
   showErrorAlert(caption: string, message: string) {
     this.alertService.showMessage(caption, message, MessageSeverity.error);
   }
-
 
   save() {
     this.isSaving = true;
@@ -52,9 +44,6 @@ export class ProductFormComponent {
         this.saveSuccessHelper(), error => this.saveFailedHelper(error));
     }
   }
-
-
-
 
   private saveSuccessHelper(product?: Product) {
     if (product) {
@@ -70,7 +59,6 @@ export class ProductFormComponent {
     } else {
       this.alertService.showMessage('Success', `Changes to product \"${this.productEdit.name}\" was saved successfully`, MessageSeverity.success);
     }
-
 
     this.productEdit = new Product();
     this.resetForm();
@@ -91,7 +79,6 @@ export class ProductFormComponent {
     }
   }
 
-
   cancel() {
     this.productEdit = new Product();
 
@@ -106,10 +93,7 @@ export class ProductFormComponent {
     }
   }
 
-
-
   resetForm(replace = false) {
-
     if (!replace) {
       this.form.reset();
     } else {
@@ -120,7 +104,6 @@ export class ProductFormComponent {
       });
     }
   }
-
 
   newProduct() {
     this.isNewProduct = true;
@@ -148,6 +131,4 @@ export class ProductFormComponent {
       return this.newProduct();
     }
   }
-
-
 }

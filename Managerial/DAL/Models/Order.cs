@@ -6,11 +6,7 @@
 using DAL.Core.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Models
 {
@@ -34,16 +30,12 @@ namespace DAL.Models
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-
             builder.BaseEntityBuilder();
 
             const string priceDecimalType = "decimal(18,2)";
             builder.Property(o => o.Comments).HasMaxLength(500);
             builder.ToTable("Orders");
             builder.Property(p => p.Discount).HasColumnType(priceDecimalType);
-
-
         }
     }
-
 }

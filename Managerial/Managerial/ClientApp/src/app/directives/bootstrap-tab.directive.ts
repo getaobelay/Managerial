@@ -6,7 +6,6 @@
 import { Directive, ElementRef, Output, EventEmitter, OnDestroy, NgZone } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 
-
 declare var $: any;
 
 interface EventArg { type: string; target: Element; relatedTarget: Element; }
@@ -16,8 +15,6 @@ interface EventArg { type: string; target: Element; relatedTarget: Element; }
   exportAs: 'bootstrap-tab'
 })
 export class BootstrapTabDirective implements OnDestroy {
-
-
   @Output()
   showBSTab = new EventEmitter<EventArg>();
 
@@ -27,9 +24,7 @@ export class BootstrapTabDirective implements OnDestroy {
   private tabShownSubscription: Subscription;
   private tabHiddenSubscription: Subscription;
 
-
   constructor(private el: ElementRef, private zone: NgZone) {
-
     this.tabShownSubscription = fromEvent($(this.el.nativeElement), 'show.bs.tab')
       .subscribe((e: any) => {
         this.runInZone(() => this.showBSTab.emit({ type: e.type, target: e.target, relatedTarget: e.relatedTarget }));
@@ -41,19 +36,16 @@ export class BootstrapTabDirective implements OnDestroy {
       });
   }
 
-
   ngOnDestroy() {
     this.tabShownSubscription.unsubscribe();
     this.tabHiddenSubscription.unsubscribe();
   }
-
 
   private runInZone(delegate: () => any) {
     this.zone.run(() => {
       delegate();
     });
   }
-
 
   show(selector: string) {
     $(selector).tab('show');

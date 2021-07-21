@@ -25,12 +25,10 @@ interface UserConfiguration {
 
 @Injectable()
 export class ConfigurationService {
-
     constructor(
         private localStorage: LocalStoreManager,
         private translationService: AppTranslationService,
         private themeManager: ThemeManager) {
-
         this.loadLocalChanges();
     }
 

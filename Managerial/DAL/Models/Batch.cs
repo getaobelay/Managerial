@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using DAL.Core.Helpers;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Collections.Generic;
-using DAL.Core.Helpers;
 
 namespace DAL.Models
 {
@@ -23,7 +22,6 @@ namespace DAL.Models
         public void Configure(EntityTypeBuilder<Batch> builder)
         {
             builder.BaseEntityBuilder();
-
         }
     }
 }

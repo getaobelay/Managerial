@@ -9,9 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Models
 {
@@ -29,13 +26,11 @@ namespace DAL.Models
         public ICollection<Order> Orders { get; set; }
     }
 
-
     public class CustomerConfig : IEntityTypeConfiguration<Customer>
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.BaseEntityBuilder();
-
 
             builder.Property(c => c.Name).IsRequired().HasMaxLength(100);
             builder.HasIndex(c => c.Name);
