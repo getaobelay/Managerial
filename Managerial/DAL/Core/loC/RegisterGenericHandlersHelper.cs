@@ -6,7 +6,7 @@ using DAL.Core.Cqrs.Common.Queries.Handlers;
 using DAL.Core.Cqrs.Common.Queries.Requests;
 using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using MediatR;
 
 namespace DAL.Core.loC
@@ -15,7 +15,7 @@ namespace DAL.Core.loC
     {
         public static ContainerBuilder RegisterHandlers<TEntity, TDto>(this ContainerBuilder builder)
             where TEntity : AuditableEntity, new()
-            where TDto : class, IBaseViewModel, new()
+            where TDto : BaseViewModel, new()
 
         {
             builder.RegisterType<CreateCommandHandler<TEntity, TDto, CreateCommandRequest<TEntity, TDto>>>()

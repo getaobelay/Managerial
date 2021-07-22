@@ -63,10 +63,15 @@ import { UsersManagementComponent } from './components/controls/users-management
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 
-import { ProductViewComponent } from './components/controls/product/product-view.component';
 import { ProductService } from './services/product/product.service';
-import { ProductFormComponent } from './components/controls/product/forms/product/product-form/product-form.component';
 import { ProductEndpoint } from './services/product/product-endpoint.service';
+import { ProductViewComponent } from './components/controls/product/product-view.component';
+import { ProductFormComponent } from './components/controls/product/product-form/product-form.component';
+import { CategoryViewComponent } from './components/controls/category/category-view.component';
+import { CategoryFormComponent } from './components/controls/category/category-form/category-form.component';
+import { ApiEndpoint } from './services/generic/api-endpoint.service';
+import { APiService } from './services/generic/api.service';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 @NgModule({
   imports: [
@@ -103,7 +108,8 @@ import { ProductEndpoint } from './services/product/product-endpoint.service';
     UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
     RolesManagementComponent, RoleEditorComponent,
     ProductViewComponent, ProductFormComponent,
-
+    CategoryViewComponent, CategoryFormComponent,
+    CategoriesComponent,
     AboutComponent,
     NotFoundComponent,
     NotificationsViewerComponent,
@@ -130,7 +136,9 @@ import { ProductEndpoint } from './services/product/product-endpoint.service';
     LocalStoreManager,
     OidcHelperService,
     ProductService,
-    ProductEndpoint
+    ProductEndpoint,
+    ApiEndpoint,
+    APiService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,10 @@
 ﻿using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
 using System;
 
 namespace DAL.ViewModels
 {
-    public class WarehouseItemViewModel : IBaseViewModel, IMapFrom<WarehouseItem>
+    public class WarehouseItemViewModel : BaseViewModel, IMapFrom<WarehouseItem>
     {
         public int Id { get; set; }
         public string CreatedBy { get; set; }

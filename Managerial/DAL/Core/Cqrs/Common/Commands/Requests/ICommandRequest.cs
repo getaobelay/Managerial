@@ -1,13 +1,13 @@
 ﻿using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using MediatR;
 
 namespace DAL.Core.Cqrs.Common.Commands.Requests
 {
     public interface ICommandRequest<TEntity, TDto> : IRequest<CommandResponse<TDto>>
         where TEntity : AuditableEntity, new()
-        where TDto : class, IBaseViewModel, new()
+        where TDto : BaseViewModel, new()
     {
     }
 }

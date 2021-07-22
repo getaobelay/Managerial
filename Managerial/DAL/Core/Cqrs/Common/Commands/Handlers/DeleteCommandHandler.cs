@@ -1,7 +1,7 @@
 ﻿using DAL.Core.Cqrs.Common.Commands.Requests;
 using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using MediatR;
 using System;
 using System.Threading;
@@ -16,7 +16,7 @@ namespace DAL.Core.Cqrs.Common.Commands.Handlers
     /// <typeparam name="TCommand">Type of ICommandWrapper command</typeparam>
     public class DeleteCommandHandler<TEntity, TDto, TCommand> : IRequestHandler<TCommand, CommandResponse<TDto>>
          where TEntity : AuditableEntity, new()
-         where TDto : class, IBaseViewModel, new()
+         where TDto : BaseViewModel, new()
          where TCommand : DeleteCommandRequest<TEntity, TDto>, new()
     {
         private IUnitOfWork<TEntity> _unitOfWork;

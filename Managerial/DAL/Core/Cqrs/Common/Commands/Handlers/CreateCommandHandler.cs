@@ -2,7 +2,7 @@
 using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using MediatR;
 using System;
 using System.Threading;
@@ -17,7 +17,7 @@ namespace DAL.Core.Cqrs.Common.Commands.Handlers
     /// <typeparam name="TRequest">Type of ICommandWrapper command</typeparam>
     public class CreateCommandHandler<TEntity, TDto, TRequest> : IRequestHandler<TRequest, CommandResponse<TDto>>
     where TEntity : AuditableEntity, new()
-    where TDto : class, IBaseViewModel, new()
+    where TDto : BaseViewModel, new()
     where TRequest : CreateCommandRequest<TEntity, TDto>, new()
     {
         private IUnitOfWork<TEntity> _unitOfWork;

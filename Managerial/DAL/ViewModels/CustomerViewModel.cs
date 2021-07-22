@@ -5,13 +5,12 @@
 
 using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
 using FluentValidation;
 using System.Collections.Generic;
 
 namespace DAL.ViewModels
 {
-    public class CustomerViewModel : IBaseViewModel, IMapFrom<Product>
+    public class CustomerViewModel : BaseViewModel, IMapFrom<Product>
     {
         public int Id { get; set; }
         public string Name { get; set; }

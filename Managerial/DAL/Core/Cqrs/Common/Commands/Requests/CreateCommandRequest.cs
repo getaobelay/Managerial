@@ -1,5 +1,5 @@
 ﻿using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 
 namespace DAL.Core.Cqrs.Common.Commands.Requests
 {
@@ -10,7 +10,7 @@ namespace DAL.Core.Cqrs.Common.Commands.Requests
     /// <typeparam name="TDto">The entity dto to map result from</typeparam>
     public class CreateCommandRequest<TEntity, TDto> : BaseCommandRequest<TEntity, TDto>
        where TEntity : AuditableEntity, new()
-      where TDto : class, IBaseViewModel, new()
+      where TDto : BaseViewModel, new()
     {
         public TDto CreateObject { get; set; }
     }

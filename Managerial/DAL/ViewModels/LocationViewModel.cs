@@ -1,11 +1,10 @@
 ﻿using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
 using System;
 
 namespace DAL.ViewModels
 {
-    public class LocationViewModel : IBaseViewModel, IMapFrom<Location>
+    public class LocationViewModel : BaseViewModel, IMapFrom<Location>
     {
         public int Id { get; set; }
         public string CreatedBy { get; set; }

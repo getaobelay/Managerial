@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using DAL.Core.Cqrs.Common.Commands.Validation;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using FluentValidation;
 
 namespace DAL.Core.loC
@@ -10,7 +10,7 @@ namespace DAL.Core.loC
     {
         public static ContainerBuilder RegisterValidators<TEntity, TDto>(this ContainerBuilder builder)
     where TEntity : AuditableEntity, new()
-    where TDto : class, IBaseViewModel, new()
+    where TDto : BaseViewModel, new()
 
         {
             builder.RegisterGeneric(typeof(CreateCommandValidator<,>)).As(typeof(IValidator<>));

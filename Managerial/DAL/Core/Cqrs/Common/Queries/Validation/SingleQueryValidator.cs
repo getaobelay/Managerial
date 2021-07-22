@@ -1,6 +1,6 @@
 ﻿using DAL.Core.Cqrs.Common.Queries.Requests;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using FluentValidation;
 
 namespace DAL.Core.Cqrs.Common.Queries.Validation
@@ -10,7 +10,7 @@ namespace DAL.Core.Cqrs.Common.Queries.Validation
     /// </summary>
     public class SingleQueryValidator<TEntity, TDto> : AbstractValidator<SingleQueryRequest<TEntity, TDto>>
         where TEntity : AuditableEntity, new()
-        where TDto : class, IBaseViewModel, new()
+        where TDto : BaseViewModel, new()
     {
         public SingleQueryValidator()
         {

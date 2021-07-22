@@ -5,15 +5,12 @@
 
 using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
 using System;
-using DAL.Core.Helpers;
 
 namespace DAL.ViewModels
 {
-    public class ProductViewModel : IBaseViewModel, IMapFrom<Product>
+    public class ProductViewModel : BaseViewModel, IMapFrom<Product>
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
