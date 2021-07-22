@@ -1,9 +1,9 @@
-﻿using DAL.ViewModels.Interfaces;
+﻿using DAL.ViewModels;
 
 namespace DAL.Core.Cqrs.Common.Commands.Responses
 {
     public abstract class BaseCommandResponse<TDto> : ICommandResponse<TDto>
-        where TDto : class, IBaseViewModel, new()
+        where TDto : BaseViewModel, new()
 
     {
         public TDto ViewModel { get; set; } = new TDto();
@@ -11,7 +11,7 @@ namespace DAL.Core.Cqrs.Common.Commands.Responses
     }
 
     public class CommandResponse<TDto> : BaseCommandResponse<TDto>
-        where TDto : class, IBaseViewModel, new()
+        where TDto : BaseViewModel, new()
     {
         public CommandResponse(TDto model, bool success)
         {

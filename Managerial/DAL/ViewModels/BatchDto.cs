@@ -1,12 +1,11 @@
-﻿using DAL.Models;
-using DAL.ViewModels.Interfaces;
+﻿using DAL.Core.Helpers;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
-using DAL.Core.Helpers;
 
 namespace DAL.ViewModels
 {
-    public class BatchDto : IBaseViewModel, IMapFrom<Batch>
+    public class BatchDto : BaseViewModel, IMapFrom<Batch>
     {
         public int Id { get; set; }
         public string CreatedBy { get; set; }

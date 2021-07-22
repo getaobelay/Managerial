@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 
 namespace DAL.Core.loC
 {
@@ -8,7 +8,7 @@ namespace DAL.Core.loC
     {
         public static ContainerBuilder RegisterAllProccessors<TEntity, TDto>(this ContainerBuilder builder)
  where TEntity : AuditableEntity, new()
- where TDto : class, IBaseViewModel, new()
+ where TDto : BaseViewModel, new()
         {
             builder.RegisterValidators<TEntity, TDto>();
             builder.RegisterValidationProccessors<TEntity, TDto>();

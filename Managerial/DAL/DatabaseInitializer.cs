@@ -120,7 +120,7 @@ namespace DAL
                     IsActive = true,
                     ProductCategory = prodCat_1,
                     CreatedDate = DateTime.UtcNow,
-                    UpdatedDate = DateTime.UtcNow
+                    UpdatedDate = DateTime.UtcNow,
                 };
 
                 Product prod_2 = new Product

@@ -1,7 +1,7 @@
 ﻿using DAL.Core.Cqrs.Common.Commands.Requests;
 using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,7 +14,7 @@ namespace DAL.Core.Cqrs.Proccessors
         where TRequest : BaseCommandRequest<TEntity, TDto>
         where TResponse : BaseCommandResponse<TDto>
         where TEntity : AuditableEntity, new()
-        where TDto : class, IBaseViewModel, new()
+        where TDto : BaseViewModel, new()
     {
         private IUnitOfWork<TEntity> _unitOfWork;
 

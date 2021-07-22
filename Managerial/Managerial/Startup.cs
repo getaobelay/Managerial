@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -214,7 +215,6 @@ namespace Managerial
 
                 spa.Options.SourcePath = "ClientApp";
                 spa.Options.StartupTimeout = new TimeSpan(0, 5, 0);
-
                 if (env.IsDevelopment())
                 {
                     // Live reload not working for .net5 and ng11 for now,

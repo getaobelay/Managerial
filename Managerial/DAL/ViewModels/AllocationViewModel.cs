@@ -1,12 +1,11 @@
 ﻿using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace DAL.ViewModels
 {
-    public class AllocationViewModel : IBaseViewModel, IMapFrom<Allocation>
+    public class AllocationViewModel : BaseViewModel, IMapFrom<Allocation>
     {
         public int Id { get; set; }
         public string CreatedBy { get; set; }

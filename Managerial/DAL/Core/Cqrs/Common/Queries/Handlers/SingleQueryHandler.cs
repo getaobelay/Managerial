@@ -2,7 +2,7 @@
 using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using MediatR;
 using System;
 using System.Threading;
@@ -12,7 +12,7 @@ namespace DAL.Core.Cqrs.Common.Queries.Handlers
 {
     public class SingleQueryHandler<TEntity, TDto, TQuery> : IRequestHandler<TQuery, SingleQueryResponse<TDto>>
         where TEntity : AuditableEntity, new()
-        where TDto : class, IBaseViewModel, new()
+        where TDto : BaseViewModel, new()
         where TQuery : SingleQueryRequest<TEntity, TDto>, new()
     {
         private readonly IUnitOfWork<TEntity> _unitOfWork;

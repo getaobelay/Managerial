@@ -1,8 +1,8 @@
-﻿using DAL.Models;
+﻿using DAL.Core.Helpers;
+using DAL.Models;
 using DAL.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
-using DAL.Core.Helpers;
 
 namespace DAL.ViewModels
 {

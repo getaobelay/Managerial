@@ -23,8 +23,6 @@ namespace DAL.Core.loC
             builder.RegisterHandlers<Product, ProductViewModel>();
             builder.RegisterHandlers<Batch, BatchDto>();
             builder.RegisterHandlers<ProductCategory, ProductCategoryDto>();
-            builder.RegisterHandlers<Stock, StockViewModel>();
-            builder.RegisterHandlers<Inventory, InventoryViewModel>();
             builder.RegisterHandlers<Customer, CustomerViewModel>();
 
             builder.RegisterType(typeof(HttpContextAccessor)).As(typeof(IHttpContextAccessor));

@@ -3,7 +3,7 @@ using DAL.Core.Cqrs.Common.Commands.Requests;
 using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Core.Cqrs.Proccessors;
 using DAL.Models;
-using DAL.ViewModels.Interfaces;
+using DAL.ViewModels;
 using MediatR;
 
 namespace DAL.Core.loC
@@ -12,7 +12,7 @@ namespace DAL.Core.loC
     {
         public static ContainerBuilder RegisterValidationProccessors<TEntity, TDto>(this ContainerBuilder builder)
      where TEntity : AuditableEntity, new()
-     where TDto : class, IBaseViewModel, new()
+     where TDto : BaseViewModel, new()
         {
             builder.RegisterType<CommandValidationProccessor<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>, TEntity, TDto>>()
                                            .As<IPipelineBehavior<CreateCommandRequest<TEntity, TDto>, CommandResponse<TDto>>>();

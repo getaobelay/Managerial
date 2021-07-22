@@ -1,11 +1,12 @@
-﻿using DAL.ViewModels.Interfaces;
+﻿using DAL.ViewModels;
+using DAL.ViewModels.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Managerial.Controllers.Intefaces
 {
     public interface IAPIController<TDto>
-        where TDto : class, IBaseViewModel, new()
+        where TDto : BaseViewModel, new()
     {
         Task<IActionResult> DeleteAsync(int Id);
 

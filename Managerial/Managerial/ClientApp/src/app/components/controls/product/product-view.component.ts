@@ -5,7 +5,7 @@ import { AlertService, MessageSeverity, DialogType } from 'src/app/services/aler
 import { AppTranslationService } from 'src/app/services/app-translation.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Utilities } from 'src/app/services/utilities';
-import { ProductFormComponent } from './forms/product/product-form/product-form.component';
+import { ProductFormComponent } from './product-form/product-form.component';
 
 @Component({
   selector: 'app-product-view',
