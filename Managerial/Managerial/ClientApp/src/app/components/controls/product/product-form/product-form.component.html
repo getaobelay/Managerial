@@ -1,26 +1,30 @@
 <div>
   <form *ngIf="formResetToggle" name="productEditorForm" #f="ngForm" novalidate
         (ngSubmit)="f.form.valid ? save() :
-          (!roleName.valid && showErrorAlert('Product name is required', 'Please enter a productName (minimum of 2 and maximum of 200 characters)'));">
+          (!name.valid && showErrorAlert('Product name is required', 'Please enter a productName (minimum of 2 and maximum of 200 characters)'));
+          (!description.valid && showErrorAlert('Description is required', 'Please enter a description (minimum of 2 and maximum of 200 characters)'));">
 
     <div class="row">
-      <div class="col-sm-5">
+      <div class="col-sm-12">
         <div class="form-group row">
           <label class="col-form-label col-md-3" for="name">name</label>
           <div class="col-md-9">
             <input type="text" id="name" name="name" placeholder="Enter product name" class="form-control"
-                   [ngClass]="{'is-valid': f.submitted && productName.valid, 'is-invalid' : f.submitted && !productName.valid}"
-                   [(ngModel)]="productEdit.name" #productName="ngModel" required minlength="2" maxlength="200" />
+                   [ngClass]="{'is-valid': f.submitted && name.valid, 'is-invalid' : f.submitted && !name.valid}"
+                   [(ngModel)]="productEdit.name" #name="ngModel" required minlength="2" maxlength="200" />
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-sm-7">
+      <div class="row">
+      <div class="col-sm-12">
         <div class="form-group row">
           <label class="col-form-label col-md-3" for="description">description</label>
           <div class="col-md-9">
-            <input type="text" id="description" name="description" placeholder="Enter product description"
-                   class="form-control" [(ngModel)]="productEdit.description" />
+            <input type="text" id="description" name="description" placeholder="Enter  description" class="form-control"
+            [ngClass]="{'is-valid': f.submitted && description.valid, 'is-invalid' : f.submitted && !description.valid}"
+            [(ngModel)]="description.description" #description="ngModel" required minlength="2" maxlength="200" />
           </div>
         </div>
       </div>
@@ -28,7 +32,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <span *ngIf="showValidationErrors && f.submitted && !productName.valid" class="invalid-feedback">
+        <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="invalid-feedback">
           Product name is required
         </span>
       </div>

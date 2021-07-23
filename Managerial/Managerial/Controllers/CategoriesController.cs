@@ -25,20 +25,20 @@ namespace Managerial.Controllers
         }
 
         [HttpGet("{pageNumber:int}/{pageSize:int}")]
-        [ProducesResponseType(200, Type = typeof(List<ProductCategoryDto>))]
+        [ProducesResponseType(200, Type = typeof(List<CategoryViewModel>))]
         public async Task<IActionResult> GetAllAsync([FromRoute] int pageNumber, [FromRoute] int pageSize)
         {
-            var query = new ListQueryRequest<ProductCategory, ProductCategoryDto>();
+            var query = new ListQueryRequest<Category, CategoryViewModel>();
             var result = await mediator.Send(query);
 
             return Ok(result.Dtos);
         }
 
         [HttpGet("{Id:int}")]
-        [ProducesResponseType(200, Type = typeof(ProductCategoryDto))]
+        [ProducesResponseType(200, Type = typeof(CategoryViewModel))]
         public async Task<IActionResult> GetByIdAsync([FromRoute] int Id)
         {
-            var query = new SingleQueryRequest<ProductCategory, ProductCategoryDto> ()
+            var query = new SingleQueryRequest<Category, CategoryViewModel> ()
             {
                 Id = Id,
                 Filter = p => p.Id == Id
@@ -54,9 +54,9 @@ namespace Managerial.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] ProductCategoryDto createdObject)
+        public async Task<IActionResult> PostAsync([FromBody] CategoryViewModel createdObject)
         {
-            var query = new CreateCommandRequest<ProductCategory, ProductCategoryDto> ()
+            var query = new CreateCommandRequest<Category, CategoryViewModel> ()
             {
                 CreateObject = createdObject
             };
@@ -76,9 +76,9 @@ namespace Managerial.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> PutAsync([FromRoute] int Id, [FromBody] ProductCategoryDto updatedObject)
+        public async Task<IActionResult> PutAsync([FromRoute] int Id, [FromBody] CategoryViewModel updatedObject)
         {
-            var query = new UpdateCommandRequest<ProductCategory, ProductCategoryDto> ()
+            var query = new UpdateCommandRequest<Category, CategoryViewModel> ()
             {
                 Id = Id,
                 UpdatedObject = updatedObject
@@ -95,13 +95,13 @@ namespace Managerial.Controllers
         }
 
         [HttpDelete("{Id:int}")]
-        [ProducesResponseType(200, Type = typeof(ProductCategoryDto))]
+        [ProducesResponseType(200, Type = typeof(CategoryViewModel))]
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteAsync([FromRoute] int Id)
         {
-            var query = new DeleteCommandRequest<ProductCategory, ProductCategoryDto>()
+            var query = new DeleteCommandRequest<Category, CategoryViewModel>()
             {
                 Id = Id
             };

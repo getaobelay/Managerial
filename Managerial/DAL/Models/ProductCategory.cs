@@ -13,10 +13,11 @@ namespace DAL.Models
 {
     public class ProductCategory : AuditableEntity
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
+        public int? CategoryId { get; set; }
+        public Category Category { get; set; }
         public ICollection<Product> Products { get; set; }
     }
 
@@ -26,8 +27,10 @@ namespace DAL.Models
         {
             builder.BaseEntityBuilder();
 
-            //builder.Property(p => p.Name).IsRequired().HasMaxLength(100);
-            //builder.Property(p => p.Description).HasMaxLength(500);
+            builder.HasOne(p => p.Category)
+                   .WithMany(p => p.ProductCategories)
+                   .HasForeignKey(p => p.CategoryId);
+
             builder.ToTable($"product_categories");
         }
     }
