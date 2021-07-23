@@ -22,7 +22,7 @@ namespace DAL.Core.loC
             builder.RegisterHandlers<WarehouseItem, WarehouseItemViewModel>();
             builder.RegisterHandlers<Product, ProductViewModel>();
             builder.RegisterHandlers<Batch, BatchDto>();
-            builder.RegisterHandlers<ProductCategory, ProductCategoryDto>();
+            builder.RegisterHandlers<Category, CategoryViewModel>();
             builder.RegisterHandlers<Customer, CustomerViewModel>();
 
             builder.RegisterType(typeof(HttpContextAccessor)).As(typeof(IHttpContextAccessor));

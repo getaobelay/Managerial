@@ -41,7 +41,7 @@ export class CategoryFormComponent {
       this.categoryService.post<Category>(this.categoryEdit).subscribe((category: Category) =>
         this.saveSuccessHelper(category), error => this.saveFailedHelper(error));
     } else {
-      this.categoryService.put<Category>(this.categoryEdit).subscribe(() =>
+      this.categoryService.put(this.categoryEdit).subscribe(() =>
         this.saveSuccessHelper(), error => this.saveFailedHelper(error));
     }
   }

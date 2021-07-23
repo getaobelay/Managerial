@@ -103,10 +103,15 @@ namespace DAL
                     UpdatedDate = DateTime.UtcNow
                 };
 
+                Category category = new Category
+                {
+                    Name = "Cars",
+                    Description = "American cars"
+                };
+
                 ProductCategory prodCat_1 = new ProductCategory
                 {
-                    Name = "None",
-                    Description = "Default category. Products that have not been assigned a category",
+                    Category = category,
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow
                 };

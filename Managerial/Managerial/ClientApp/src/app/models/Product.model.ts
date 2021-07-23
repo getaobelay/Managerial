@@ -1,10 +1,12 @@
+import { Category } from "./Category.model";
+
 export class Product {
   constructor(name?: string, BuyingPrice?: number,
     SellingPrice?: number,
     Measurement?: string, Description?: string,
     Height?: number, Weight?: number,
     IsActive?: boolean, QuantityPerUnit?: number,
-    Id?: number) {
+    Id?: number, Categoreis?: Category[]) {
     this.name = name;
     this.description = Description;
     this.sellingPrice = SellingPrice;
@@ -15,6 +17,7 @@ export class Product {
     this.quantityPerUnit = QuantityPerUnit;
     this.isActive = IsActive;
     this.id = Id;
+    this.categories = Categoreis;
   }
   public id: number;
   public name: string;
@@ -26,4 +29,5 @@ export class Product {
   public weight: number;
   public height: number;
   public isActive: boolean
+  public categories: Category[]
 }

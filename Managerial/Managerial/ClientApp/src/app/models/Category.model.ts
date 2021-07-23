@@ -1,6 +1,7 @@
 export class Category {
-  constructor(name?: string,
+  constructor(id?: number, name?: string,
     Description?: string) {
+    this.id = id;
     this.name = name;
     this.description = Description;
 

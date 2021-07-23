@@ -38,11 +38,11 @@ export class APiService {
     return this.apiEndpoint.getAllEndpoint<T[]>(page, pageSize, this.endPointUrl);
   }
 
-  put<T>(object: any) {
+  put(object: any) {
     if (object.id) {
       return this.apiEndpoint.getPutEndpoint(object, object.id, this.endPointUrl);
     } else {
-      return this.apiEndpoint.getDeleteEndpoint<T>(object.id, this.endPointUrl).pipe(
+      return this.apiEndpoint.getDeleteEndpoint<any>(object.id, this.endPointUrl).pipe(
         mergeMap((foundObject: any) => {
           object.id = foundObject.id;
           return this.apiEndpoint.getPutEndpoint(object, object.id,this.endPointUrl);

@@ -63,7 +63,6 @@ import { UsersManagementComponent } from './components/controls/users-management
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 
-import { ProductService } from './services/product/product.service';
 import { ProductEndpoint } from './services/product/product-endpoint.service';
 import { ProductViewComponent } from './components/controls/product/product-view.component';
 import { ProductFormComponent } from './components/controls/product/product-form/product-form.component';
@@ -72,6 +71,8 @@ import { CategoryFormComponent } from './components/controls/category/category-f
 import { ApiEndpoint } from './services/generic/api-endpoint.service';
 import { APiService } from './services/generic/api.service';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { ProductInfoComponent } from './components/controls/product/product-info/product-info.component';
+import { ProductService } from './services/generic/product.service';
 
 @NgModule({
   imports: [
@@ -109,7 +110,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
     RolesManagementComponent, RoleEditorComponent,
     ProductViewComponent, ProductFormComponent,
     CategoryViewComponent, CategoryFormComponent,
-    CategoriesComponent,
+    CategoriesComponent,ProductInfoComponent,
     AboutComponent,
     NotFoundComponent,
     NotificationsViewerComponent,
