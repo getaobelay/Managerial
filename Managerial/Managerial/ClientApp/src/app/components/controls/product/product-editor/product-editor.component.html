@@ -162,6 +162,17 @@
 
 
     <div class="form-group row">
+
+      <div class="col-sm-5">
+        <div class="float-left">
+          <div class="form-check warehouse-enabled">
+            <input class="form-check-input" type="checkbox" id="idEnabled" name="isEnabled" [(ngModel)]="productEdit.isActive" checked>
+            <label for="idEnabled" class="form-check-label">{{'users.editor.Enabled' | translate}}</label>
+          </div>
+        </div>
+      </div>
+
+
       <div class="col-sm-12">
         <div ngPreserveWhitespaces class="float-right">
           <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'products.editor.Cancel' | translate}}</button>

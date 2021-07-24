@@ -23,7 +23,10 @@
             <a class="nav-link" routerLink="/products">{{'mainMenu.Products' | translate}}</a>
           </li>
           <li class="nav-item" routerLinkActive="active" *ngIf="canViewProducts">
-            <a class="nav-link" routerLink="/categories"> categories </a>
+            <a class="nav-link" routerLink="/categories"> {{'mainMenu.Categories' | translate}} </a>
+          </li>
+          <li class="nav-item" routerLinkActive="active" *ngIf="canViewProducts">
+            <a class="nav-link" routerLink="/warehouses"> {{'mainMenu.Warehouses' | translate}} </a>
           </li>
           <li class="nav-item" routerLinkActive="active" *ngIf="canViewOrders">
             <a class="nav-link" routerLink="/orders">{{'mainMenu.Orders' | translate}}</a>
