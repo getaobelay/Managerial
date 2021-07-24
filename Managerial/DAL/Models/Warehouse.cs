@@ -7,7 +7,9 @@ namespace DAL.Models
 {
     public class Warehouse : AuditableEntity
     {
-        public string WarehouseName { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public bool IsActive { get; set; }
         public int? WarehouseItemID { get; set; }
         public int? LocationID { get; set; }
         public int? ProductID { get; set; }
@@ -25,7 +27,7 @@ namespace DAL.Models
         {
             builder.BaseEntityBuilder();
 
-            builder.Property(e => e.WarehouseName)
+            builder.Property(e => e.Name)
                 .HasMaxLength(50)
                 .IsUnicode(true)
                 .ValueGeneratedOnAdd()

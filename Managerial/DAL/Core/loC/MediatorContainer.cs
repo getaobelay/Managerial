@@ -21,7 +21,7 @@ namespace DAL.Core.loC
             builder.RegisterHandlers<Location, LocationViewModel>();
             builder.RegisterHandlers<WarehouseItem, WarehouseItemViewModel>();
             builder.RegisterHandlers<Product, ProductViewModel>();
-            builder.RegisterHandlers<Batch, BatchDto>();
+            builder.RegisterHandlers<Batch, BatchViewModel>();
             builder.RegisterHandlers<Category, CategoryViewModel>();
             builder.RegisterHandlers<Customer, CustomerViewModel>();
 

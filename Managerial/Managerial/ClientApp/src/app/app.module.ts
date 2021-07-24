@@ -71,6 +71,9 @@ import { APiService } from './services/generic/api.service';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ProductService } from './services/generic/product.service';
 import { ProductEditorComponent } from './components/controls/product/product-editor/product-editor.component';
+import { WarehouseManagement } from './components/controls/warehouse/warehouse-management.component';
+import { WarehouseEditor } from './components/controls/warehouse/warehouse-form/warehouse-editor.component';
+import { WarehousesComponent } from './components/warehouses/warehouses.component';
 
 @NgModule({
   imports: [
@@ -108,6 +111,8 @@ import { ProductEditorComponent } from './components/controls/product/product-ed
     RolesManagementComponent, RoleEditorComponent,
     ProductViewComponent, ProductEditorComponent,
     CategoryViewComponent, CategoryFormComponent,
+    WarehouseManagement, WarehouseEditor,
+    WarehousesComponent,
     CategoriesComponent,
     AboutComponent,
     NotFoundComponent,
