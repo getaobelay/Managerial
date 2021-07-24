@@ -186,5 +186,34 @@
       "Important": "Mark as important",
       "AddTask": "Add Task"
     }
+  },
+  "products": {
+    "management": {
+      "Search": "Search for product...",
+      "NewProduct": "New Product",
+      "Edit": "Edit",
+      "Details": "Details",
+      "Delete": "Delete",
+      "RoleDetails": "Product Details \"{{name}}\"",
+      "EditRole": "Edit Product \"{{name}}\"",
+      "Name": "Name",
+      "Description": "Description",
+      "Products": "Products"
+    },
+    "editor": {
+      "Name": "Name:",
+      "SellingPrice": "Selling price",
+      "BuyingPrice": "Buying price",
+      "Measurement": "Measurement",
+      "QuantityPerUnit": "Quantity",
+      "Weight": "Weight",
+      "Height": "Height",
+      "Description": "Description",
+      "NameRequired": "Product name is required (minimum of 2 and maximum of 200 characters)",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    }
   }
 }

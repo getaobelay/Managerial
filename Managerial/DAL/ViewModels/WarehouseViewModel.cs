@@ -18,6 +18,6 @@ namespace DAL.ViewModels
         public IEnumerable<WarehouseItemViewModel> WarehouseItems { get; set; }
         public IEnumerable<LocationViewModel> Locations { get; set; }
         public IEnumerable<ProductViewModel> Products { get; set; }
-        public IEnumerable<BatchDto> Batches { get; set; }
+        public IEnumerable<BatchViewModel> Batches { get; set; }
     }
 }

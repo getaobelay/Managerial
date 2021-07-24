@@ -3,6 +3,7 @@
 // www.ebenmonney.com/templates
 // =============================
 
+using DAL.Helpers;
 using DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -34,9 +35,12 @@ namespace DAL.Repositories
             await _entities.AddRangeAsync(entities);
         }
 
-        public virtual void Update(TEntity entity)
+        public virtual void Update(TEntity UpdatedEntity, TEntity entryEntity)
         {
-            _entities.Update(entity);
+
+            _context.Entry(entryEntity).CurrentValues.SetValues(UpdatedEntity);
+            _context.Entry(UpdatedEntity).State = EntityState.Detached;
+            
         }
 
         public virtual void UpdateRange(IEnumerable<TEntity> entities)
@@ -66,7 +70,7 @@ namespace DAL.Repositories
 
         public virtual async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return await _entities.SingleOrDefaultAsync(predicate);
+            return await _entities.IncludeAll().SingleOrDefaultAsync(predicate);
         }
 
         public virtual async Task<TEntity> GetAsync(int id)
@@ -76,7 +80,7 @@ namespace DAL.Repositories
 
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _entities.ToListAsync();
+            return await _entities.IncludeAll().ToListAsync();
         }
     }
 }

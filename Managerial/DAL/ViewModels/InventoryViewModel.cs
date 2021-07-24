@@ -6,9 +6,8 @@ using System.Collections.Generic;
 
 namespace DAL.ViewModels
 {
-    public class InventoryViewModel : IBaseStockViewModel, IMapFrom<Inventory>
+    public class InventoryViewModel : BaseViewModel, IBaseStockViewModel, IMapFrom<Inventory>
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
@@ -22,7 +21,7 @@ namespace DAL.ViewModels
         public decimal UnitsInOrder { get; set; }
         public decimal ReorderLevel { get; set; }
         public IEnumerable<ProductViewModel> Products { get; set; }
-        public IEnumerable<BatchDto> Batches { get; set; }
+        public IEnumerable<BatchViewModel> Batches { get; set; }
         public IEnumerable<WarehouseViewModel> Warehouses { get; set; }
     }
 }

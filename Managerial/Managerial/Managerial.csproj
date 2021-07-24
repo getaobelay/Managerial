@@ -28,7 +28,8 @@
     <PackageReference Include="MailKit" Version="2.11.1" />
     <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4"/>
+		  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

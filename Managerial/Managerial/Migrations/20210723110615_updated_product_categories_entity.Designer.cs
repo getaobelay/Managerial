@@ -4,20 +4,37 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Managerial.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210723110615_updated_product_categories_entity")]
+    partial class updated_product_categories_entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CategoryProductCategory", b =>
+                {
+                    b.Property<int>("CategroiesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductCategoriesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategroiesId", "ProductCategoriesId");
+
+                    b.HasIndex("ProductCategoriesId");
+
+                    b.ToTable("CategoryProductCategory");
+                });
 
             modelBuilder.Entity("DAL.Models.Allocation", b =>
                 {
@@ -284,6 +301,9 @@ namespace Managerial.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("ProductCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(50)
@@ -637,8 +657,6 @@ namespace Managerial.Migrations
 
                     b.HasIndex("Name");
 
-                    b.HasIndex("ProductCategoryId");
-
                     b.HasIndex("StockId");
 
                     b.HasIndex("WarehouseId");
@@ -653,6 +671,9 @@ namespace Managerial.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
@@ -662,11 +683,8 @@ namespace Managerial.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(50)
@@ -677,6 +695,8 @@ namespace Managerial.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("product_categories");
                 });
@@ -971,6 +991,21 @@ namespace Managerial.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("CategoryProductCategory", b =>
+                {
+                    b.HasOne("DAL.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategroiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Models.ProductCategory", null)
+                        .WithMany()
+                        .HasForeignKey("ProductCategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DAL.Models.Allocation", b =>
                 {
                     b.HasOne("DAL.Models.Order", "Order")
@@ -1055,10 +1090,6 @@ namespace Managerial.Migrations
                         .WithMany("Products")
                         .HasForeignKey("InventoryId");
 
-                    b.HasOne("DAL.Models.ProductCategory", "ProductCategory")
-                        .WithMany("Products")
-                        .HasForeignKey("ProductCategoryId");
-
                     b.HasOne("DAL.Models.Stock", "Stock")
                         .WithMany("Products")
                         .HasForeignKey("StockId");
@@ -1069,9 +1100,16 @@ namespace Managerial.Migrations
 
                     b.Navigation("Inventory");
 
-                    b.Navigation("ProductCategory");
-
                     b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("DAL.Models.ProductCategory", b =>
+                {
+                    b.HasOne("DAL.Models.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("DAL.Models.Warehouse", b =>
@@ -1242,12 +1280,9 @@ namespace Managerial.Migrations
 
                     b.Navigation("OrderDetails");
 
-                    b.Navigation("WarehouseItems");
-                });
+                    b.Navigation("ProductCategories");
 
-            modelBuilder.Entity("DAL.Models.ProductCategory", b =>
-                {
-                    b.Navigation("Products");
+                    b.Navigation("WarehouseItems");
                 });
 
             modelBuilder.Entity("DAL.Models.Stock", b =>

@@ -31,9 +31,9 @@ namespace DAL.Core.Cqrs.Common.Commands.Handlers
         {
             try
             {
-                var entity = await _unitOfWork.Generic.SingleOrDefaultAsync(p => p.Id == request.Id);
+                var entityEntry = await _unitOfWork.Generic.SingleOrDefaultAsync(p => p.Id == request.Id);
 
-                if (entity == null)
+                if (entityEntry == null)
                 {
                     return new CommandResponse<TDto>(model: default, success: false)
                     {
@@ -42,10 +42,12 @@ namespace DAL.Core.Cqrs.Common.Commands.Handlers
                     };
                 }
 
-                _unitOfWork.Generic.Update(entity);
-                await _unitOfWork.SaveChangesAsync();
 
-                return new CommandResponse<TDto>(model: MappingHelper.Mapper.Map<TDto>(entity),
+                var mappedObject = MappingHelper.Mapper.Map<TEntity>(request.UpdatedObject);
+                mappedObject.Id = entityEntry.Id;
+                _unitOfWork.Generic.Update(mappedObject, entityEntry);
+                await _unitOfWork.SaveChangesAsync();
+                return new CommandResponse<TDto>(model: MappingHelper.Mapper.Map<TDto>(entityEntry),
                     success: true);
             }
             catch (Exception)

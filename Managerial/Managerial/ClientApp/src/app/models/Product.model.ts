@@ -1,3 +1,4 @@
+import { ProductCategory } from "./Category";
 import { Category } from "./Category.model";
 
 export class Product {
@@ -6,7 +7,7 @@ export class Product {
     Measurement?: string, Description?: string,
     Height?: number, Weight?: number,
     IsActive?: boolean, QuantityPerUnit?: number,
-    Id?: number, Categoreis?: Category[]) {
+    Id?: number, productCategory?: ProductCategory) {
     this.name = name;
     this.description = Description;
     this.sellingPrice = SellingPrice;
@@ -17,7 +18,7 @@ export class Product {
     this.quantityPerUnit = QuantityPerUnit;
     this.isActive = IsActive;
     this.id = Id;
-    this.categories = Categoreis;
+    this.productCategory = productCategory;
   }
   public id: number;
   public name: string;
@@ -29,5 +30,5 @@ export class Product {
   public weight: number;
   public height: number;
   public isActive: boolean
-  public categories: Category[]
+  public productCategory: ProductCategory
 }

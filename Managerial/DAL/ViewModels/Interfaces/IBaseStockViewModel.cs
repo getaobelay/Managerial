@@ -9,7 +9,7 @@ namespace DAL.ViewModels.Interfaces
         public decimal ProductQuantity { get; set; }
         public decimal BatchQuantity { get; set; }
         public IEnumerable<ProductViewModel> Products { get; set; }
-        public IEnumerable<BatchDto> Batches { get; set; }
+        public IEnumerable<BatchViewModel> Batches { get; set; }
         public IEnumerable<WarehouseViewModel> Warehouses { get; set; }
     }
 }

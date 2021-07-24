@@ -4,7 +4,7 @@ using System;
 
 namespace DAL.ViewModels
 {
-    public class ProductCategoryDto : BaseViewModel, IMapFrom<ProductCategory>
+    public class ProductCategoryViewModel : BaseViewModel, IMapFrom<ProductCategory>
     {
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }

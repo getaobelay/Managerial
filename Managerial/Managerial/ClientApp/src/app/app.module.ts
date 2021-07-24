@@ -63,16 +63,14 @@ import { UsersManagementComponent } from './components/controls/users-management
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 
-import { ProductEndpoint } from './services/product/product-endpoint.service';
 import { ProductViewComponent } from './components/controls/product/product-view.component';
-import { ProductFormComponent } from './components/controls/product/product-form/product-form.component';
 import { CategoryViewComponent } from './components/controls/category/category-view.component';
 import { CategoryFormComponent } from './components/controls/category/category-form/category-form.component';
 import { ApiEndpoint } from './services/generic/api-endpoint.service';
 import { APiService } from './services/generic/api.service';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { ProductInfoComponent } from './components/controls/product/product-info/product-info.component';
 import { ProductService } from './services/generic/product.service';
+import { ProductEditorComponent } from './components/controls/product/product-editor/product-editor.component';
 
 @NgModule({
   imports: [
@@ -108,9 +106,9 @@ import { ProductService } from './services/generic/product.service';
     SettingsComponent,
     UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
     RolesManagementComponent, RoleEditorComponent,
-    ProductViewComponent, ProductFormComponent,
+    ProductViewComponent, ProductEditorComponent,
     CategoryViewComponent, CategoryFormComponent,
-    CategoriesComponent,ProductInfoComponent,
+    CategoriesComponent,
     AboutComponent,
     NotFoundComponent,
     NotificationsViewerComponent,
@@ -137,7 +135,6 @@ import { ProductService } from './services/generic/product.service';
     LocalStoreManager,
     OidcHelperService,
     ProductService,
-    ProductEndpoint,
     ApiEndpoint,
     APiService
   ],

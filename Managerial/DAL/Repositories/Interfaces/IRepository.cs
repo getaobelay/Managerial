@@ -16,7 +16,7 @@ namespace DAL.Repositories.Interfaces
 
         Task AddRangeAsync(IEnumerable<TEntity> entities);
 
-        void Update(TEntity entity);
+        void Update(TEntity entity, TEntity entry);
 
         void UpdateRange(IEnumerable<TEntity> entities);
 
