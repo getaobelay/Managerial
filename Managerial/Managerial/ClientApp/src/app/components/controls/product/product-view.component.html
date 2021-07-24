@@ -31,10 +31,14 @@
     <strong>{{value}}</strong>
   </ng-template>
 
+  <ng-template #isActiveTemplate let-row="row" let-value="value" let-i="index">
+    <span class="isActive badge badge-pill badge-secondary" *ngFor="let product of product">{{role}}</span>
+  </ng-template>
+
   <ng-template #actionsTemplate let-row="row" let-value="value" let-i="index">
     <div>
-      <a class="btn btn-link btn-sm" href="javascript:;" (click)="editProduct(row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{'users.management.Edit' | translate}}</a>|
-      <a class="btn btn-link btn-sm" href="javascript:;" (click)="deleteProduct(row)"><i class="fa fa-trash-o" aria-hidden="true"></i> {{'users.management.Delete' | translate}}</a>
+      <a class="btn btn-link btn-sm" href="javascript:;" (click)="editProduct(row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{'products.management.Edit' | translate}}</a>|
+      <a class="btn btn-link btn-sm" href="javascript:;" (click)="deleteProduct(row)"><i class="fa fa-trash-o" aria-hidden="true"></i> {{'products.management.Delete' | translate}}</a>
     </div>
   </ng-template>
 
@@ -49,7 +53,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <app-product-info #productEditor [isGeneralEditor]="true"></app-product-info>
+          <app-product-editor #productEditor></app-product-editor>
         </div>
       </div>
     </div>

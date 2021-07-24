@@ -19,7 +19,7 @@ namespace DAL.ViewModels
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public IEnumerable<ProductViewModel> Products { get; set; }
-        public IEnumerable<BatchDto> Batches { get; set; }
+        public IEnumerable<BatchViewModel> Batches { get; set; }
         public IEnumerable<WarehouseViewModel> Warehouses { get; set; }
     }
 }

@@ -111,7 +111,8 @@ namespace DAL
 
                 ProductCategory prodCat_1 = new ProductCategory
                 {
-                    Category = category,
+                    Name = category.Name,
+                    Description = category.Description,
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow
                 };

@@ -20,11 +20,6 @@
   margin-top: 15px;
 }
 
-.password-separator-hr {
-  margin: 5px;
-  border-style: none;
-}
-
 .form-group {
   margin-top: 0;
   margin-bottom: 0;
@@ -38,20 +33,9 @@ input.form-control {
   display: block;
 }
 
-.password-well {
+
+.well-sm {
   padding: 0.5rem;
-}
-
-.hint-sm {
-  display: block;
-}
-
-.form-check.user-enabled {
-  display: inline-block;
-}
-
-.unblock-user {
-  margin-left: 34px;
 }
 
 @media (min-width: 992px) {

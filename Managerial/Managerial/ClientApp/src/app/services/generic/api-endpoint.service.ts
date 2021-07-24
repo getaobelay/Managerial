@@ -58,10 +58,11 @@ export class ApiEndpoint extends EndpointBase {
             }));
     }
 
+
     getDeleteEndpoint<T>(Id: number, endpointUrl?: string): Observable<T> {
         const completeUrl = `${endpointUrl}/${Id}`;
 
-        return this.http.delete<T>(endpointUrl, this.requestHeaders).pipe<T>(
+        return this.http.delete<T>(completeUrl, this.requestHeaders).pipe<T>(
             catchError(error => {
                 return this.handleError(error, () => this.getDeleteEndpoint(Id,endpointUrl));
             }));

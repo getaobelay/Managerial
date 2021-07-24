@@ -1,32 +1,45 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+// =============================
+// Email: info@ebenmonney.com
+// www.ebenmonney.com/templates
+// =============================
+
+import { Component, ViewChild } from '@angular/core';
+import { Category } from 'src/app/models/Category.model';
 import { Product } from 'src/app/models/Product.model';
+import { AccountService } from 'src/app/services/account.service';
 import { AlertService, MessageSeverity } from 'src/app/services/alert.service';
-import { ProductService } from 'src/app/services/product/product.service';
+import { ProductService } from 'src/app/services/generic/product.service';
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.scss']
+    selector: 'app-product-editor',
+    templateUrl: './product-editor.component.html',
+    styleUrls: ['./product-editor.component.scss']
 })
-export class ProductFormComponent {
-  private isNewProduct = false;
-  public isSaving: boolean;
-  public showValidationErrors = true;
-  public productEdit: Product = new Product();
-  public selectedValues: { [key: string]: boolean; } = {};
-  private editingProductName: string;
+export class ProductEditorComponent {
+    private isNewProduct = false;
+    public isSaving: boolean;
+    public showValidationErrors = true;
+    public productEdit: Product = new Product();
+    public product: Product = new Product();
+    public allCategories: Category[] = [];
+    public selectedValues: { [key: string]: boolean; } = {};
+    private editingProductName: string;
 
-  public formResetToggle = true;
+    public formResetToggle = true;
 
-  public changesSavedCallback: () => void;
-  public changesFailedCallback: () => void;
-  public changesCancelledCallback: () => void;
+    public changesSavedCallback: () => void;
+    public changesFailedCallback: () => void;
+    public changesCancelledCallback: () => void;
 
-  @ViewChild('f')
-  private form;
+    @ViewChild('f')
+    private form;
 
-  constructor(private alertService: AlertService, private productService: ProductService) {
-  }
+    constructor(private alertService: AlertService,
+      private accountService: AccountService,
+      private productService: ProductService) {
+    }
+
+
 
   showErrorAlert(caption: string, message: string) {
     this.alertService.showMessage(caption, message, MessageSeverity.error);
@@ -37,10 +50,10 @@ export class ProductFormComponent {
     this.alertService.startLoadingMessage('Saving changes...');
 
     if (this.isNewProduct) {
-      this.productService.newProduct(this.productEdit).subscribe((product: Product) =>
+      this.productService.post<Product>(this.productEdit).subscribe((product: Product) =>
         this.saveSuccessHelper(product), error => this.saveFailedHelper(error));
     } else {
-      this.productService.updateProduct(this.productEdit).subscribe(() =>
+      this.productService.put(this.productEdit).subscribe(() =>
         this.saveSuccessHelper(), error => this.saveFailedHelper(error));
     }
   }
@@ -131,4 +144,6 @@ export class ProductFormComponent {
       return this.newProduct();
     }
   }
+
 }
+

@@ -55,19 +55,28 @@ namespace Managerial.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] ProductViewModel createdObject)
         {
-            var query = new CreateCommandRequest<Product, ProductViewModel>()
+            try
             {
-                CreateObject = createdObject
-            };
+                var query = new CreateCommandRequest<Product, ProductViewModel>()
+                {
+                    CreateObject = createdObject
+                };
 
-            var result = await mediator.Send(query);
+                var result = await mediator.Send(query);
 
-            if (!result.Success)
-            {
-                return BadRequest();
+                if (!result.Success)
+                {
+                    return BadRequest();
+                }
+                return CreatedAtAction(nameof(PostAsync), new { id = result.ViewModel.Id }, result.ViewModel);
             }
+            catch (System.Exception)
+            {
 
-            return CreatedAtAction(nameof(PostAsync), new { id = result.ViewModel.Id }, result.ViewModel);
+                throw;
+            }
+  
+
         }
 
         [HttpPut("{Id:int}")]

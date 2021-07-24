@@ -15,6 +15,6 @@ namespace DAL.ViewModels
         public WarehouseViewModel Warehouse { get; set; }
         public AllocationViewModel Allocation { get; set; }
         public LocationViewModel Location { get; set; }
-        public BatchDto Batch { get; set; }
+        public BatchViewModel Batch { get; set; }
     }
 }

@@ -57,6 +57,11 @@ export class ProductService extends APiService {
     return forkJoin([
         this.getAll<Product>(page, pageSize),
         this.categoryService.getAll<Category>()]);
-}
+  }
+
+
+  getCategories(page?: number, pageSize?: number) {
+       return this.categoryService.getAll<Category>(page,pageSize);
+  }
 
 }

@@ -5,9 +5,8 @@ using System.Collections.Generic;
 
 namespace DAL.ViewModels
 {
-    public class BatchDto : BaseViewModel, IMapFrom<Batch>
+    public class BatchViewModel : BaseViewModel, IMapFrom<Batch>
     {
-        public int Id { get; set; }
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime CreateDate { get; set; }
