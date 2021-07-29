@@ -3,7 +3,7 @@
 // www.ebenmonney.com/templates
 // =============================
 
-import { Utilities } from '../services/utilities';
+import { Utilities } from '../services/app/utilities';
 
 export class Notification {
   public id: number;

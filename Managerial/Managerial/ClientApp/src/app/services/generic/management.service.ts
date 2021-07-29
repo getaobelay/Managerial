@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { AuthService } from '../auth.service';
-import { EndpointBase } from '../endpoint-base.service';
-import { ConfigurationService } from '../configuration.service';
+import { EndpointBase } from '../api/endpoint-base.service';
+import { ConfigurationService } from '../app/configuration.service';
 
 @Injectable()
 export class ManagementService  {

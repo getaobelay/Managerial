@@ -4,8 +4,8 @@
 // =============================
 
 import { Component } from '@angular/core';
-import { fadeInOut } from '../../services/animations';
-import { ConfigurationService } from '../../services/configuration.service';
+import { fadeInOut } from '../../services/app/animations';
+import { ConfigurationService } from '../../services/app/configuration.service';
 
 @Component({
   selector: 'app-home',

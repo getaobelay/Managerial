@@ -5,12 +5,12 @@
 
 import { Component, OnInit, OnDestroy, Input, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { LocalStoreManager } from 'src/app/services/api/local-store-manager.service';
+import { AppTranslationService } from 'src/app/services/app/app-translation.service';
+import { Utilities } from 'src/app/services/app/utilities';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
 
-import { AuthService } from '../../services/auth.service';
-import { AlertService, MessageSeverity, DialogType } from '../../services/alert.service';
-import { AppTranslationService } from '../../services/app-translation.service';
-import { LocalStoreManager } from '../../services/local-store-manager.service';
-import { Utilities } from '../../services/utilities';
 
 @Component({
     selector: 'app-todo-demo',

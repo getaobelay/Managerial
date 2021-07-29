@@ -2,7 +2,6 @@
 
 @import 'app/assets/styles/custom-vendor';
 @import '~bootstrap/scss/bootstrap';
-
 @import 'app/assets/styles/vertical-tabs';
 @import 'app/assets/styles/ngx-datatable';
 @import 'app/assets/styles/styles-vendor.css';
@@ -375,6 +374,20 @@ i.page-caption {
 .icon-addon .form-control:focus + .fa,
 .icon-addon:hover .fa {
     color: #2580db;
+}
+
+.control-box {
+  margin-bottom: 5px;
+}
+
+.search-box {
+  margin: 0;
+}
+
+.nav-item.toolbaritem a {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  min-width: 100px;
 }
 
 .clear-input {

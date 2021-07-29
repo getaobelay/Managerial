@@ -23,57 +23,40 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppErrorHandler } from './app-error.handler';
-import { AppTitleService } from './services/app-title.service';
-import { AppTranslationService, TranslateLanguageLoader } from './services/app-translation.service';
-import { ConfigurationService } from './services/configuration.service';
-import { AlertService } from './services/alert.service';
-import { ThemeManager } from './services/theme-manager';
-import { LocalStoreManager } from './services/local-store-manager.service';
-import { OidcHelperService } from './services/oidc-helper.service';
-import { NotificationService } from './services/notification.service';
-import { NotificationEndpoint } from './services/notification-endpoint.service';
-import { AccountService } from './services/account.service';
-import { AccountEndpoint } from './services/account-endpoint.service';
+import { AppTitleService } from './services/app/app-title.service';
+import { ConfigurationService } from './services/app/configuration.service';
+import { AlertService } from './services/notification/alert.service';
+import { ThemeManager } from './services/app/theme-manager';
+import { LocalStoreManager } from './services/api/local-store-manager.service';
+import { OidcHelperService } from './services/api/oidc-helper.service';
 
-import { EqualValidator } from './directives/equal-validator.directive';
-import { LastElementDirective } from './directives/last-element.directive';
-import { AutofocusDirective } from './directives/autofocus.directive';
-import { BootstrapTabDirective } from './directives/bootstrap-tab.directive';
-import { BootstrapToggleDirective } from './directives/bootstrap-toggle.directive';
-import { GroupByPipe } from './pipes/group-by.pipe';
+import { AccountService } from './services/api/account.service';
+import { AccountEndpoint } from './services/api/account-endpoint.service';
+
 
 import { AppComponent } from './components/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CustomersComponent } from './components/customers/customers.component';
-import { ProductsComponent } from './components/products/products.component';
-import { OrdersComponent } from './components/orders/orders.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { AboutComponent } from './components/about/about.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { BannerDemoComponent } from './components/controls/banner-demo.component';
 import { TodoDemoComponent } from './components/controls/todo-demo.component';
 import { StatisticsDemoComponent } from './components/controls/statistics-demo.component';
-import { NotificationsViewerComponent } from './components/controls/notifications-viewer.component';
-import { SearchBoxComponent } from './components/controls/search-box.component';
-import { UserInfoComponent } from './components/controls/user-info.component';
-import { UserPreferencesComponent } from './components/controls/user-preferences.component';
-import { UsersManagementComponent } from './components/controls/users-management.component';
-import { RolesManagementComponent } from './components/controls/roles-management.component';
-import { RoleEditorComponent } from './components/controls/role-editor.component';
 
-import { ProductViewComponent } from './components/controls/product/product-view.component';
-import { CategoryViewComponent } from './components/controls/category/category-view.component';
-import { CategoryFormComponent } from './components/controls/category/category-form/category-form.component';
 import { ApiEndpoint } from './services/generic/api-endpoint.service';
 import { APiService } from './services/generic/api.service';
-import { CategoriesComponent } from './components/categories/categories.component';
 import { ProductService } from './services/generic/product.service';
-import { ProductEditorComponent } from './components/controls/product/product-editor/product-editor.component';
-import { WarehouseManagement } from './components/controls/warehouse/warehouse-management.component';
-import { WarehouseEditor } from './components/controls/warehouse/warehouse-form/warehouse-editor.component';
-import { WarehousesComponent } from './components/warehouses/warehouses.component';
+import { AppTranslationService, TranslateLanguageLoader } from './services/app/app-translation.service';
+import { NotificationEndpoint } from './services/notification/notification-endpoint.service';
+import { NotificationService } from './services/notification/notification.service';
+import { ProductsModule } from './components/products/products-module.module';
+import { WarehousesModule } from './components/warehouses/warehouses-module.module';
+import { SettingsModule } from './components/settings/settings-module.module';
+import { SharedModule } from './components/shared/shared.module';
+import { WarehouseService } from './components/warehouses/warehouse-service.service';
+import { OrdersModule } from './components/orders/orders-module.module';
+import { CustomersModule } from './components/customers/customers-module.module';
 
 @NgModule({
   imports: [
@@ -97,34 +80,22 @@ import { WarehousesComponent } from './components/warehouses/warehouses.componen
     BsDropdownModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+
+    ProductsModule,
+    WarehousesModule,
+    CustomersModule,
+    OrdersModule,
+    SettingsModule,
+    SharedModule
   ],
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    CustomersComponent,
-    ProductsComponent,
-    OrdersComponent,
-    SettingsComponent,
-    UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
-    RolesManagementComponent, RoleEditorComponent,
-    ProductViewComponent, ProductEditorComponent,
-    CategoryViewComponent, CategoryFormComponent,
-    WarehouseManagement, WarehouseEditor,
-    WarehousesComponent,
-    CategoriesComponent,
     AboutComponent,
-    NotFoundComponent,
-    NotificationsViewerComponent,
-    SearchBoxComponent,
     StatisticsDemoComponent, TodoDemoComponent, BannerDemoComponent,
-    EqualValidator,
-    LastElementDirective,
-    AutofocusDirective,
-    BootstrapTabDirective,
-    BootstrapToggleDirective,
-    GroupByPipe
+
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
@@ -140,9 +111,11 @@ import { WarehousesComponent } from './components/warehouses/warehouses.componen
     LocalStoreManager,
     OidcHelperService,
     ProductService,
+    WarehouseService,
     ApiEndpoint,
     APiService
   ],
+  exports:[TodoDemoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

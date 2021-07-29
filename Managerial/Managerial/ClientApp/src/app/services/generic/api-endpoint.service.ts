@@ -8,9 +8,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AuthService } from '../auth.service';
-import { EndpointBase } from '../endpoint-base.service';
-import { ConfigurationService } from '../configuration.service';
+import { EndpointBase } from '../api/endpoint-base.service';
+import { ConfigurationService } from '../app/configuration.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class ApiEndpoint extends EndpointBase {

@@ -1,5 +1,4 @@
-﻿using DAL.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DAL.Core.Cqrs.Common.Queries.Responses
 {

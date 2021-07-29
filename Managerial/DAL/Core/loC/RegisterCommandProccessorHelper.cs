@@ -3,7 +3,6 @@ using DAL.Core.Cqrs.Common.Commands.Requests;
 using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Core.Cqrs.Proccessors;
 using DAL.Models;
-using DAL.ViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;

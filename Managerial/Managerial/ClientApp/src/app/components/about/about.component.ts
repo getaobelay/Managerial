@@ -4,7 +4,7 @@
 // =============================
 
 import { Component } from '@angular/core';
-import { fadeInOut } from '../../services/animations';
+import { fadeInOut } from '../../services/app/animations';
 
 @Component({
   selector: 'app-about',

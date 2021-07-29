@@ -7,8 +7,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, forkJoin } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import { Product } from 'src/app/models/Product.model';
-import { AuthService } from '../auth.service';
-import { ConfigurationService } from '../configuration.service';
+import { ConfigurationService } from '../app/configuration.service';
 import { ApiEndpoint } from './api-endpoint.service';
 
 @Injectable()

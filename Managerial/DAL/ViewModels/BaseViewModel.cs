@@ -1,5 +1,4 @@
-﻿using DAL.ViewModels.Interfaces;
-
+﻿
 namespace DAL.ViewModels
 {
     public class BaseViewModel : IBaseViewModel

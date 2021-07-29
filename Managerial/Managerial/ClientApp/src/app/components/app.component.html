@@ -23,9 +23,6 @@
             <a class="nav-link" routerLink="/products">{{'mainMenu.Products' | translate}}</a>
           </li>
           <li class="nav-item" routerLinkActive="active" *ngIf="canViewProducts">
-            <a class="nav-link" routerLink="/categories"> {{'mainMenu.Categories' | translate}} </a>
-          </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewProducts">
             <a class="nav-link" routerLink="/warehouses"> {{'mainMenu.Warehouses' | translate}} </a>
           </li>
           <li class="nav-item" routerLinkActive="active" *ngIf="canViewOrders">
@@ -75,10 +72,10 @@
   <div id="pre-bootstrap" *ngIf="!removePrebootScreen" [class.prebootShow.app-component]="!isAppLoaded" class="app-component prebootStep">
     <div class="messaging">
       <h1>
-        Loaded!
+        App loaded successfully!
       </h1>
       <p>
-        QUICK APPLICATION SYSTEM - <span style="font-style:italic">quick</span>App &copy; <a href="https://www.ebenmonney.com">WWW.EBENMONNEY.COM</a>
+        WAREHOUSE MANAGEMENT SYSTEM - <span class="appName" style="font-style:italic"></span><span class="appName">Managerial</span> &copy;<span class="appName">Getao belay</span>
       </p>
     </div>
   </div>
@@ -92,8 +89,7 @@
     <div class="container">
       <p class="text-center text-muted">
         <span style="font-style:italic">quick</span>App &copy; {{getYear()}}
-        <a href="https://www.ebenmonney.com" target="_blank">www.ebenmonney.com</a>
-        <!--<span class="small display-none">- Powered by <a href="https://www.ebenmonney.com/quickapp" target="_blank"><span style="font-style:italic">quick</span>App</a></span>-->
+        <span class="small display-none">- Powered by <span style="font-style:italic">Managerial</span></span>
       </p>
     </div>
   </footer>

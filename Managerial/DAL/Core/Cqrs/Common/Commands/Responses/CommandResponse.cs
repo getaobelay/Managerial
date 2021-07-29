@@ -1,5 +1,4 @@
-﻿using DAL.ViewModels;
-
+﻿
 namespace DAL.Core.Cqrs.Common.Commands.Responses
 {
     public abstract class BaseCommandResponse<TDto> : ICommandResponse<TDto>

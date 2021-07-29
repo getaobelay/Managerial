@@ -5,7 +5,7 @@ namespace DAL.Models
     public class Location : AuditableEntity
     {
         public string LocationRow { get; set; }
-        public string LocationColum { get; set; }
+        public string locationColumn { get; set; }
         public string LocationShelf { get; set; }
         public int? WarehouseID { get; set; }
         public int? WarehouseItemID { get; set; }

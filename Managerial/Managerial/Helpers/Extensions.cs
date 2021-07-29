@@ -1,9 +1,4 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
-
-using DAL.ViewModels;
+﻿using Application.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 

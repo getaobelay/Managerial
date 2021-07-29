@@ -6,9 +6,9 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
-import { fadeInOut } from '../../services/animations';
+import { fadeInOut } from '../../services/app/animations';
 import { BootstrapTabDirective } from '../../directives/bootstrap-tab.directive';
-import { AccountService } from '../../services/account.service';
+import { AccountService } from '../../services/api/account.service';
 import { Permission } from '../../models/permission.model';
 
 @Component({
@@ -22,6 +22,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   isPreferencesActivated = false;
   isUsersActivated = false;
   isRolesActivated = false;
+  isWarehouseActivated = false;
+  isLocationActivated = false;
+  isCategoriesActivated = false;
+  isBatchesActivated = false;
 
   fragmentSubscription: any;
 
@@ -29,6 +33,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   readonly preferencesTab = 'preferences';
   readonly usersTab = 'users';
   readonly rolesTab = 'roles';
+  readonly warehousesTab = 'warehouses';
+  readonly locationsTab = 'locations';
+  readonly categoriesTab = 'categories';
+  readonly batchesTab = 'batches';
 
   @ViewChild('tab', { static: true })
   tab: BootstrapTabDirective;
@@ -76,6 +84,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.isPreferencesActivated = activeTab === this.preferencesTab;
     this.isUsersActivated = activeTab === this.usersTab;
     this.isRolesActivated = activeTab === this.rolesTab;
+    this.isWarehouseActivated = activeTab === this.warehousesTab;
+    this.isLocationActivated = activeTab === this.locationsTab;
+    this.isCategoriesActivated = activeTab === this.categoriesTab;
+    this.isBatchesActivated = activeTab === this.batchesTab;
 
     this.router.navigate([], { fragment: activeTab });
   }

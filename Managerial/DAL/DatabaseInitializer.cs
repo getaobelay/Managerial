@@ -4,7 +4,6 @@
 // =============================
 
 using DAL.Core;
-using DAL.Core.Interfaces;
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

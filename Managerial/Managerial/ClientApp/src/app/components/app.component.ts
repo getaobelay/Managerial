@@ -8,16 +8,17 @@ import { Router, NavigationStart } from '@angular/router';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData } from 'ngx-toasta';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
-import { AlertService, AlertDialog, DialogType, AlertCommand, AlertMessage, MessageSeverity } from '../services/alert.service';
-import { NotificationService } from '../services/notification.service';
-import { AppTranslationService } from '../services/app-translation.service';
-import { AccountService } from '../services/account.service';
-import { LocalStoreManager } from '../services/local-store-manager.service';
-import { AppTitleService } from '../services/app-title.service';
-import { AuthService } from '../services/auth.service';
-import { ConfigurationService } from '../services/configuration.service';
+import { AlertService, AlertDialog, DialogType, AlertCommand, AlertMessage, MessageSeverity } from '../services/notification/alert.service';
+
+import { AccountService } from '../services/api/account.service';
+import { LocalStoreManager } from '../services/api/local-store-manager.service';
+import { AppTitleService } from '../services/app/app-title.service';
+import { ConfigurationService } from '../services/app/configuration.service';
 import { Permission } from '../models/permission.model';
 import { LoginComponent } from '../components/login/login.component';
+import { AppTranslationService } from '../services/app/app-translation.service';
+import { AuthService } from '../services/auth/auth.service';
+import { NotificationService } from '../services/notification/notification.service';
 
 const alertify: any = require('../assets/scripts/alertify.js');
 

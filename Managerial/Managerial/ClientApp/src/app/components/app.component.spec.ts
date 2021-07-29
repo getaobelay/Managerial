@@ -21,17 +21,17 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { AuthService } from '../services/auth.service';
-import { AppTitleService } from '../services/app-title.service';
+import { AppTitleService } from '../services/app/app-title.service';
 import { AppTranslationService, TranslateLanguageLoader } from '../services/app-translation.service';
-import { ConfigurationService } from '../services/configuration.service';
-import { ThemeManager } from '../services/theme-manager';
-import { AlertService } from '../services/alert.service';
-import { LocalStoreManager } from '../services/local-store-manager.service';
-import { OidcHelperService } from '../services/oidc-helper.service';
+import { ConfigurationService } from '../services/app/configuration.service';
+import { ThemeManager } from '../services/app/theme-manager';
+import { AlertService } from '../services/notification/alert.service';
+import { LocalStoreManager } from '../services/api/local-store-manager.service';
+import { OidcHelperService } from '../services/api/oidc-helper.service';
 import { NotificationService } from '../services/notification.service';
 import { NotificationEndpoint } from '../services/notification-endpoint.service';
-import { AccountService } from '../services/account.service';
-import { AccountEndpoint } from '../services/account-endpoint.service';
+import { AccountService } from '../services/api/account.service';
+import { AccountEndpoint } from '../services/api/account-endpoint.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
