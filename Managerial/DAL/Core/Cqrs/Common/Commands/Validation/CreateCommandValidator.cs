@@ -1,6 +1,5 @@
 ﻿using DAL.Core.Cqrs.Common.Commands.Requests;
 using DAL.Models;
-using DAL.ViewModels;
 using FluentValidation;
 
 namespace DAL.Core.Cqrs.Common.Commands.Validation

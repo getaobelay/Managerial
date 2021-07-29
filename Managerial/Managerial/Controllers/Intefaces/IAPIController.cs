@@ -1,5 +1,4 @@
-﻿using DAL.ViewModels;
-using DAL.ViewModels.Interfaces;
+﻿using Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

@@ -5,11 +5,11 @@
 
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
-import { AlertService, MessageSeverity, DialogType } from '../../services/alert.service';
-import { AuthService } from '../../services/auth.service';
-import { ConfigurationService } from '../../services/configuration.service';
-import { Utilities } from '../../services/utilities';
+import { AlertService, MessageSeverity, DialogType } from '../../services/notification/alert.service';
+import { ConfigurationService } from '../../services/app/configuration.service';
+import { Utilities } from '../../services/app/utilities';
 import { UserLogin } from '../../models/user-login.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',

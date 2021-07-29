@@ -1,16 +1,13 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
-
 import { Component } from '@angular/core';
-import { fadeInOut } from '../../services/animations';
+import { fadeInOut } from '../../services/app/animations';
 
 @Component({
-    selector: 'app-warehouses',
+    selector: 'app-warehouse',
     templateUrl: './warehouses.component.html',
     styleUrls: ['./warehouses.component.scss'],
     animations: [fadeInOut]
 })
-export class WarehousesComponent {
-}
+export class WarehousesComponent  {
+
+  }
+

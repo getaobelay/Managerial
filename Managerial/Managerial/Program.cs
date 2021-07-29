@@ -3,7 +3,8 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using DAL;
+using Autofac.Extensions.DependencyInjection;
+using Infrastructure.Context;
 using Managerial.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +45,7 @@ namespace Managerial
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory()) 
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

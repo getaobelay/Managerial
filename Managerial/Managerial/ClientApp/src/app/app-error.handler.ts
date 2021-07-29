@@ -4,7 +4,7 @@
 // =============================
 
 import { Injectable, ErrorHandler } from '@angular/core';
-import { AlertService, MessageSeverity } from './services/alert.service';
+import { AlertService, MessageSeverity } from './services/notification/alert.service';
 
 @Injectable()
 export class AppErrorHandler extends ErrorHandler {

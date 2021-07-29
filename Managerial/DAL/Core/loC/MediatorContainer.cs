@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using DAL.Models;
-using DAL.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;

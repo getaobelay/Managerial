@@ -1,9 +1,9 @@
 <div class="container">
-    <header class="pageHeader">
-        <h3><i class="fa fa-truck fa-lg page-caption" aria-hidden="true"></i> Products</h3>
-    </header>
+  <header class="pageHeader">
+    <h3><i class="fa fa-shopping-cart fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Orders' | translate}}</h3>
+  </header>
 
-    <div [@fadeInOut]>
-        <app-product-view verticalScrollbar="true"></app-product-view>
-    </div>
+  <div [@fadeInOut]>
+    <app-product-management></app-product-management>
+  </div>
 </div>

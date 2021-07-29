@@ -19,7 +19,7 @@ namespace DAL.ViewModels
         public decimal QuantityPerUnit { get; set; }
         public decimal Weight { get; set; }
         public decimal Height { get; set; }
-
+        public bool IsActive { get; set; }
         public ProductCategoryViewModel productCategory { get; set; }
     }
 }

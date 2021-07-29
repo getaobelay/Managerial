@@ -1,7 +1,6 @@
 ﻿using DAL.Core.Cqrs.Common.Commands.Requests;
 using DAL.Core.Cqrs.Common.Commands.Responses;
 using DAL.Models;
-using DAL.ViewModels;
 using MediatR;
 using System;
 using System.Threading;

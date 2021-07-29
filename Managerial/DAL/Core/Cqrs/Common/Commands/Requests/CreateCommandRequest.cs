@@ -1,5 +1,4 @@
 ﻿using DAL.Models;
-using DAL.ViewModels;
 
 namespace DAL.Core.Cqrs.Common.Commands.Requests
 {

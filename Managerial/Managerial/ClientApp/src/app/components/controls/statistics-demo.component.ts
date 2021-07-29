@@ -4,7 +4,7 @@
 // =============================
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AlertService, DialogType, MessageSeverity } from '../../services/alert.service';
+import { AlertService, DialogType, MessageSeverity } from '../../services/notification/alert.service';
 import { Subscription, Observable, fromEvent, of, merge } from 'rxjs';
 import { map, distinctUntilChanged } from 'rxjs/operators';
 

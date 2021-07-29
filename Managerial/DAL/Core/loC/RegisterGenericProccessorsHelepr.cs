@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using DAL.Models;
-using DAL.ViewModels;
 
 namespace DAL.Core.loC
 {

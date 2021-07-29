@@ -1,5 +1,4 @@
-﻿using DAL.ViewModels;
-
+﻿
 namespace DAL.Core.Cqrs.Common.Queries.Responses
 {
     public class SingleQueryResponse<TDto>

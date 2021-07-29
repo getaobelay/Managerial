@@ -1,6 +1,5 @@
 ﻿using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Models;
-using DAL.ViewModels;
 using MediatR;
 using System;
 using System.Linq.Expressions;

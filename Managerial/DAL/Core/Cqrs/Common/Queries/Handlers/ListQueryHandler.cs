@@ -2,7 +2,6 @@
 using DAL.Core.Cqrs.Common.Queries.Responses;
 using DAL.Core.Helpers;
 using DAL.Models;
-using DAL.ViewModels;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;

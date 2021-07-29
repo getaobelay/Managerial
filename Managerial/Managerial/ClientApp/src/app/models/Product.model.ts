@@ -6,7 +6,7 @@ export class Product {
     SellingPrice?: number,
     Measurement?: string, Description?: string,
     Height?: number, Weight?: number,
-    IsActive?: boolean, QuantityPerUnit?: number,
+    isActive?: boolean, QuantityPerUnit?: number,
     Id?: number, productCategory?: ProductCategory) {
     this.name = name;
     this.description = Description;
@@ -16,7 +16,7 @@ export class Product {
     this.weight = Weight;
     this.height = Height;
     this.quantityPerUnit = QuantityPerUnit;
-    this.isActive = IsActive;
+    this.isActive = isActive;
     this.id = Id;
     this.productCategory = productCategory;
   }

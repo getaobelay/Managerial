@@ -3,14 +3,14 @@
 // www.ebenmonney.com/templates
 // =============================
 
+using Application.ViewModels;
 using AutoMapper;
-using DAL.Core;
-using DAL.Core.Interfaces;
-using DAL.Models;
-using DAL.ViewModels;
+using Domain.Entites.Identity;
 using IdentityServer4.AccessTokenValidation;
-using Managerial.Authorization;
-using Managerial.Helpers;
+using Infrastructure;
+using Infrastructure.Authorization;
+using Infrastructure.Helpers;
+using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -84,7 +84,7 @@ namespace Managerial.Controllers
         }
 
         [HttpGet("users")]
-        [Authorize(Authorization.Policies.ViewAllUsersPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ViewAllUsersPolicy)]
         [ProducesResponseType(200, Type = typeof(List<UserViewModel>))]
         public async Task<IActionResult> GetUsers()
         {
@@ -92,7 +92,7 @@ namespace Managerial.Controllers
         }
 
         [HttpGet("users/{pageNumber:int}/{pageSize:int}")]
-        [Authorize(Authorization.Policies.ViewAllUsersPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ViewAllUsersPolicy)]
         [ProducesResponseType(200, Type = typeof(List<UserViewModel>))]
         public async Task<IActionResult> GetUsers(int pageNumber, int pageSize)
         {
@@ -131,7 +131,7 @@ namespace Managerial.Controllers
             string[] currentRoles = appUser != null ? (await _accountManager.GetUserRolesAsync(appUser)).ToArray() : null;
 
             var manageUsersPolicy = _authorizationService.AuthorizeAsync(this.User, id, AccountManagementOperations.Update);
-            var assignRolePolicy = _authorizationService.AuthorizeAsync(this.User, (user.Roles, currentRoles), Authorization.Policies.AssignAllowedRolesPolicy);
+            var assignRolePolicy = _authorizationService.AuthorizeAsync(this.User, (user.Roles, currentRoles), Infrastructure.Authorization.Policies.AssignAllowedRolesPolicy);
 
             if ((await Task.WhenAll(manageUsersPolicy, assignRolePolicy)).Any(r => !r.Succeeded))
                 return new ChallengeResult();
@@ -240,13 +240,13 @@ namespace Managerial.Controllers
         }
 
         [HttpPost("users")]
-        [Authorize(Authorization.Policies.ManageAllUsersPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ManageAllUsersPolicy)]
         [ProducesResponseType(201, Type = typeof(UserViewModel))]
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         public async Task<IActionResult> Register([FromBody] UserEditViewModel user)
         {
-            if (!(await _authorizationService.AuthorizeAsync(this.User, (user.Roles, new string[] { }), Authorization.Policies.AssignAllowedRolesPolicy)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(this.User, (user.Roles, new string[] { }), Infrastructure.Authorization.Policies.AssignAllowedRolesPolicy)).Succeeded)
                 return new ChallengeResult();
 
             if (ModelState.IsValid)
@@ -297,7 +297,7 @@ namespace Managerial.Controllers
         }
 
         [HttpPut("users/unblock/{id}")]
-        [Authorize(Authorization.Policies.ManageAllUsersPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ManageAllUsersPolicy)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> UnblockUser(string id)
@@ -349,7 +349,7 @@ namespace Managerial.Controllers
         {
             var appRole = await _accountManager.GetRoleByIdAsync(id);
 
-            if (!(await _authorizationService.AuthorizeAsync(this.User, appRole?.Name ?? "", Authorization.Policies.ViewRoleByRoleNamePolicy)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(this.User, appRole?.Name ?? "", Infrastructure.Authorization.Policies.ViewRoleByRoleNamePolicy)).Succeeded)
                 return new ChallengeResult();
 
             if (appRole == null)
@@ -364,7 +364,7 @@ namespace Managerial.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetRoleByName(string name)
         {
-            if (!(await _authorizationService.AuthorizeAsync(this.User, name, Authorization.Policies.ViewRoleByRoleNamePolicy)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(this.User, name, Infrastructure.Authorization.Policies.ViewRoleByRoleNamePolicy)).Succeeded)
                 return new ChallengeResult();
 
             RoleViewModel roleVM = await GetRoleViewModelHelper(name);
@@ -376,7 +376,7 @@ namespace Managerial.Controllers
         }
 
         [HttpGet("roles")]
-        [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ViewAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(List<RoleViewModel>))]
         public async Task<IActionResult> GetRoles()
         {
@@ -384,7 +384,7 @@ namespace Managerial.Controllers
         }
 
         [HttpGet("roles/{pageNumber:int}/{pageSize:int}")]
-        [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ViewAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(List<RoleViewModel>))]
         public async Task<IActionResult> GetRoles(int pageNumber, int pageSize)
         {
@@ -393,7 +393,7 @@ namespace Managerial.Controllers
         }
 
         [HttpPut("roles/{id}")]
-        [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ManageAllRolesPolicy)]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -425,7 +425,7 @@ namespace Managerial.Controllers
         }
 
         [HttpPost("roles")]
-        [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ManageAllRolesPolicy)]
         [ProducesResponseType(201, Type = typeof(RoleViewModel))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateRole([FromBody] RoleViewModel role)
@@ -451,7 +451,7 @@ namespace Managerial.Controllers
         }
 
         [HttpDelete("roles/{id}")]
-        [Authorize(Authorization.Policies.ManageAllRolesPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ManageAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(RoleViewModel))]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -475,7 +475,7 @@ namespace Managerial.Controllers
         }
 
         [HttpGet("permissions")]
-        [Authorize(Authorization.Policies.ViewAllRolesPolicy)]
+        [Authorize(Infrastructure.Authorization.Policies.ViewAllRolesPolicy)]
         [ProducesResponseType(200, Type = typeof(List<PermissionViewModel>))]
         public IActionResult GetAllPermissions()
         {

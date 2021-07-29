@@ -1,9 +1,4 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
-
-using DAL;
+using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -11,9 +6,9 @@ using System.IO;
 
 namespace Managerial
 {
-    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ManagerialDbContext>
     {
-        public ApplicationDbContext CreateDbContext(string[] args)
+        public ManagerialDbContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -21,11 +16,11 @@ namespace Managerial
                 .AddJsonFile("appsettings.Development.json", optional: true)
                 .Build();
 
-            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            var builder = new DbContextOptionsBuilder<ManagerialDbContext>();
 
             builder.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly("Managerial"));
 
-            return new ApplicationDbContext(builder.Options);
+            return new ManagerialDbContext(builder.Options);
         }
     }
 }

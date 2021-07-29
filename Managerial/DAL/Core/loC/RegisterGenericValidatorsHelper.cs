@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using DAL.Core.Cqrs.Common.Commands.Validation;
 using DAL.Models;
-using DAL.ViewModels;
 using FluentValidation;
 
 namespace DAL.Core.loC
