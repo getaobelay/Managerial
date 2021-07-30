@@ -1,4 +1,3 @@
-import { Category } from "./Category.model";
 
 export class Warehouse {
   constructor(id?: number, name?: string, type?: string, isActive?: boolean) {

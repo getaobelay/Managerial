@@ -8,8 +8,8 @@ namespace Application
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterInfrastructre();
             builder.RegisterApplication();
+            builder.RegisterInfrastructre();
         }
     }
 }

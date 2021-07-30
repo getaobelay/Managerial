@@ -4,11 +4,11 @@
 // =============================
 
 import { Component, ViewChild } from '@angular/core';
-import { Category } from 'src/app/models/Category.model';
-import { Product } from 'src/app/models/Product.model';
+import { Product } from 'src/app/models/product/Product.model';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
 import { ProductService } from 'src/app/services/generic/product.service';
+import { Category } from 'src/app/models/product/Category.model';
 
 @Component({
     selector: 'app-product-editor',

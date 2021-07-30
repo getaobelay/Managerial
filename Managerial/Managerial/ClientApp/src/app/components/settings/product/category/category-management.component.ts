@@ -1,18 +1,18 @@
 import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Category } from 'src/app/models/Category.model';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
 import { APiService } from 'src/app/services/generic/api.service';
 import { Utilities } from 'src/app/services/app/utilities';
-import { CategoryFormComponent } from './category-form/category-form.component';
+import { CategoryEditorComponent } from './category-editor/category-editor.component';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
+import { Category } from 'src/app/models/product/Category.model';
 
 @Component({
-  selector: 'app-category-view',
-  templateUrl: './category-view.component.html',
-  styleUrls: ['./category-view.component.scss']
+  selector: 'app-category-management',
+  templateUrl: './category-management.component.html',
+  styleUrls: ['./category-management.component.scss']
 })
-export class CategoryViewComponent implements OnInit, AfterViewInit {
+export class CategoryManagementComponent implements OnInit, AfterViewInit {
   columns: any[] = [];
   rows: Category[] = [];
   rowsCache: Category[] = [];
@@ -37,7 +37,7 @@ export class CategoryViewComponent implements OnInit, AfterViewInit {
   editorModal: ModalDirective;
 
   @ViewChild('categoryEditor', { static: true })
-  CategoryEditor: CategoryFormComponent;
+  CategoryEditor: CategoryEditorComponent;
 
   constructor(private alertService: AlertService,
      private translationService: AppTranslationService,

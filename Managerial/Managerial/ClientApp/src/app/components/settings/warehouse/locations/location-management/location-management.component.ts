@@ -4,7 +4,7 @@ import { AlertService, MessageSeverity, DialogType } from 'src/app/services/noti
 import { APiService } from 'src/app/services/generic/api.service';
 import { Utilities } from 'src/app/services/app/utilities';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
-import { Location } from 'src/app/models/Warehouse.model'
+import { Location } from 'src/app/models/warehouse/Warehouse.model'
 import { LocationEditorComponent } from '../location-editor/location-editor.component';
 
 @Component({

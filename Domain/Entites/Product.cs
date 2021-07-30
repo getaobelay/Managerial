@@ -14,8 +14,6 @@ namespace Domain.Entites
         public string Description { get; set; }
         public decimal BuyingPrice { get; set; }
         public decimal SellingPrice { get; set; }
-        public string Measurement { get; set; }
-        public decimal QuantityPerUnit { get; set; }
         public decimal Weight { get; set; }
         public decimal Height { get; set; }
         public bool IsActive { get; set; }
@@ -23,9 +21,13 @@ namespace Domain.Entites
         public int? InventoryId { get; set; }
         public int? WarehouseItemId { get; set; }
         public int? BatchId { get; set; }
-        public int? ProductCategoryId { get; set; }
 
+        public int? ParentId { get; set; }
+        public Product Parent { get; set; }
+
+        public int? ProductCategoryId { get; set; }
         public ProductCategory ProductCategory { get; set; }
+        public ICollection<Product> Children { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
 
         public virtual Stock Stock { get; set; }

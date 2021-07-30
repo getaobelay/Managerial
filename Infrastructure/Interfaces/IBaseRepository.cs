@@ -10,11 +10,11 @@ namespace Infrastructure.Interfaces
     public interface IBaseRepository<TEntity, TDto>
         where TEntity : AuditableEntity, new()
     {
-        Task<IEnumerable<TDto>> GetAllAsync(IConfigurationProvider configuration);
+        Task<IEnumerable<TEntity>> GetAllAsync(IConfigurationProvider configuration);
 
-        Task<IEnumerable<TDto>> FindAsync(Expression<Func<TEntity, bool>> expression, IConfigurationProvider configuration);
+        Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression, IConfigurationProvider configuration);
 
-        Task<TDto> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression, IConfigurationProvider configuration);
+        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression, IConfigurationProvider configuration);
 
         Task<bool> DeleteAsync(TEntity entityToDelete);
 

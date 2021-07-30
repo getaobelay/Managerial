@@ -9,12 +9,12 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AlertService, DialogType, MessageSeverity } from '../../../../services/notification/alert.service';
 import { AccountService } from '../../../../services/api/account.service';
 import { Utilities } from '../../../../services/app/utilities';
-import { User } from '../../../../models/user.model';
-import { Role } from '../../../../models/role.model';
-import { Permission } from '../../../../models/permission.model';
-import { UserEdit } from '../../../../models/user-edit.model';
 import { UserInfoComponent } from '../user-info/user-info.component';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
+import { Permission } from 'src/app/models/user/permission.model';
+import { Role } from 'src/app/models/user/role.model';
+import { UserEdit } from 'src/app/models/user/user-edit.model';
+import { User } from 'src/app/models/user/user.model';
 
 @Component({
     selector: 'app-users-management',

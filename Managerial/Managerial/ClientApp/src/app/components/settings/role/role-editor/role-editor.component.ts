@@ -4,8 +4,8 @@
 // =============================
 
 import { Component, ViewChild } from '@angular/core';
-import { Permission } from 'src/app/models/permission.model';
-import { Role } from 'src/app/models/role.model';
+import { Permission } from 'src/app/models/user/permission.model';
+import { Role } from 'src/app/models/user/role.model';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
 

@@ -8,11 +8,9 @@ using WarehouseAngularApp.Managerial.Controllers;
 
 namespace Managerial.Controllers
 {
-    [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
     public class WarehousesController : BaseApiController<Warehouse, WarehouseViewModel>
     {
-        public WarehousesController(IMediator mediator) : base(mediator)
+        public WarehousesController(IMediator mediator): base(mediator)
         {
 
         }

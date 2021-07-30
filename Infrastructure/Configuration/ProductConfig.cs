@@ -17,6 +17,7 @@ namespace Infrastructure.Configuration
             builder.HasIndex(p => p.Name);
             builder.Property(p => p.Description).HasMaxLength(500);
             builder.ToTable($"Products");
+            builder.HasOne(p => p.Parent).WithMany(p => p.Children).OnDelete(DeleteBehavior.Restrict);
             builder.Property(p => p.BuyingPrice).HasColumnType(priceDecimalType);
             builder.Property(p => p.SellingPrice).HasColumnType(priceDecimalType);
 

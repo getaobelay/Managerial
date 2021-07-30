@@ -70,28 +70,28 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="warehouses" role="tabpanel">
-                    <h4>{{'settings.header.RolesManagement' | translate}}</h4>
+                    <h4>Warehouses</h4>
                     <hr class="separator-hr" />
                     <div [@fadeInOut] *ngIf="canViewRoles && isWarehouseActivated" class="content-container pl-lg-1">
                       <app-warehouse-management></app-warehouse-management>
                     </div>
                 </div>
                 <div class="tab-pane" id="locations" role="tabpanel">
-                  <h4>{{'settings.header.RolesManagement' | translate}}</h4>
+                  <h4>Locations</h4>
                   <hr class="separator-hr" />
                   <div [@fadeInOut] *ngIf="canViewRoles && isLocationActivated" class="content-container pl-lg-1">
                     <app-location-management></app-location-management>
                   </div>
               </div>
               <div class="tab-pane" id="categories" role="tabpanel">
-                <h4>{{'settings.header.RolesManagement' | translate}}</h4>
+                <h4>Categories</h4>
                 <hr class="separator-hr" />
                 <div [@fadeInOut] *ngIf="canViewRoles && isCategoriesActivated" class="content-container pl-lg-1">
-                  <app-category-view></app-category-view>
+                  <app-category-management></app-category-management>
                 </div>
             </div>
             <div class="tab-pane" id="batches" role="tabpanel">
-              <h4>{{'settings.header.RolesManagement' | translate}}</h4>
+              <h4>Batches</h4>
               <hr class="separator-hr" />
               <div [@fadeInOut] *ngIf="canViewRoles && isBatchesActivated" class="content-container pl-lg-1">
                   <app-batch-management></app-batch-management>

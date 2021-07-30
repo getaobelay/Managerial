@@ -3,7 +3,8 @@
 // www.ebenmonney.com/templates
 // =============================
 
-import { User } from './user.model';
+import { User } from "./user.model";
+
 
 export class UserEdit extends User {
   constructor(currentPassword?: string, newPassword?: string, confirmPassword?: string) {

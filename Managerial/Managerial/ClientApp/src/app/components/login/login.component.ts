@@ -8,7 +8,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AlertService, MessageSeverity, DialogType } from '../../services/notification/alert.service';
 import { ConfigurationService } from '../../services/app/configuration.service';
 import { Utilities } from '../../services/app/utilities';
-import { UserLogin } from '../../models/user-login.model';
+import { UserLogin } from '../../models/user/user-login.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({

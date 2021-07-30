@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Infrastructure
 {
@@ -20,12 +21,13 @@ namespace Infrastructure
                 services.AddDbContext<ManagerialDbContext>(options =>
                             options.UseInMemoryDatabase("Manageril_InMemoryDatabase"));
             }
+
             else
             {
                 services.AddDbContext<ManagerialDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                b => b.MigrationsAssembly(typeof(ManagerialDbContext).Assembly.FullName))
-                );
+                b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName)
+                ));
             }
 
             // Enable logging of potential PII messages (Personally Identifiable Information)
@@ -63,11 +65,13 @@ namespace Infrastructure
                 .AddInMemoryPersistedGrants()
                 // To configure IdentityServer to use EntityFramework (EF) as the storage mechanism for configuration data (rather than using the in-memory implementations),
                 // see https://identityserver4.readthedocs.io/en/release/quickstarts/8_entity_framework.html
-                .AddInMemoryApiScopes(IdentityServerConfig.GetApiScopes())
                 .AddInMemoryApiResources(IdentityServerConfig.GetApiResources())
+                .AddInMemoryIdentityResources(IdentityServerConfig.GetIdentityResources())
+                .AddInMemoryApiScopes(IdentityServerConfig.GetApiScopes())
                 .AddInMemoryClients(IdentityServerConfig.GetClients())
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddProfileService<ProfileService>();
+
 
 
             var applicationUrl = configuration["ApplicationUrl"].TrimEnd('/');

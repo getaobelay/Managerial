@@ -14,7 +14,7 @@ import { AccountService } from '../services/api/account.service';
 import { LocalStoreManager } from '../services/api/local-store-manager.service';
 import { AppTitleService } from '../services/app/app-title.service';
 import { ConfigurationService } from '../services/app/configuration.service';
-import { Permission } from '../models/permission.model';
+import { Permission } from '../models/user/permission.model';
 import { LoginComponent } from '../components/login/login.component';
 import { AppTranslationService } from '../services/app/app-translation.service';
 import { AuthService } from '../services/auth/auth.service';

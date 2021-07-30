@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { Warehouse } from "src/app/models/Warehouse.model";
+import { Warehouse } from "src/app/models/warehouse/Warehouse.model";
 import { AlertService, MessageSeverity } from "src/app/services/notification/alert.service";
 import { APiService } from "src/app/services/generic/api.service";
 

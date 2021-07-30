@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Category } from 'src/app/models/Category.model';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
 import { APiService } from 'src/app/services/generic/api.service';
+import { Category } from 'src/app/models/product/Category.model';
 
 @Component({
-  selector: 'app-category-form',
-  templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.scss']
+  selector: 'app-category-editor',
+  templateUrl: './category-editor.component.html',
+  styleUrls: ['./category-editor.component.scss']
 })
-export class CategoryFormComponent {
+export class CategoryEditorComponent {
   private isNewCategory = false;
   public isSaving: boolean;
   public showValidationErrors = true;

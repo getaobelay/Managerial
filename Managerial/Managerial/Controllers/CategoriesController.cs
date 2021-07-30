@@ -8,8 +8,6 @@ using WarehouseAngularApp.Managerial.Controllers;
 
 namespace Managerial.Controllers
 {
-    [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
     public  class CategoriesController : BaseApiController<Category, CategoryViewModel>
     {
         private readonly IMediator mediator;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Application.ViewModels
 {
-    public class CustomerViewModel : BaseViewModel, IMapFrom<Product>
+    public class CustomerViewModel : BaseViewModel, IMapFrom<Customer>
     {
         public string Name { get; set; }
         public string Email { get; set; }
@@ -14,7 +14,7 @@ namespace Application.ViewModels
         public string City { get; set; }
         public string Gender { get; set; }
 
-        public ICollection<OrderViewModel> Orders { get; set; }
+        public List<OrderViewModel> Orders { get; set; }
     }
 
     public class CustomerViewModelValidator : AbstractValidator<CustomerViewModel>

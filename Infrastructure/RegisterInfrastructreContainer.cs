@@ -1,8 +1,10 @@
 ﻿using Autofac;
+using AutoMapper.Configuration;
 using Infrastructure.Context;
 using Infrastructure.Implementation;
 using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure
@@ -13,13 +15,18 @@ namespace Infrastructure
         {
             builder.RegisterType(typeof(DataContext)).As(typeof(IDataContext));
 
-            builder.RegisterType(typeof(HttpContextAccessor)).As(typeof(IHttpContextAccessor));
+            builder.RegisterType<CurrentUser>()
+                    .As<ICurrentUser>()
+                    .SingleInstance();
 
-            builder.RegisterType(typeof(CurrentUser)).As(typeof(ICurrentUser));
             builder.RegisterGeneric(typeof(UnitOfWorkRepository<>))
                    .As(typeof(IUnitOfWorkRepository<>));
 
             builder.RegisterType<ManagerialDbContext>();
+
+            builder.RegisterType<HttpContextAccessor>()
+                   .As<IHttpContextAccessor>()
+                   .SingleInstance();
 
             builder.RegisterType<LoggerFactory>()
                .As<ILoggerFactory>()

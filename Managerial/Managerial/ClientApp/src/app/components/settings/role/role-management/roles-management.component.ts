@@ -5,8 +5,8 @@
 
 import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild, Input } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Permission } from 'src/app/models/permission.model';
-import { Role } from 'src/app/models/role.model';
+import { Permission } from 'src/app/models/user/permission.model';
+import { Role } from 'src/app/models/user/role.model';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
 import { Utilities } from 'src/app/services/app/utilities';
