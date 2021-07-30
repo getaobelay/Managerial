@@ -36,15 +36,7 @@ namespace Infrastructure.Authorization
         {
             return new List<ApiScope>
             {
-                new ApiScope(ApiName, ApiFriendlyName) {
-                    UserClaims = {
-                        JwtClaimTypes.Name,
-                        JwtClaimTypes.Email,
-                        JwtClaimTypes.PhoneNumber,
-                        JwtClaimTypes.Role,
-                        ClaimConstants.Permission
-                    }
-                }
+                new ApiScope(ApiName)
             };
         }
 
@@ -54,7 +46,23 @@ namespace Infrastructure.Authorization
             return new List<ApiResource>
             {
                 new ApiResource(ApiName) {
-                    Scopes = { ApiName }
+                    UserClaims = {
+                        IdentityServerConstants.StandardScopes.Profile,
+                        JwtClaimTypes.Name,
+                        JwtClaimTypes.Email,
+                        JwtClaimTypes.PhoneNumber,
+                        JwtClaimTypes.Role,
+                        ClaimConstants.Permission
+                    },
+                    Scopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId, // For UserInfo endpoint.
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Phone,
+                        IdentityServerConstants.StandardScopes.Email,
+                        ScopeConstants.Roles,
+                        ApiName
+                    }
                 }
             };
         }
@@ -103,5 +111,6 @@ namespace Infrastructure.Authorization
                 }
             };
         }
+
     }
 }

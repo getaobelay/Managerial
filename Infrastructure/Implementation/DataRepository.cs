@@ -86,30 +86,27 @@ namespace Infrastructure.Implementation
             _isDisposed = true;
         }
         [Obsolete]
-        public virtual async Task<IEnumerable<TDto>> FindAsync(Expression<Func<TEntity, bool>> expression, IConfigurationProvider configuration)
+        public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression, IConfigurationProvider configuration)
         {
             var query = Entities.IncludeAll().AsQueryable();
 
            return await query.Where(expression)
-                             .ProjectTo<TDto>(configuration)
                              .ToListAsync();
 
         }
         [Obsolete]
-        public async Task<IEnumerable<TDto>> GetAllAsync(IConfigurationProvider configuration)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(IConfigurationProvider configuration)
         {
             var query = Entities.IncludeAll().AsQueryable();
 
-            return await query.ProjectTo<TDto>(configuration)
-                              .ToListAsync();
+            return await query.ToListAsync();
         }
         [Obsolete]
-        public virtual async Task<TDto> GetAsync(object Id, IConfigurationProvider configuration)
+        public virtual async Task<TEntity> GetAsync(object Id, IConfigurationProvider configuration)
         {
             var query = Entities.IncludeAll().AsQueryable();
 
-            return await query.ProjectTo<TDto>(configuration)
-                              .SingleOrDefaultAsync(e => e.GetType()
+            return await query.SingleOrDefaultAsync(e => e.GetType()
                                                           .GetProperty("Id")
                                                           .GetValue(e, null).Equals(Id));
                            
@@ -136,12 +133,11 @@ namespace Infrastructure.Implementation
             }
         }
         [Obsolete]
-        public virtual async Task<TDto> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression, IConfigurationProvider configuration)
+        public virtual async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> expression, IConfigurationProvider configuration)
         {
             var query = Entities.IncludeAll().AsQueryable();
 
             return await query.Where(expression)
-                              .ProjectTo<TDto>(configuration)
                               .SingleOrDefaultAsync();
 
         }

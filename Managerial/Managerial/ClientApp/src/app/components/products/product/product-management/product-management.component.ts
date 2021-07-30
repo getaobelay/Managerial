@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Product } from 'src/app/models/Product.model';
+import { Product } from 'src/app/models/product/Product.model';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
 import { ProductService } from 'src/app/services/generic/product.service';
@@ -51,11 +51,12 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
         { prop: 'name', name: 'Name', width: 90 },
         { prop: 'sellingPrice', name: 'Sell', width: 50 },
         { prop: 'buyingPrice', name: 'Buy', width: 50 },
-        { prop: 'measurement', name: 'Mesasurement', width: 30},
         { prop: 'quantityPerUnit', name: 'Quantity', width: 30 },
         { prop: 'weight', name: 'Weight', width: 50 },
         { prop: 'height', name: 'Height', width: 50 },
         { prop: 'isActive', name: 'Status', width: 50, cellTemplate: this.isActiveTemplate},
+        { prop: 'UpdatedBy', name: 'Updated By', width: 30},
+        { prop: 'UpdatedBy', name: 'Updated Date', width: 30},
 
       ];
 

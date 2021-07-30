@@ -12,8 +12,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace WarehouseAngularApp.Managerial.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
 
     public abstract class BaseApiController<TEntity, TDto> : ControllerBase, IAPIController<TDto>
@@ -68,10 +68,11 @@ namespace WarehouseAngularApp.Managerial.Controllers
 
             var result = await Mediator.Send(query);
 
-            if (!result.Error)
+            if (result.Error)
             {
                 return BadRequest();
             }
+
             return CreatedAtAction(nameof(PostAsync), new { id = result.ViewModel.Id }, result.ViewModel);
         }
 

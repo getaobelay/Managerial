@@ -10,8 +10,8 @@ namespace Infrastructure.Context
     {
         public CurrentUser(ManagerialDbContext context, IHttpContextAccessor contextAccessor)
         {
-            context.CurrentUserId = GetUsername();
             ContextAccessor = contextAccessor;
+            context.CurrentUserId = GetUsername();
         }
 
         public IHttpContextAccessor ContextAccessor { get; }

@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain.Entites;
+using System.Collections.Generic;
 
 namespace Application.ViewModels
 {
@@ -9,12 +10,16 @@ namespace Application.ViewModels
         public string Description { get; set; }
         public decimal BuyingPrice { get; set; }
         public decimal SellingPrice { get; set; }
-        public string Measurement { get; set; }
-        public decimal QuantityPerUnit { get; set; }
         public decimal Weight { get; set; }
         public decimal Height { get; set; }
         public bool IsActive { get; set; }
-        public string categoryName { get; set; }
+        public ProductViewModel Product { get; set; }
         public ProductCategoryViewModel productCategory { get; set; }
+        public IEnumerable<ProductViewModel> Children { get; set; }
+        public IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
+        public StockViewModel Stock { get; set; }
+        public InventoryViewModel Inventory { get; set; }
+        public List<WarehouseItem> WarehouseItems { get; set; }
+        public List<Batch> Batches { get; set; }
     }
 }

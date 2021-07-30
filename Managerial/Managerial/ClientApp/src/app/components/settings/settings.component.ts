@@ -9,7 +9,7 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { fadeInOut } from '../../services/app/animations';
 import { BootstrapTabDirective } from '../../directives/bootstrap-tab.directive';
 import { AccountService } from '../../services/api/account.service';
-import { Permission } from '../../models/permission.model';
+import { Permission } from '../../models/user/permission.model';
 
 @Component({
   selector: 'app-settings',

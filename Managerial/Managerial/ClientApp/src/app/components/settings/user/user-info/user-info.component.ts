@@ -4,13 +4,13 @@
 // =============================
 
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { Permission } from 'src/app/models/permission.model';
-import { Role } from 'src/app/models/role.model';
-import { UserEdit } from 'src/app/models/user-edit.model';
-import { User } from 'src/app/models/user.model';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
 import { Utilities } from 'src/app/services/app/utilities';
+import { Permission } from 'src/app/models/user/permission.model';
+import { Role } from 'src/app/models/user/role.model';
+import { UserEdit } from 'src/app/models/user/user-edit.model';
+import { User } from 'src/app/models/user/user.model';
 
 
 @Component({

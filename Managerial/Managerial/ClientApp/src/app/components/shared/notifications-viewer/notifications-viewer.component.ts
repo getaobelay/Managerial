@@ -12,7 +12,7 @@ import { Utilities } from '../../../services/app/utilities';
 import { Notification } from '../../../models/notification.model';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { Permission } from '../../../models/permission.model';
+import { Permission } from '../../../models/user/permission.model';
 
 @Component({
   selector: 'app-notifications-viewer',

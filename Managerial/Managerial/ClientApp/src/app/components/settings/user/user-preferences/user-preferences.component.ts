@@ -4,13 +4,13 @@
 // =============================
 
 import { Component } from '@angular/core';
-import { Permission } from 'src/app/models/permission.model';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
 import { ConfigurationService } from 'src/app/services/app/configuration.service';
 import { ThemeManager } from 'src/app/services/app/theme-manager';
 import { Utilities } from 'src/app/services/app/utilities';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
+import { Permission } from 'src/app/models/user/permission.model';
 
 
 

@@ -3,7 +3,8 @@
 // www.ebenmonney.com/templates
 // =============================
 
-import { PermissionValues } from './permission.model';
+import { PermissionValues } from "./user/permission.model";
+
 
 export interface LoginResponse {
   access_token: string;

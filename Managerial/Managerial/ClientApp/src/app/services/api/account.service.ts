@@ -6,10 +6,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, forkJoin } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
-import { PermissionValues, Permission } from 'src/app/models/permission.model';
-import { Role } from 'src/app/models/role.model';
-import { UserEdit } from 'src/app/models/user-edit.model';
-import { User } from 'src/app/models/user.model';
+import { PermissionValues, Permission } from 'src/app/models/user/permission.model';
+import { Role } from 'src/app/models/user/role.model';
+import * as userEditModel from 'src/app/models/user/user-edit.model';
+import { User } from 'src/app/models/user/user.model';
 import { AuthService } from '../auth/auth.service';
 import { AccountEndpoint } from './account-endpoint.service';
 
@@ -50,7 +50,7 @@ export class AccountService {
             this.accountEndpoint.getRolesEndpoint<Role[]>()]);
     }
 
-    updateUser(user: UserEdit) {
+    updateUser(user: userEditModel.UserEdit) {
         if (user.id) {
             return this.accountEndpoint.getUpdateUserEndpoint(user, user.id);
         } else {
@@ -62,7 +62,7 @@ export class AccountService {
         }
     }
 
-    newUser(user: UserEdit) {
+    newUser(user: userEditModel.UserEdit) {
         return this.accountEndpoint.getNewUserEndpoint<User>(user);
     }
 
