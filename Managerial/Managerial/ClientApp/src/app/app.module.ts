@@ -37,7 +37,6 @@ import { AccountEndpoint } from './services/api/account-endpoint.service';
 import { AppComponent } from './components/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { CustomersComponent } from './components/customers/customers.component';
 import { AboutComponent } from './components/about/about.component';
 
 import { BannerDemoComponent } from './components/controls/banner-demo.component';

@@ -38,14 +38,22 @@
       "Profile": "Profile",
       "Preferences": "Preferences",
       "Users": "Users",
-      "Roles": "Roles"
+      "Roles": "Roles",
+      "Warehouses": "Warehouses",
+      "Locations": "Locations",
+      "Batches": "Batches",
+      "Categories": "Categories"
     },
     "header": {
       "UserProfile": "User Profile",
       "UserPreferences": "User Preferences",
       "UserDepartments": "User Departments",
       "UsersManagements": "Users Managements",
-      "RolesManagement": "Roles Management"
+      "RolesManagements": "Roles Management",
+      "LocationsManagements": "Locations Management",
+      "BatchesManagements": "Batches Management",
+      "CategoriesManagements": "Categories Management",
+      "WarehousesManagements": "Warehouses Management"
     }
   },
   "preferences": {

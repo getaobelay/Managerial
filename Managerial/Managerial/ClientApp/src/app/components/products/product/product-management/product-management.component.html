@@ -44,6 +44,13 @@
     </span>
   </ng-template>
 
+  <ng-template #updatedByTemplate let-value="value">
+    <span class="badge badge-pill badge-secondary">{{value}}</span>
+  </ng-template>
+
+  <ng-template #createdByTemplate let-value="value">
+    <span class="badge badge-pill badge-secondary">{{value}}</span>
+  </ng-template>
 
   <ng-template #actionsTemplate let-row="row" let-value="value" let-i="index">
     <div>
@@ -51,6 +58,16 @@
       <a class="btn btn-link btn-sm" href="javascript:;" (click)="deleteProduct(row)"><i class="fa fa-trash-o" aria-hidden="true"></i> {{'products.management.Delete' | translate}}</a>
     </div>
   </ng-template>
+
+
+
+  <ng-template #actionsTemplate let-row="row" let-value="value" let-i="index">
+    <div>
+      <a class="btn btn-link btn-sm" href="javascript:;" (click)="editProduct(row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{'products.management.Edit' | translate}}</a>|
+      <a class="btn btn-link btn-sm" href="javascript:;" (click)="deleteProduct(row)"><i class="fa fa-trash-o" aria-hidden="true"></i> {{'products.management.Delete' | translate}}</a>
+    </div>
+  </ng-template>
+
 
   <div class="modal fade" bsModal #editorModal="bs-modal" (onHidden)="onEditorModalHidden()" [config]="{backdrop: 'static'}" tabindex="-1">
     <div class="modal-dialog modal-lg">

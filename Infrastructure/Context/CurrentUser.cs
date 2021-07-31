@@ -28,7 +28,8 @@ namespace Infrastructure.Context
 
         public string GetUsername()
         {
-            return ContextAccessor.HttpContext?.User.FindFirst(ClaimConstants.Subject)?.Value?.Trim();
+            return ContextAccessor.HttpContext?.User.Identity?.Name?.Trim();
+
         }
     }
 }

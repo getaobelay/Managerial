@@ -24,26 +24,26 @@
 
                 <li [hidden]="!canViewRoles" class="nav-item">
                   <a id="warehousesTab" [routerLink]="[]" fragment="warehouses" data-target="#warehouses" href="#categories" class="nav-link" data-toggle="tab" role="tab" aria-controls="categories">
-                      <i class="fa fa-shield fa-fw" aria-hidden="true"></i> {{'settings.tab.Roles' | translate}}
+                      <i class="fas fa-warehouse fa-fw" aria-hidden="true"></i> {{'settings.tab.Warehouses' | translate}}
                   </a>
               </li>
 
 
               <li [hidden]="!canViewRoles" class="nav-item">
                 <a id="locationsTab" [routerLink]="[]" fragment="locations" data-target="#locations" href="#locations" class="nav-link" data-toggle="tab" role="tab" aria-controls="locations">
-                    <i class="fa fa-shield fa-fw" aria-hidden="true"></i> {{'settings.tab.Roles' | translate}}
+                    <i class="fa fa-map-pin fa-fw" aria-hidden="true"></i> {{'settings.tab.Locations' | translate}}
                 </a>
             </li>
 
             <li [hidden]="!canViewRoles" class="nav-item">
               <a id="categoriesTab" [routerLink]="[]" fragment="categories" data-target="#categories" href="#categories" class="nav-link" data-toggle="tab" role="tab" aria-controls="categories">
-                  <i class="fa fa-shield fa-fw" aria-hidden="true"></i> {{'settings.tab.Roles' | translate}}
+                  <i class="fas fa-list fa-fw" aria-hidden="true"></i> {{'settings.tab.Categories' | translate}}
               </a>
           </li>
 
           <li [hidden]="!canViewRoles" class="nav-item">
             <a id="batchesTab" [routerLink]="[]" fragment="batches" data-target="#batches" href="#batches" class="nav-link" data-toggle="tab" role="tab" aria-controls="batches">
-                <i class="fa fa-shield fa-fw" aria-hidden="true"></i> {{'settings.tab.Roles' | translate}}
+                <i class="fa fa-shield fa-fw" aria-hidden="true"></i> {{'settings.tab.Batches' | translate}}
             </a>
         </li>
             </ul>
@@ -70,28 +70,29 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="warehouses" role="tabpanel">
-                    <h4>Warehouses</h4>
-                    <hr class="separator-hr" />
+                  <h4>{{'settings.header.WarehousesManagements' | translate}}</h4>
+                  <hr class="separator-hr" />
                     <div [@fadeInOut] *ngIf="canViewRoles && isWarehouseActivated" class="content-container pl-lg-1">
                       <app-warehouse-management></app-warehouse-management>
                     </div>
                 </div>
                 <div class="tab-pane" id="locations" role="tabpanel">
-                  <h4>Locations</h4>
+                  <h4>{{'settings.header.LocationsManagements' | translate}}</h4>
+
                   <hr class="separator-hr" />
                   <div [@fadeInOut] *ngIf="canViewRoles && isLocationActivated" class="content-container pl-lg-1">
                     <app-location-management></app-location-management>
                   </div>
               </div>
               <div class="tab-pane" id="categories" role="tabpanel">
-                <h4>Categories</h4>
+                <h4>{{'settings.header.CategoriesManagements' | translate}}</h4>
                 <hr class="separator-hr" />
                 <div [@fadeInOut] *ngIf="canViewRoles && isCategoriesActivated" class="content-container pl-lg-1">
                   <app-category-management></app-category-management>
                 </div>
             </div>
             <div class="tab-pane" id="batches" role="tabpanel">
-              <h4>Batches</h4>
+              <h4>{{'settings.header.BatchesManagements' | translate}}</h4>
               <hr class="separator-hr" />
               <div [@fadeInOut] *ngIf="canViewRoles && isBatchesActivated" class="content-container pl-lg-1">
                   <app-batch-management></app-batch-management>

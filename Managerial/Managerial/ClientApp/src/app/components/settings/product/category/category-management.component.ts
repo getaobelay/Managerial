@@ -3,9 +3,9 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
 import { APiService } from 'src/app/services/generic/api.service';
 import { Utilities } from 'src/app/services/app/utilities';
-import { CategoryEditorComponent } from './category-editor/category-editor.component';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
 import { Category } from 'src/app/models/product/Category.model';
+import { CategoryEditorComponent } from './category-editor/category-editor.component';
 
 @Component({
   selector: 'app-category-management',

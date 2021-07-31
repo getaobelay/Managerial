@@ -29,6 +29,12 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
   @ViewChild('isActiveTemplate', { static: true })
   isActiveTemplate: TemplateRef<any>;
 
+  @ViewChild('updatedByTemplate', { static: true })
+  updatedByTemplate: TemplateRef<any>;
+
+  @ViewChild('createdByTemplate', { static: true })
+  createdByTemplate: TemplateRef<any>;
+
   @ViewChild('actionsTemplate', { static: true })
   actionsTemplate: TemplateRef<any>;
 
@@ -51,13 +57,11 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
         { prop: 'name', name: 'Name', width: 90 },
         { prop: 'sellingPrice', name: 'Sell', width: 50 },
         { prop: 'buyingPrice', name: 'Buy', width: 50 },
-        { prop: 'quantityPerUnit', name: 'Quantity', width: 30 },
         { prop: 'weight', name: 'Weight', width: 50 },
         { prop: 'height', name: 'Height', width: 50 },
         { prop: 'isActive', name: 'Status', width: 50, cellTemplate: this.isActiveTemplate},
-        { prop: 'UpdatedBy', name: 'Updated By', width: 30},
-        { prop: 'UpdatedBy', name: 'Updated Date', width: 30},
-
+        { prop: 'createdBy', name: 'Created By', width: 30, cellTemplate: this.createdByTemplate},
+        { prop: 'updatedBy', name: 'Updated By', width: 30,cellTemplate: this.updatedByTemplate},
       ];
 
           this.columns.push({ name: '', width: 160, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
@@ -124,7 +128,7 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
         this.loadingIndicator = false;
 
         const products = results;
-
+        console.log(products)
         this.rowsCache = [...products];
         this.rows = products;
       },
