@@ -22,6 +22,7 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
   editingProductName: { name: string };
   loadingIndicator: boolean;
 
+  gT = (key: string) => this.translationService.getTranslation(key);
 
   @ViewChild('indexTemplate', { static: true })
   indexTemplate: TemplateRef<any>;
@@ -54,12 +55,13 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
 
       this.columns = [
         { prop: 'id', name: '#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
-        { prop: 'name', name: 'Name', width: 90 },
-        { prop: 'sellingPrice', name: 'Sell', width: 50 },
-        { prop: 'buyingPrice', name: 'Buy', width: 50 },
-        { prop: 'weight', name: 'Weight', width: 50 },
-        { prop: 'height', name: 'Height', width: 50 },
-        { prop: 'isActive', name: 'Status', width: 50, cellTemplate: this.isActiveTemplate},
+        { prop: 'name', name: gT('products.editor.Name'), width: 90 },
+        { prop: 'sellingPrice', name: gT('products.editor.Description'), width: 50 },
+        { prop: 'sellingPrice', name: gT('products.editor.SellingPrice'), width: 50 },
+        { prop: 'buyingPrice', name: gT('products.editor.BuyingPrice'), width: 50 },
+        { prop: 'weight', name: gT('products.editor.Weight'), width: 50 },
+        { prop: 'height', name: gT('products.editor.Height'), width: 50 },
+        { prop: 'isActive', name: gT('products.editor.Status'), width: 50, cellTemplate: this.isActiveTemplate},
         { prop: 'createdBy', name: 'Created By', width: 30, cellTemplate: this.createdByTemplate},
         { prop: 'updatedBy', name: 'Updated By', width: 30,cellTemplate: this.updatedByTemplate},
       ];
@@ -83,7 +85,8 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
   }
 
   AddNewProductToList() {
-    if (this.sourceProduct) {
+
+        if (this.sourceProduct) {
       Object.assign(this.sourceProduct, this.editedProduct);
 
       let sourceIndex = this.rowsCache.indexOf(this.sourceProduct, 0);
@@ -136,7 +139,7 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage('Load Error', `Unable to retrieve roles from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('LoadError') ,this.gT('RetrieveError') +`: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }
@@ -165,12 +168,13 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
   }
 
   deleteProduct(row: Product) {
-    this.alertService.showDialog('Are you sure you want to delete the \"' + row.name + '\" product?',
+
+    this.alertService.showDialog(this.gT('products.alerts.Delete') + '\"' + row.name + '\"' + this.gT('products.alerts.Product'),
       DialogType.confirm, () => this.deleteProductHelper(row));
   }
 a
   deleteProductHelper(row: Product) {
-    this.alertService.startLoadingMessage('Deleting...');
+    this.alertService.startLoadingMessage(this.gT('products.alerts.Deleting'));
     this.loadingIndicator = true;
 
     this.productService.delete(row.id)
@@ -185,7 +189,7 @@ a
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage('Delete Error', `An error occured whilst deleting the deleteproduct.\r\nError: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('products.alerts.Deleting'), this.gT("products.alerts.ErrorOccured") + `: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }

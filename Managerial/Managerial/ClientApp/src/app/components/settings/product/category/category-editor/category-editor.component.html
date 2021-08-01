@@ -1,7 +1,8 @@
 <div>
   <form *ngIf="formResetToggle" name="categoryEditorForm" #f="ngForm" novalidate
         (ngSubmit)="f.form.valid ? save() :
-          (!roleName.valid && showErrorAlert('category name is required', 'Please enter a categoryName (minimum of 2 and maximum of 200 characters)'));">
+          (!name.valid && showErrorAlert('Category name is required', 'Please enter a Category name (minimum of 2 and maximum of 200 characters)'));
+          (!description.valid && showErrorAlert('Description is required', 'Please enter a description (minimum of 2 and maximum of 200 characters)'));">
 
     <div class="row">
       <div class="col-sm-5">
@@ -11,26 +12,26 @@
             <input type="text" id="name" name="name" placeholder="Enter category name" class="form-control"
                    [ngClass]="{'is-valid': f.submitted && name.valid, 'is-invalid' : f.submitted && !name.valid}"
                    [(ngModel)]="categoryEdit.name" #name="ngModel" required minlength="2" maxlength="200" />
+                   <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="invalid-feedback">
+                    Name is required
+                  </span>
           </div>
         </div>
       </div>
 
       <div class="col-sm-7">
         <div class="form-group row">
-          <label class="col-form-label col-md-3" for="description">description</label>
+          <label class="col-form-label col-md-3" for="description">Description</label>
           <div class="col-md-9">
-            <input type="text" id="description" name="description" placeholder="Enter category description"
-                   class="form-control" [(ngModel)]="categoryEdit.description" />
+            <input type="text" id="description" name="description" placeholder="Enter category description" class="form-control"
+            [ngClass]="{'is-valid': f.submitted && name.valid, 'is-invalid' : f.submitted && !description.valid}"
+            [(ngModel)]="categoryEdit.description" #description="ngModel" required minlength="2" maxlength="200" />
+
+                   <span *ngIf="showValidationErrors && f.submitted && !description.valid" class="invalid-feedback">
+                    Description is required
+                  </span>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="invalid-feedback">
-          category name is required
-        </span>
       </div>
     </div>
 

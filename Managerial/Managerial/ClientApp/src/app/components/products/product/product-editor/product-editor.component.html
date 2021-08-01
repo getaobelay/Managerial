@@ -1,16 +1,39 @@
 <div>
   <form *ngIf="formResetToggle" name="productEditorForm" #f="ngForm" novalidate
         (ngSubmit)="f.form.valid ? save() :
-          (!name.valid && showErrorAlert('Product name is required', 'Please enter a role name (minimum of 2 and maximum of 200 characters)'));">
+          (!name.valid && showErrorAlert('Product name is required', 'Please enter a product name (minimum of 2 and maximum of 200 characters)'));
+          (!description.valid && showErrorAlert('Description is required', 'Please enter a description name (minimum of 2 and maximum of 200 characters)'));
+          (!buyingPrice.valid && showErrorAlert('Buying price is required', 'Please enter a buying price '));
+          (!sellingPrice.valid && showErrorAlert('Product name is required', 'Please enter a selling price '));
+          (!weight.valid && showErrorAlert('Weight is required', 'Please enter a weight'));
+          (!height.valid && showErrorAlert('Height is required', 'Please enter a height '));">
 
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group row">
           <label class="col-form-label col-md-3" for="name">{{'products.editor.Name' | translate}}</label>
           <div class="col-md-9">
-            <input  type="text" id="name" name="name" placeholder="Enter product name" class="form-control"
+            <input  type="text" id="name" name="name" placeholder="{{'products.editor.productNamePlaceHolder' | translate}}" class="form-control"
                    [ngClass]="{'is-valid': f.submitted && name.valid, 'is-invalid' : f.submitted && !name.valid}"
                     [(ngModel)]="productEdit.name" #name="ngModel" required minlength="2" maxlength="200" />
+          </div>
+          <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="invalid-feedback">
+          Product name is required
+          </span>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group row">
+          <label class="col-form-label col-md-3" for="description">{{'products.editor.Description' | translate}}</label>
+          <div class="col-md-9">
+
+            <input  type="text" id="description" name="description" placeholder="{{'products.editor.descriptionPlaceHolder' | translate}}" class="form-control"
+            [ngClass]="{'is-valid': f.submitted && name.valid, 'is-invalid' : f.submitted && !description.valid}"
+             [(ngModel)]="productEdit.description" #description="ngModel"  required minlength="2" maxlength="200" />
+             <span *ngIf="showValidationErrors && f.submitted && !sellingPrice.valid" class="invalid-feedback">
+              Description is required
+             </span>
           </div>
         </div>
       </div>
@@ -23,90 +46,39 @@
     </div>
   </div>
 
-<div class="row">
-      <div class="col-sm-6">
-        <div class="form-group row">
-          <label class="col-form-label col-md-3" for="description">{{'products.editor.Description' | translate}}</label>
-          <div class="col-md-9">
-            <input type="text" id="description" name="description" placeholder="Enter role description"
-            class="form-control" [(ngModel)]="productEdit.description" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-md-6">
-        <hr class="edit-separator-hr" />
-      </div>
-    </div>
-
   <div class="row">
         <div class="col-sm-6">
           <div class="form-group row">
-            <label class="col-form-label col-md-3" for="sellingPrice">{{'products.editor.SellingPrice' | translate}}</label>
-            <div class="col-md-9">
-              <input type="number" id="sellingPrice" name="sellingPrice" placeholder="Enter selling price"
-              class="form-control" [(ngModel)]="productEdit.sellingPrice" />
+            <label class="col-form-label col-md-4" for="sellingPrice">{{'products.editor.SellingPrice' | translate}}</label>
+            <div class="col-md-8">
+
+
+            <input  type="number" id="sellingPrice" name="sellingPrice" placeholder="{{'products.editor.sellingPlaceHolder' | translate}}" class="form-control"
+            [ngClass]="{'is-valid': f.submitted && sellingPrice.valid, 'is-invalid' : f.submitted && !sellingPrice.valid}"
+             [(ngModel)]="productEdit.sellingPrice" #sellingPrice="ngModel" min="0" required />
+             <span *ngIf="showValidationErrors && f.submitted && !sellingPrice.valid" class="invalid-feedback">
+              Selling price is required
+             </span>
             </div>
           </div>
         </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <hr class="edit-separator-hr" />
-          </div>
-        </div>
-
-        <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-6">
           <div class="form-group row">
-            <label class="col-form-label col-md-3" for="buyingPrice">{{'products.editor.BuyingPrice' | translate}}</label>
-            <div class="col-md-9">
-              <input type="number" id="buyingPrice" name="buyingPrice" placeholder="Enter buying price"
-              class="form-control" [(ngModel)]="productEdit.buyingPrice" />
+            <label class="col-form-label col-md-4" for="buyingPrice">{{'products.editor.BuyingPrice' | translate}}</label>
+            <div class="col-md-8">
+
+
+            <input  type="number" id="buyingPrice" name="buyingPrice" placeholder="{{'products.editor.buyingPlaceHolder' | translate}}" class="form-control"
+            [ngClass]="{'is-valid': f.submitted && buyingPrice.valid, 'is-invalid' : f.submitted && !buyingPrice.valid}"
+             [(ngModel)]="productEdit.buyingPrice" #buyingPrice="ngModel" min="0" required/>
+
+             <span *ngIf="showValidationErrors && f.submitted && !buyingPrice.valid" class="invalid-feedback">
+              Buying price is required
+             </span>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <hr class="edit-separator-hr" />
         </div>
-      </div>
-
-    <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group row">
-              <label class="col-form-label col-md-3" for="measurement">{{'products.editor.Measurement' | translate}}</label>
-              <div class="col-md-9">
-                <input type="text" id="measurement" name="measurement" placeholder="Enter measurement"
-                class="form-control" [(ngModel)]="productEdit.measurement" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <hr class="edit-separator-hr" />
-          </div>
-        </div>
-
-      <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group row">
-                <label class="col-form-label col-md-3" for="quantityPerUnit">{{'products.editor.QuantityPerUnit' | translate}}</label>
-                <div class="col-md-9">
-                  <input type="number" id="quantityPerUnit" name="quantityPerUnit" placeholder="Enter quantity per unit"
-                  class="form-control" [(ngModel)]="productEdit.quantityPerUnit" />
-                </div>
-              </div>
-            </div>
-          </div>
 
 
         <div class="row">
@@ -116,43 +88,39 @@
         </div>
 
       <div class="row">
-            <div class="col-sm-12">
+
+            <div class="col-sm-6">
+
               <div class="form-group row">
-                <label class="col-form-label col-md-3" for="weight">{{'products.editor.Weight' | translate}}</label>
+                <label class="col-form-label col-md-3" for="weight" >{{'products.editor.Weight' | translate}}</label>
                 <div class="col-md-9">
-                  <input type="number" id="weight" name="weight" placeholder="Enter weight"
-                  class="form-control" [(ngModel)]="productEdit.weight" />
+
+            <input  type="number" id="weight" name="weight" placeholder="{{'products.editor.weightPlaceHolder' | translate}}" class="form-control"
+            [ngClass]="{'is-valid': f.submitted && weight.valid, 'is-invalid' : f.submitted && !weight.valid}"
+             [(ngModel)]="productEdit.weight" #weight="ngModel" min="0" required/>
+             <span *ngIf="showValidationErrors && f.submitted && !weight.valid" class="invalid-feedback">
+              Weight is required
+             </span>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <hr class="edit-separator-hr" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
               <div class="form-group row">
                 <label class="col-form-label col-md-3" for="height">{{'products.editor.Height' | translate}}</label>
                 <div class="col-md-9">
-                  <input type="number" id="height" name="height" placeholder="Enter height"
-                  class="form-control" [(ngModel)]="productEdit.height" />
+              <input  type="number" id="height" name="height" placeholder="{{'products.editor.heightPlaceHolder' | translate}}" class="form-control"
+              [ngClass]="{'is-valid': f.submitted && weight.valid, 'is-invalid' : f.submitted && !height.valid}"
+              [(ngModel)]="productEdit.height" #height="ngModel" min="0" required/>
+              <span *ngIf="showValidationErrors && f.submitted && !height.valid" class="invalid-feedback">
+                height is required
+              </span>
                 </div>
               </div>
             </div>
+
           </div>
 
-
-    <div class="row">
-      <div class="col-md-12">
-        <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="invalid-feedback">
-          {{'products.editor.ProductNameRequired' | translate}}
-        </span>
-      </div>
-    </div>
 
     <div class="row">
       <div class="col-md-12">
@@ -162,7 +130,6 @@
 
 
     <div class="form-group row">
-
       <div class="col-sm-5">
         <div class="float-left">
           <div class="form-check warehouse-enabled">

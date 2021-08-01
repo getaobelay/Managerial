@@ -48,7 +48,7 @@ export class WarehouseManagementComponent implements OnInit, AfterViewInit {
 
     this.columns = [
       { prop: 'id', name: '#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
-      { prop: 'name', name: 'Type', width: 50 },
+      { prop: 'name', name: 'Name', width: 50 },
       { prop: 'type', name: 'Type', width: 90 },
       { prop: 'isActive', name: 'Status', width: 90, cellTemplate: this.IsActiveTemplate },
     ];

@@ -1,7 +1,9 @@
 <div>
   <form *ngIf="formResetToggle" name="locationEditorForm" #f="ngForm" novalidate
         (ngSubmit)="f.form.valid ? save() :
-          (!LocationRow.valid && showErrorAlert('Product name is required', 'Please enter a role name (minimum of 2 and maximum of 200 characters)'));">
+          (!LocationRow.valid && showErrorAlert('Row is required', 'Please enter a row'));
+          (!locationShelf.valid && showErrorAlert('Shelf is required', 'Please enter a shelf'));
+          (!locationColumn.valid && showErrorAlert('Column is required', 'Please enter a column'));">
 
     <div class="row">
       <div class="col-sm-12">
@@ -10,7 +12,7 @@
           <div class="col-md-9">
             <input  type="text" id="LocationRow" name="LocationRow" placeholder="Enter row" class="form-control"
                    [ngClass]="{'is-valid': f.submitted && LocationRow.valid, 'is-invalid' : f.submitted && !LocationRow.valid}"
-                    [(ngModel)]="locationEdit.LocationRow" #LocationRow="ngModel" required minlength="2" maxlength="200" />
+                    [(ngModel)]="locationEdit.LocationRow" #LocationRow="ngModel" required minlength="1" maxlength="2" />
           </div>
         </div>
       </div>
@@ -28,8 +30,9 @@
         <div class="form-group row">
           <label class="col-form-label col-md-3" for="locationColumn">Column</label>
           <div class="col-md-9">
-            <input type="text" id="locationColumn" name="locationColumn" placeholder="Enter column"
-            class="form-control" [(ngModel)]="locationEdit.LocationColumn" />
+            <input  type="text" id="locationColumn" name="locationColumn" placeholder="Enter row" class="form-control"
+            [ngClass]="{'is-valid': f.submitted && locationColumn.valid, 'is-invalid' : f.submitted && !locationColumn.valid}"
+             [(ngModel)]="locationEdit.locationColumn" #locationColumn="ngModel" required minlength="1" maxlength="2" />
           </div>
         </div>
       </div>
@@ -47,23 +50,32 @@
           <div class="form-group row">
             <label class="col-form-label col-md-3" for="locationShelf">Shelf</label>
             <div class="col-md-9">
-              <input type="text" id="locationShelf" name="locationShelf" placeholder="Enter shelf"
-              class="form-control" [(ngModel)]="locationEdit.LocationShelf" />
+              <input  type="text" id="locationShelf" name="locationShelf" placeholder="Enter row" class="form-control"
+              [ngClass]="{'is-valid': f.submitted && locationShelf.valid, 'is-invalid' : f.submitted && !locationShelf.valid}"
+               [(ngModel)]="locationEdit.locationShelf" #locationShelf="ngModel" required minlength="1" maxlength="2" />
             </div>
           </div>
         </div>
         </div>
-        <div class="form-group row">
 
-      <div class="col-sm-12">
-        <div ngPreserveWhitespaces class="float-right">
-          <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'products.editor.Cancel' | translate}}</button>
-          <button type="submit" class="btn btn-primary" [disabled]="isSaving">
-            <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('products.editor.Saving' | translate) : ('products.editor.Save' | translate)}}
-          </button>
+
+      <div class="row">
+        <div class="col-md-12">
+          <hr class="edit-separator-hr" />
         </div>
       </div>
-    </div>
+
+        <div class="form-group row">
+
+        <div class="col-sm-12">
+          <div ngPreserveWhitespaces class="float-right">
+            <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'products.editor.Cancel' | translate}}</button>
+            <button type="submit" class="btn btn-primary" [disabled]="isSaving">
+              <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('products.editor.Saving' | translate) : ('products.editor.Save' | translate)}}
+            </button>
+          </div>
+        </div>
+      </div>
     <div class="clearfix"></div>
   </form>
 </div>

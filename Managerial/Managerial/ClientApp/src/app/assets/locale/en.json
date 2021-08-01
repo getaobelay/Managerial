@@ -62,11 +62,7 @@
     "Language": "Language:",
     "Default": "Default",
     "English": "English",
-    "French": "French",
-    "German": "German",
-    "Portuguese": "Portuguese",
-    "Arabic": "Arabic",
-    "Korean": "Korean",
+    "Hebrew": "עברית",
     "LanguageHint": "Select the preferred language for your account",
     "HomePage": "Home Page:",
     "Dashboard": "Dashboard",
@@ -219,11 +215,26 @@
       "Weight": "Weight",
       "Height": "Height",
       "Description": "Description",
+      "productNamePlaceHolder": "Enter a product name",
+      "sellingPlaceHolder": "Enter a selling price",
+      "buyingPlaceHolder": "Enter a buying price",
+      "weightPlaceHolder": "Enter a Weight",
+      "heightPlaceHolder": "Enter a height",
+      "descriptionPlaceHolder": "Enter a description",
       "NameRequired": "Product name is required (minimum of 2 and maximum of 200 characters)",
       "Close": "Close",
       "Cancel": "Cancel",
       "Save": "Save",
       "Saving": "Saving..."
+    },
+    "alerts": {
+      "Delete": "Are you sure you want to delete the",
+      "Product": "product",
+      "Deleting": "Deleting...",
+      "DeleteError": "Delete Error",
+      "ErrorOccured": "An error occured whilst deleting the product.\r\nError",
+      "LoadError":"Load Error",
+      "RetrieveError": "Unable to retrieve products from the server.\r\nErrors"
     }
   }
 }

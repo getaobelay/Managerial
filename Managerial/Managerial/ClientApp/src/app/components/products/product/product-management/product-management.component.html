@@ -2,14 +2,14 @@
   <div class="row control-box">
     <div class="col-lg-8">
       <div class="form-group search-box">
-        <app-search-box (searchChange)="onSearchChanged($event)" placeholder="Search"></app-search-box>
+        <app-search-box (searchChange)="onSearchChanged($event)" placeholder="{{'products.management.Search' | translate}}"></app-search-box>
       </div>
     </div>
     <div class="col-lg-4 pr-lg-5">
       <ul class="nav flex-column flex-lg-row justify-content-end">
         <li class="nav-item toolbaritem">
           <a class="nav-link" href="javascript:;" (click)="newProduct()">
-            <i class="fa fa-plus-circle"></i> New Product
+            <i class="fa fa-plus-circle"></i> {{'products.management.NewProduct' | translate}}
           </a>
         </li>
       </ul>
@@ -73,8 +73,8 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 *ngIf="!editingProductName" class="modal-title float-left"><i class="fa fa-user-plus"></i> new Product </h4>
-          <h4 *ngIf="editingProductName" class="modal-title float-left"><i class="fa fa-user-circle-o"></i> Edit Product</h4>
+          <h4 *ngIf="!editingProductName" class="modal-title float-left"><i class="fa fa-user-plus"></i>  {{'products.management.NewProduct' | translate}} </h4>
+          <h4 *ngIf="editingProductName" class="modal-title float-left"><i class="fa fa-user-circle-o"></i>  {{'products.management.Edit' | translate}}</h4>
           <button type="button" class="close float-right" title="Close" (click)="editorModal.hide()">
             <span aria-hidden="true">&times;</span>
           </button>

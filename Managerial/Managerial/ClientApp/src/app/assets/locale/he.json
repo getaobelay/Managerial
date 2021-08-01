@@ -1,0 +1,240 @@
+{
+  "app": {
+    "Welcome": "ברוך הבא",
+    "Notifications": "התראות",
+    "New": "חדש"
+  },
+  "mainMenu": {
+    "Appointments": "Appointments",
+    "Customers": "לקוחות",
+    "Products": "מוצרים",
+    "Orders": "הזמנות",
+    "About": "אודות",
+    "Warehouses": "מחסנים",
+    "Categories": "קטגוריות",
+    "Logout": "התנתק"
+  },
+  "pageHeader": {
+    "Dashboard": "לוח",
+    "Customers": "לקוחות",
+    "Products": "מוצרים",
+    "Orders": "הזמנות",
+    "NotFound": "לא נמצא",
+    "About": "אודות",
+    "Settings": "הגדרות"
+  },
+  "home": {
+    "NoWidgets1": "לא מוצגים לך ווידג'טים. לך ל",
+    "NoWidgets2": "כדי להגדיר ווידג'טים זמינים",
+    "StatisticsTitle": "Some Important Stuff"
+  },
+  "notFound": {
+    "404": "404",
+    "pageNotFound": "הדף שאתה מחפש לא נמצא",
+    "backToHome": "חזור לדף הבית"
+  },
+  "settings": {
+    "tab": {
+      "Profile": "פרופיל",
+      "Preferences": "העדפות",
+      "Users": "משתמשים",
+      "Roles": "הרשאות",
+      "Warehouses": "מחסנים",
+      "Locations": "מיקומים",
+      "Batches": "Batches",
+      "Categories": "קטגוריות"
+    },
+    "header": {
+      "UserProfile": "פרופיל משתמש",
+      "UserPreferences": "העדפות משממש",
+      "UserDepartments": "מחלקות משתמש",
+      "UsersManagements": "ניהול משתמשים",
+      "RolesManagements": "ניהול הרשאות",
+      "LocationsManagements": "ניהול מיקומים",
+      "BatchesManagements": "Batches Management",
+      "CategoriesManagements": "ניהול קטגוריות",
+      "WarehousesManagements": "ניהול מחסנים"
+    }
+  },
+  "preferences": {
+    "ReloadPreferences": "טען העדפות מחדש:",
+    "ReloadPreferencesHint": "טען העדפות ברירת מחדל (שינויים מקומיים נמחקים)",
+    "Language": "שפה:",
+    "Default": "ברירת מחדל",
+    "English": "English",
+    "Hebrew": "עברית",
+    "LanguageHint": "בחר את השפה המועדפת על חשבונך",
+    "HomePage": "דף הבית:",
+    "Dashboard": "לוח",
+    "Customers": "לקוחות",
+    "Products": "מוצרים",
+    "Orders": "הזמנות",
+    "About": "אודות",
+    "Settings": "הגדרות",
+    "HomePageHint": "בחר את דף ברירת המחדל שאליו תנווט בעת הכניסה",
+    "Theme": "נושא:",
+    "DefaultTheme": "ברירת מחדך",
+    "CosmoTheme": "Cosmo",
+    "SolarTheme": "Solar",
+    "CeruleanTheme": "Cerulean",
+    "FlatlyTheme": "Flatly",
+    "SketchyTheme": "Sketchy",
+    "SlateTheme": "Slate",
+    "SpacelabTheme": "Spacelab",
+    "SuperheroTheme": "Superhero",
+    "UnitedTheme": "United",
+    "JournalTheme": "Journal",
+    "LumenTheme": "Lumen",
+    "MintyTheme": "Minty",
+    "PulseTheme": "Pulse",
+    "ThemeHint": "בחר את ערכת הצבעים המוגדרת כברירת מחדל עבור חשבונך",
+    "DashboardStatistics": "Dashboard Statistics:",
+    "DashboardStatisticsHint": "aShow demo graph widget on the dashboard",
+    "DashboardNotifications": "Dashboard Notifications:",
+    "DashboardNotificationsHint": "Show application notifications on the dashboard",
+    "DashboardTodo": "Dashboard Todo:",
+    "DashboardTodoHint": "Shows demo todo widget on the dashboard",
+    "DashboardBanner": "Dashboard Bnner:",
+    "DashboardBannerHint": "Show demo information banner widget on the dashboard",
+    "ResetDefault": "Reset default",
+    "SetDefault": "Set as default"
+  },
+  "users": {
+    "management": {
+      "Search": "חפש משתמש...",
+      "NewUser": "משתמש חדש...",
+      "Edit": "ערוך",
+      "Delete": "מחק",
+      "EditUser": "ערוך משתמש \"{{name}}\"",
+      "Title": "כותרת",
+      "UserName": "שם משתמש",
+      "FullName": "שם מלא",
+      "Email": "אימייל",
+      "Roles": "הרשאות",
+      "PhoneNumber": "מספר פלאפון"
+    },
+    "editor": {
+      "JobTitle": "הגדרת תפקיד: ",
+      "UserName": "שם משתמש:",
+      "UserNameRequired": "נדרש שם משתמש (מינימום של 2 ומקסימום של 200 תווים)",
+      "Password": "סיסמא:",
+      "PasswordHint": "הסיסמה שלך נדרשת בעת שינוי שם משתמש",
+      "CurrentPasswordRequired": "נדרשת סיסמה נוכחית...",
+      "Email": "אימייל:",
+      "EmailRequired": "Email address is required (maximum of 200 characters)",
+      "InvalidEmail": "Specified email is not valid",
+      "ChangePassword": "שנה סיסמא",
+      "CurrentPassword": "סיסמא נוכחית:",
+      "NewPassword": "סיסמא חדשה:",
+      "NewPasswordRequired": "יש צורך בסיסמה חדשה (מינימום 6 תווים)",
+      "ConfirmPassword": "אשר סיסמה:",
+      "ConfirmationPasswordRequired": "נדרשת סיסמת אישור",
+      "PasswordMismatch": "סיסמה חדשה וסיסמת אישור אינם תואמים",
+      "Roles": "הרשאות:",
+      "FullName": "שם מלא:",
+      "RoleRequired": "נדרש תפקיד ",
+      "PhoneNumber": "מספר #:",
+      "Enabled": "מופעל",
+      "Unblock": "בטל חסימה",
+      "Close": "סגור",
+      "Edit": "ערוך",
+      "Cancel": "בטל",
+      "Save": "שמור",
+      "Saving": "שומר..."
+    }
+  },
+  "roles": {
+    "management": {
+      "Search": "חפש תפקידים...",
+      "NewRole": "תפקיד חדש",
+      "Edit": "ערןך",
+      "Details": "תיאור",
+      "Delete": "מחק",
+      "RoleDetails": "תיאור תפקיד \"{{name}}\"",
+      "EditRole": "ערוך תפקיד \"{{name}}\"",
+      "Name": "שם",
+      "Description": "תיאור",
+      "Users": "משתמשים"
+    },
+    "editor": {
+      "Name": "שם:",
+      "Description": "תיאור:",
+      "RoleNameRequired": "שם הרשאה חובה (מינימום 2 ומקסימום של 200 אותיות)",
+      "SelectAll": "בחר הכול",
+      "SelectNone": "בטל בחירה",
+      "Close": "סגור",
+      "Cancel": "בטל",
+      "Save": "שמור",
+      "Saving": "שומר..."
+    }
+  },
+  "notifications": {
+    "Delete": "מחק התראה",
+    "Pin": "הצמד התראה",
+    "Date": "תאריך",
+    "Notification": "התראה"
+  },
+  "todoDemo": {
+    "management": {
+      "Search": "Search for task...",
+      "HideCompleted": "Hide Completed",
+      "AddTask": "Add Task",
+      "Delete": "Delete task",
+      "Important": "Mark as important",
+      "Task": "Task",
+      "Description": "Description"
+    },
+    "editor": {
+      "NewTask": "New Task",
+      "Name": "Name",
+      "TaskNameRequired": "Task name is required",
+      "Description": "Description",
+      "Important": "Mark as important",
+      "AddTask": "Add Task"
+    }
+  },
+  "products": {
+    "management": {
+      "Search": "חפש מוצר...",
+      "NewProduct": "מוצר חדש",
+      "Edit": "ערוך",
+      "Details": "מידע",
+      "Delete": "מחק",
+      "RoleDetails": "מידע מוצר \"{{name}}\"",
+      "EditRole": "ערוך מוצר \"{{name}}\"",
+      "Name": "שם",
+      "Description": "תיאור",
+      "Products": "מוצרים"
+    },
+    "editor": {
+      "Name": "שם",
+      "SellingPrice": "קנייה",
+      "BuyingPrice": "מכירה",
+      "Weight": "משקל",
+      "Height": "גובה",
+      "Description": "תיאור",
+      "NameRequired": "שם מוצר חובה" ,
+      "Close": "סגור",
+      "Status": "סטטוס",
+      "Cancel": "בטל",
+      "Save": "שמור",
+      "Saving": "שומר...",
+      "productNamePlaceHolder": "הזן שם מוצר",
+      "sellingPlaceHolder": "הזן מחיר מכירה",
+      "buyingPlaceHolder": "הזן מחיר קנייה",
+      "WeightPlaceHolder": "הזן משקל",
+      "heightPlaceHolder": "הזן גובה",
+      "descriptionPlaceHolder": "הזן תיאור"
+    },
+    "alerts": {
+      "Delete": "האם אתה בטוח שברצונך למחוק את",
+      "Product": "המוצר",
+      "Deleting": "מוחק...",
+      "DeleteError": "שגיאת מחיקה",
+      "ErrorOccured": "אירעה שגיאה בעת מחיקת המוצר.\r\n שגיאה",
+      "LoadError":"Load Error",
+      "RetrieveError": "אין אפשרות לאחזר מוצרים מהשרת.\r\n שגיאות"
+    }
+
+  }
+}
