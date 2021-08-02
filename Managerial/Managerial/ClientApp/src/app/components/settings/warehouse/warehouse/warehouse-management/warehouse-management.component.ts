@@ -2,10 +2,10 @@ import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild } from '@angul
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Warehouse } from 'src/app/models/warehouse/Warehouse.model';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
-import { APiService } from 'src/app/services/generic/api.service';
 import { Utilities } from 'src/app/services/app/utilities';
 import { WarehouseEditorComponent} from '../warehouse-editor/warehouse-editor.component';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
+import { APiService } from 'src/app/services/generic/api.service';
 
 @Component({
   selector: 'app-warehouse-management',

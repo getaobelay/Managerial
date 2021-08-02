@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Common;
+using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -7,7 +8,7 @@ namespace Infrastructure.Extensions
     public static class EntityBuilderHelper
     {
         public static EntityTypeBuilder BaseStockBuilder<TStock>(this EntityTypeBuilder<TStock> builder)
-            where TStock : class, IStockEntity, new()
+            where TStock : StockEntity, new()
         {
             builder.BaseEntityBuilder();
 
@@ -27,7 +28,7 @@ namespace Infrastructure.Extensions
         }
 
         public static EntityTypeBuilder BaseEntityBuilder<TBaseEntity>(this EntityTypeBuilder<TBaseEntity> builder)
-            where TBaseEntity : class, IAuditableEntity, new()
+            where TBaseEntity : AuditableEntity, new()
         {
             builder.Property(e => e.CreatedBy)
                    .HasMaxLength(50)

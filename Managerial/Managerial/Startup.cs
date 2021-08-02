@@ -82,6 +82,7 @@ namespace Managerial
             // Repositories
             services.AddScoped<IAccountManager, AccountManager>();
 
+            services.AddScoped<ICurrentUser, CurrentUser>();
             // Auth Handlers
             services.AddSingleton<IAuthorizationHandler, ViewUserAuthorizationHandler>();
             services.AddSingleton<IAuthorizationHandler, ManageUserAuthorizationHandler>();

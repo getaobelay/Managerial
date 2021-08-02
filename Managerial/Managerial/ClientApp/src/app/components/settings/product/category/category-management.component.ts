@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
-import { APiService } from 'src/app/services/generic/api.service';
 import { Utilities } from 'src/app/services/app/utilities';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
 import { Category } from 'src/app/models/product/Category.model';
 import { CategoryEditorComponent } from './category-editor/category-editor.component';
+import { ProductService } from 'src/app/components/products/product.service';
 
 @Component({
   selector: 'app-category-management',
@@ -41,7 +41,7 @@ export class CategoryManagementComponent implements OnInit, AfterViewInit {
 
   constructor(private alertService: AlertService,
      private translationService: AppTranslationService,
-     private CategoryService: APiService) {
+     private categoryService: ProductService) {
   }
 
   ngOnInit() {
@@ -110,7 +110,7 @@ export class CategoryManagementComponent implements OnInit, AfterViewInit {
     this.alertService.startLoadingMessage();
     this.loadingIndicator = true;
 
-    this.CategoryService.getAll<Category>()
+    this.categoryService.categoryService.getAll<Category>()
       .subscribe(results => {
         this.alertService.stopLoadingMessage();
         this.loadingIndicator = false;
@@ -161,7 +161,7 @@ a
     this.alertService.startLoadingMessage('Deleting...');
     this.loadingIndicator = true;
 
-    this.CategoryService.delete<Category>(row.id)
+    this.categoryService.categoryService.delete<Category>(row.id)
       .subscribe(results => {
         this.alertService.stopLoadingMessage();
         this.loadingIndicator = false;

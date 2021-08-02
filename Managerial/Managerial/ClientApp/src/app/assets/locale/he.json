@@ -1,4 +1,19 @@
 {
+  "common": {
+    "New": "חדש",
+    "Close": "סגור",
+    "Edit": "ערוך",
+    "Cancel": "בטל",
+    "Save": "שמור",
+    "isActive": "סטטוס",
+    "Enabled": "פעיל",
+    "Disabled":"לא זמין",
+    "Saving": "שומר...",
+    "Details": "מידע",
+    "Delete": "מחק",
+    "Success": "הצלחה"
+  },
+
   "app": {
     "Welcome": "ברוך הבא",
     "Notifications": "התראות",
@@ -73,7 +88,7 @@
     "Settings": "הגדרות",
     "HomePageHint": "בחר את דף ברירת המחדל שאליו תנווט בעת הכניסה",
     "Theme": "נושא:",
-    "DefaultTheme": "ברירת מחדך",
+    "DefaultTheme": "ברירת מחדל",
     "CosmoTheme": "Cosmo",
     "SolarTheme": "Solar",
     "CeruleanTheme": "Cerulean",
@@ -234,7 +249,45 @@
       "ErrorOccured": "אירעה שגיאה בעת מחיקת המוצר.\r\n שגיאה",
       "LoadError":"Load Error",
       "RetrieveError": "אין אפשרות לאחזר מוצרים מהשרת.\r\n שגיאות"
+    },
+    "locations": {
+      "management": {
+        "Search": "Search for locaiton...",
+        "NewProduct": "New locaiton",
+        "locationDetails": "location Details \"{{name}}\"",
+        "EditLocation": "location \"{{name}}\"",
+        "Row": "Row",
+        "Column": "Column",
+        "Shelf": "Shelf"
+      },
+      "editor": {
+        "Row": "Row:",
+        "Column": "Column:",
+        "Shelf": "Shelf:",
+        "rowPlaceHolder": "Enter a row",
+        "columnPlaceHolder": "Enter a column",
+        "shelfPlaceHolder": "Enter a shelf",
+        "rowRequired": "Row name is required",
+        "columnRequired": "Column name is required",
+        "shelfRequired": "Shelf name is required",
+        "minRequired":"(minimum of 2 and maximum of 200 characters)",
+        "Close": "Close",
+        "Cancel": "Cancel",
+        "Save": "Save",
+        "Saving": "Saving..."
+      },
+      "alerts": {
+        "Delete": "Are you sure you want to delete the",
+        "Location": "location?",
+        "Deleting": "Deleting...",
+        "DeleteError": "Delete Error",
+        "ErrorOccured": "An error occured whilst deleting the location.\r\nError",
+        "LoadError":"Load Error",
+        "RetrieveError": "Unable to retrieve locations from the server.\r\nErrors"
+      }
     }
+
+
 
   }
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
-import { APiService } from 'src/app/services/generic/api.service';
 import { Utilities } from 'src/app/services/app/utilities';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
-import { Location } from 'src/app/models/warehouse/Warehouse.model'
 import { LocationEditorComponent } from '../location-editor/location-editor.component';
+import { LocationService } from '../location-service.service';
+import { Location } from 'src/app/models/warehouse/Location';
 
 @Component({
   selector: 'app-location-management',
@@ -42,10 +42,11 @@ export class LocationManagementComponent implements OnInit, AfterViewInit {
 
   @ViewChild('locationEditor', { static: true })
   locationEditor: LocationEditorComponent;
+  gT = (key: string) => this.translationService.getTranslation(key);
 
   constructor(private alertService: AlertService,
      private translationService: AppTranslationService,
-     private locationService: APiService) {
+     private locationService: LocationService) {
       this.locationService.endPointUrl = 'locations';
 
   }
@@ -132,7 +133,7 @@ export class LocationManagementComponent implements OnInit, AfterViewInit {
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage('Load Error', `Unable to retrieve roles from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('products.alerts.LoadError'), this.gT('products.alerts.RetrieveError')`"${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }
@@ -161,12 +162,12 @@ export class LocationManagementComponent implements OnInit, AfterViewInit {
   }
 
   deleteLocation(row: Location) {
-    this.alertService.showDialog('Are you sure you want to delete the \"' + row.LocationRow + '\" Location?',
+    this.alertService.showDialog(this.gT('locations.alerts.Delete') + ' \"' + row.LocationRow + '\"'+ this.gT('locations.alerts.Location'),
       DialogType.confirm, () => this.deleteLocationHelper(row));
   }
 a
   deleteLocationHelper(row: Location) {
-    this.alertService.startLoadingMessage('Deleting...');
+    this.alertService.startLoadingMessage(this.gT('locations.alerts.Deleting'));
     this.loadingIndicator = true;
 
     this.locationService.delete<Location>(row.id)
@@ -181,7 +182,7 @@ a
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage('Delete Error', `An error occured whilst deleting the deleteLocation.\r\nError: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('locations.alerts.DeleteError'), this.gT('locations.alerts.ErrorOccured')`"${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }

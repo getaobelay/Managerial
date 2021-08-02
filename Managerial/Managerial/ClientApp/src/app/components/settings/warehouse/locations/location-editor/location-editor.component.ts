@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
-import { Location } from 'src/app/models/warehouse/Warehouse.model'
 import { LocationService } from '../location-service.service';
 import { Category } from 'src/app/models/product/Category.model';
+import { Location } from 'src/app/models/warehouse/Location';
 
 @Component({
   selector: 'app-location-editor',

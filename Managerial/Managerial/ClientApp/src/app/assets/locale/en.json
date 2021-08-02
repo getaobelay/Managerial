@@ -1,4 +1,16 @@
-{
+{ "common": {
+  "New": "New",
+  "Close": "Close",
+  "Edit": "Edit",
+  "Cancel": "Cancel",
+  "Save": "Save",
+  "isActive": "Status",
+  "Enabled": "Enabled",
+  "Disabled":"לא Disabled",
+  "Saving": "Saving...",
+  "Details": "Details",
+  "Delete": "Delete"
+},
   "app": {
     "Welcome": "Welcome",
     "Notifications": "Notifications",
@@ -210,8 +222,7 @@
       "Name": "Name:",
       "SellingPrice": "Selling price",
       "BuyingPrice": "Buying price",
-      "Measurement": "Measurement",
-      "QuantityPerUnit": "Quantity",
+      "Status": "Status",
       "Weight": "Weight",
       "Height": "Height",
       "Description": "Description",
@@ -236,5 +247,42 @@
       "LoadError":"Load Error",
       "RetrieveError": "Unable to retrieve products from the server.\r\nErrors"
     }
+  },
+  "locations": {
+    "management": {
+      "Search": "Search for locaiton...",
+      "NewProduct": "New locaiton",
+      "locationDetails": "location Details \"{{name}}\"",
+      "EditLocation": "location \"{{name}}\"",
+      "Row": "Row",
+      "Column": "Column",
+      "Shelf": "Shelf"
+    },
+    "editor": {
+      "Row": "Row:",
+      "Column": "Column:",
+      "Shelf": "Shelf:",
+      "rowPlaceHolder": "Enter a row",
+      "columnPlaceHolder": "Enter a column",
+      "shelfPlaceHolder": "Enter a shelf",
+      "rowRequired": "Row name is required",
+      "columnRequired": "Column name is required",
+      "shelfRequired": "Shelf name is required",
+      "minRequired":"(minimum of 2 and maximum of 200 characters)",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    },
+    "alerts": {
+      "Delete": "Are you sure you want to delete the",
+      "Product": "location",
+      "Deleting": "Deleting...",
+      "DeleteError": "Delete Error",
+      "ErrorOccured": "An error occured whilst deleting the location.\r\nError",
+      "LoadError":"Load Error",
+      "RetrieveError": "Unable to retrieve locations from the server.\r\nErrors"
+    }
   }
+
 }

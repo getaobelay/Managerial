@@ -1,16 +1,11 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
-
 import { Injectable } from '@angular/core';
 import { Observable, Subject, forkJoin } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import { Category } from 'src/app/models/product/Category.model';
 import { Product } from 'src/app/models/product/Product.model';
-import { ConfigurationService } from '../app/configuration.service';
-import { ApiEndpoint } from './api-endpoint.service';
-import { APiService } from './api.service';
+import { ConfigurationService } from 'src/app/services/app/configuration.service';
+import { ApiEndpoint } from 'src/app//services/generic/api-endpoint.service';
+import { APiService } from 'src/app/services/generic/api.service';
 
 export type DataChangedOperation = 'add' | 'delete' | 'modify';
 export interface DataChangedEventArg<T> { data: T[] | string[]; operation: DataChangedOperation; }

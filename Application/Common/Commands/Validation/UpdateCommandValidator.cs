@@ -11,6 +11,11 @@ namespace Application.Common.Commands.Validation
     {
         public UpdateCommandValidator()
         {
+            RuleFor(x => x.Id)
+              .NotEmpty()
+              .WithMessage("Id should not be null");
+
+
             RuleFor(x => x.UpdatedObject)
                 .NotEmpty()
                 .WithMessage("Entity should not be null");

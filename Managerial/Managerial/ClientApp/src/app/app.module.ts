@@ -42,10 +42,6 @@ import { AboutComponent } from './components/about/about.component';
 import { BannerDemoComponent } from './components/controls/banner-demo.component';
 import { TodoDemoComponent } from './components/controls/todo-demo.component';
 import { StatisticsDemoComponent } from './components/controls/statistics-demo.component';
-
-import { ApiEndpoint } from './services/generic/api-endpoint.service';
-import { APiService } from './services/generic/api.service';
-import { ProductService } from './services/generic/product.service';
 import { AppTranslationService, TranslateLanguageLoader } from './services/app/app-translation.service';
 import { NotificationEndpoint } from './services/notification/notification-endpoint.service';
 import { NotificationService } from './services/notification/notification.service';
@@ -56,6 +52,8 @@ import { SharedModule } from './components/shared/shared.module';
 import { WarehouseService } from './components/warehouses/warehouse-service.service';
 import { OrdersModule } from './components/orders/orders-module.module';
 import { CustomersModule } from './components/customers/customers-module.module';
+import { ApiEndpoint } from './services/generic/api-endpoint.service';
+import { APiService } from './services/generic/api.service';
 
 @NgModule({
   imports: [
@@ -109,7 +107,6 @@ import { CustomersModule } from './components/customers/customers-module.module'
     AccountEndpoint,
     LocalStoreManager,
     OidcHelperService,
-    ProductService,
     WarehouseService,
     ApiEndpoint,
     APiService

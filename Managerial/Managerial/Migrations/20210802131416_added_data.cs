@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Managerial.Migrations
 {
-    public partial class initial_creation : Migration
+    public partial class added_data : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,8 @@ namespace Managerial.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -35,8 +35,8 @@ namespace Managerial.Migrations
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Configuration = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -107,13 +107,6 @@ namespace Managerial.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsQuanityAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    TotalUnitsQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    ProductQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    BatchQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true),
-                    BatchId = table.Column<int>(type: "int", nullable: true),
                     UnitsInInventory = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UnitsInOrder = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ReorderLevel = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -121,7 +114,14 @@ namespace Managerial.Migrations
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsQuanityAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    TotalUnitsQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    ProductQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    BatchQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    BatchId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -173,20 +173,20 @@ namespace Managerial.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsQuanityAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    TotalUnitsQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    ProductQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    BatchQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true),
-                    BatchId = table.Column<int>(type: "int", nullable: true),
                     UnitsInStock = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ReorderLevel = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     WarehouseId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsQuanityAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    TotalUnitsQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    ProductQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    BatchQuantity = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    BatchId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -341,11 +341,10 @@ namespace Managerial.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    WarehouseItemID = table.Column<int>(type: "int", nullable: true),
-                    LocationID = table.Column<int>(type: "int", nullable: true),
-                    ProductID = table.Column<int>(type: "int", nullable: true),
-                    BatchID = table.Column<int>(type: "int", nullable: true),
-                    InventoryId = table.Column<int>(type: "int", nullable: true),
+                    WarehouseItemId = table.Column<int>(type: "int", nullable: true),
+                    LocationId = table.Column<int>(type: "int", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    BatchId = table.Column<int>(type: "int", nullable: true),
                     StockId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -355,12 +354,6 @@ namespace Managerial.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Warehouses", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Warehouses_Inventories_InventoryId",
-                        column: x => x.InventoryId,
-                        principalTable: "Inventories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Warehouses_Stocks_StockId",
                         column: x => x.StockId,
@@ -436,8 +429,6 @@ namespace Managerial.Migrations
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     BuyingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Measurement = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    QuantityPerUnit = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Weight = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Height = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -445,6 +436,7 @@ namespace Managerial.Migrations
                     InventoryId = table.Column<int>(type: "int", nullable: true),
                     WarehouseItemId = table.Column<int>(type: "int", nullable: true),
                     BatchId = table.Column<int>(type: "int", nullable: true),
+                    ParentId = table.Column<int>(type: "int", nullable: true),
                     ProductCategoryId = table.Column<int>(type: "int", nullable: true),
                     WarehouseId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -465,6 +457,12 @@ namespace Managerial.Migrations
                         name: "FK_Products_product_categories_ProductCategoryId",
                         column: x => x.ProductCategoryId,
                         principalTable: "product_categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Products_Products_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -720,6 +718,11 @@ namespace Managerial.Migrations
                 column: "Name");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_ParentId",
+                table: "Products",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_ProductCategoryId",
                 table: "Products",
                 column: "ProductCategoryId");
@@ -758,11 +761,6 @@ namespace Managerial.Migrations
                 name: "IX_WarehouseItems_WarehouseId",
                 table: "WarehouseItems",
                 column: "WarehouseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Warehouses_InventoryId",
-                table: "Warehouses",
-                column: "InventoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Warehouses_StockId",
@@ -824,13 +822,13 @@ namespace Managerial.Migrations
                 name: "customers");
 
             migrationBuilder.DropTable(
+                name: "Inventories");
+
+            migrationBuilder.DropTable(
                 name: "product_categories");
 
             migrationBuilder.DropTable(
                 name: "Warehouses");
-
-            migrationBuilder.DropTable(
-                name: "Inventories");
 
             migrationBuilder.DropTable(
                 name: "Stocks");

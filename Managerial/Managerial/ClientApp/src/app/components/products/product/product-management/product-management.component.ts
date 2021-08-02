@@ -3,10 +3,10 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Product } from 'src/app/models/product/Product.model';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
-import { ProductService } from 'src/app/services/generic/product.service';
 import { Utilities } from 'src/app/services/app/utilities';
 import { ProductEditorComponent } from '../product-editor/product-editor.component';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
+import { ProductService } from '../../product.service';
 
 @Component({
   selector: 'app-product-management',
@@ -139,7 +139,7 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage(this.gT('LoadError') ,this.gT('RetrieveError') +`: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('products.alerts.LoadError') ,this.gT('products.alerts.RetrieveError') + `: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }

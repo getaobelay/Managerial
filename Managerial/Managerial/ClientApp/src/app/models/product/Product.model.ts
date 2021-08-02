@@ -2,7 +2,7 @@ import { ProductCategory } from "./productCategory.model";
 import { Inventory } from "../inventory/Inventory.model";
 import { Stock } from "../inventory/stock.model";
 import { OrderDetail } from "../order/OrderDetail.model";
-import { WarehouseItem } from "../warehouse/WarehouseItem";
+import { WarehouseItem } from "../warehouse/WarehouseItem.model";
 import { Batch } from "./Batch";
 import { BaseModel } from "../BaseModel.model";
 

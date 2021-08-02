@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Managerial.Migrations
 {
     [DbContext(typeof(ManagerialDbContext))]
-    [Migration("20210729211805_initial_creation")]
-    partial class initial_creation
+    [Migration("20210802131416_added_data")]
+    partial class added_data
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -230,10 +230,7 @@ namespace Managerial.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -250,9 +247,7 @@ namespace Managerial.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("UpdatedBy")
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -283,10 +278,7 @@ namespace Managerial.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -337,9 +329,7 @@ namespace Managerial.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UpdatedBy")
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -596,19 +586,16 @@ namespace Managerial.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Measurement")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ProductCategoryId")
+                    b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("QuantityPerUnit")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int?>("ProductCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("SellingPrice")
                         .HasColumnType("decimal(18,2)");
@@ -638,6 +625,8 @@ namespace Managerial.Migrations
                     b.HasIndex("InventoryId");
 
                     b.HasIndex("Name");
+
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("ProductCategoryId");
 
@@ -749,7 +738,7 @@ namespace Managerial.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BatchID")
+                    b.Property<int?>("BatchId")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -761,13 +750,10 @@ namespace Managerial.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("InventoryId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("LocationID")
+                    b.Property<int?>("LocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -777,7 +763,7 @@ namespace Managerial.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("ProductID")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int?>("StockId")
@@ -794,12 +780,10 @@ namespace Managerial.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("WarehouseItemID")
+                    b.Property<int?>("WarehouseItemId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InventoryId");
 
                     b.HasIndex("StockId");
 
@@ -1063,6 +1047,11 @@ namespace Managerial.Migrations
                         .WithMany("Products")
                         .HasForeignKey("InventoryId");
 
+                    b.HasOne("Domain.Entites.Product", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Domain.Entites.ProductCategory", "ProductCategory")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId");
@@ -1077,6 +1066,8 @@ namespace Managerial.Migrations
 
                     b.Navigation("Inventory");
 
+                    b.Navigation("Parent");
+
                     b.Navigation("ProductCategory");
 
                     b.Navigation("Stock");
@@ -1084,10 +1075,6 @@ namespace Managerial.Migrations
 
             modelBuilder.Entity("Domain.Entites.Warehouse", b =>
                 {
-                    b.HasOne("Domain.Entites.Inventory", null)
-                        .WithMany("Warehouses")
-                        .HasForeignKey("InventoryId");
-
                     b.HasOne("Domain.Entites.Stock", null)
                         .WithMany("Warehouses")
                         .HasForeignKey("StockId");
@@ -1228,8 +1215,6 @@ namespace Managerial.Migrations
                     b.Navigation("Batches");
 
                     b.Navigation("Products");
-
-                    b.Navigation("Warehouses");
                 });
 
             modelBuilder.Entity("Domain.Entites.Location", b =>
@@ -1247,6 +1232,8 @@ namespace Managerial.Migrations
             modelBuilder.Entity("Domain.Entites.Product", b =>
                 {
                     b.Navigation("Batches");
+
+                    b.Navigation("Children");
 
                     b.Navigation("OrderDetails");
 

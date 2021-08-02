@@ -7,8 +7,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Product } from 'src/app/models/product/Product.model';
 import { AccountService } from 'src/app/services/api/account.service';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
-import { ProductService } from 'src/app/services/generic/product.service';
 import { Category } from 'src/app/models/product/Category.model';
+import { ProductService } from '../../product.service';
 
 @Component({
     selector: 'app-product-editor',

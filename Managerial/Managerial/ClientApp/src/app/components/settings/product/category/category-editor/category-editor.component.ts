@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
-import { APiService } from 'src/app/services/generic/api.service';
 import { Category } from 'src/app/models/product/Category.model';
+import { ProductService } from 'src/app/components/products/product.service';
 
 @Component({
   selector: 'app-category-editor',
@@ -25,8 +25,7 @@ export class CategoryEditorComponent {
   @ViewChild('f')
   private form;
 
-  constructor(private alertService: AlertService, private categoryService: APiService) {
-    this.categoryService.endPointUrl = 'categories';
+  constructor(private alertService: AlertService, private categoryService: ProductService) {
   }
 
   showErrorAlert(caption: string, message: string) {
@@ -38,10 +37,10 @@ export class CategoryEditorComponent {
     this.alertService.startLoadingMessage('Saving changes...');
 
     if (this.isNewCategory) {
-      this.categoryService.post<Category>(this.categoryEdit).subscribe((category: Category) =>
+      this.categoryService.categoryService.post<Category>(this.categoryEdit).subscribe((category: Category) =>
         this.saveSuccessHelper(category), error => this.saveFailedHelper(error));
     } else {
-      this.categoryService.put(this.categoryEdit).subscribe(() =>
+      this.categoryService.categoryService.put(this.categoryEdit).subscribe(() =>
         this.saveSuccessHelper(), error => this.saveFailedHelper(error));
     }
   }

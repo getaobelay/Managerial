@@ -24,9 +24,6 @@ import { OidcHelperService } from 'src/app/services/api/oidc-helper.service';
 import { AppTitleService } from 'src/app/services/app/app-title.service';
 import { ConfigurationService } from 'src/app/services/app/configuration.service';
 import { ThemeManager } from 'src/app/services/app/theme-manager';
-import { ApiEndpoint } from 'src/app/services/generic/api-endpoint.service';
-import { APiService } from 'src/app/services/generic/api.service';
-import { ProductService } from 'src/app/services/generic/product.service';
 import { AlertService } from 'src/app/services/notification/alert.service';
 import { NotificationEndpoint } from 'src/app/services/notification/notification-endpoint.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -42,6 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { ApiEndpoint } from 'src/app/services/generic/api-endpoint.service';
+import { APiService } from 'src/app/services/generic/api.service';
 
 
 @NgModule({
@@ -116,7 +115,6 @@ import { BrowserModule } from '@angular/platform-browser';
     AccountEndpoint,
     LocalStoreManager,
     OidcHelperService,
-    ProductService,
     ApiEndpoint,
     APiService
   ]

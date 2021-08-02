@@ -15,6 +15,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ToastaModule } from 'ngx-toasta';
 import { TranslateLanguageLoader } from 'src/app/services/app/app-translation.service';
+import { ProductService } from './product.service';
 
 @NgModule({
   imports: [
@@ -43,6 +44,9 @@ import { TranslateLanguageLoader } from 'src/app/services/app/app-translation.se
   exports: [
     ProductEditorComponent, ProductManagementComponent,
     ProductsComponent
+  ],
+  providers:[
+    ProductService
   ]
 })
 export class ProductsModule { }

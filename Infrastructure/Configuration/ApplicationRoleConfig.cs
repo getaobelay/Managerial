@@ -9,7 +9,6 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<ApplicationRole> builder)
         {
-            builder.BaseEntityBuilder();
 
             builder.HasMany(r => r.Claims).WithOne().HasForeignKey(c => c.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(r => r.Users).WithOne().HasForeignKey(r => r.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade);

@@ -1,3 +1,84 @@
-<p>
-  warehosue-item-editor works!
-</p>
+<div>
+  <form *ngIf="formResetToggle" name="warehouesItemEditorForm" #f="ngForm" novalidate
+        (ngSubmit)="f.form.valid ? save() :
+          (!product.valid && showErrorAlert('Category name is required', 'Please enter a Category name (minimum of 2 and maximum of 200 characters)'));">
+
+    <div [ngClass]="{'is-valid': f.submitted && product.valid, 'is-invalid' : f.submitted && !product.valid}" class="col-lg-9">
+        <ng-select id="warehouseItem-product"
+        name="product"
+        [items]="allProducts"
+        bindLabel="name"
+        [multiple]="false"
+        [closeOnSelect]="false"
+        placeholder="Select Product"
+        [(ngModel)]="warehouseItem.product"
+        (change)="selectProductChange($event)"
+        #product="ngModel"
+        class="form-control left-status pill-items" required>
+          <ng-template ng-label-tmp let-item="item" let-clear="clear">
+            <span title='{{item.description}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+          </ng-template>
+
+          <ng-template ng-option-tmp let-item="item">
+            <span title='{{item.description}}' class='badge badge-pill badge-secondary'>{{item.name}}</span>
+            <i class="fa fa-check d-none"></i>
+          </ng-template>
+        </ng-select>
+        <span *ngIf="showValidationErrors && f.submitted && !product.valid" class="invalid-feedback">
+          {{'users.editor.RoleRequired' | translate}}
+        </span>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-md-12">
+          <hr class="edit-separator-hr" />
+        </div>
+      </div>
+
+    <div [ngClass]="{'is-valid': f.submitted && warehouse.valid, 'is-invalid' : f.submitted && !warehouse.valid}" class="col-lg-9">
+      <ng-select id="warehouseItem-warehouse"
+                 name="warehouse" [items]="allWarehouses"
+                 bindLabel="name" [multiple]="false"
+                 [closeOnSelect]="false"
+                 placeholder="Select Warehouse"
+                 [(ngModel)]="warehouseItem.warehouse"
+                 (change)="selectWarehouseChange($event)"
+                 #warehouse="ngModel"
+                 class="form-control left-status pill-items"
+                 required>
+
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <span title='{{item.description}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+        </ng-template>
+
+        <ng-template ng-option-tmp let-item="item">
+          <span title='{{item.description}}' class='badge badge-pill badge-secondary'>{{item.name}}</span>
+          <i class="fa fa-check d-none"></i>
+        </ng-template>
+      </ng-select>
+      <span *ngIf="showValidationErrors && f.submitted && !warehouse.valid" class="invalid-feedback">
+        {{'users.editor.RoleRequired' | translate}}
+      </span>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <hr class="edit-separator-hr" />
+      </div>
+    </div>
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <div ngPreserveWhitespaces class="float-right">
+            <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'products.editor.Cancel' | translate}}</button>
+            <button type="submit" class="btn btn-primary" [disabled]="isSaving">
+              <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('products.editor.Saving' | translate) : ('products.editor.Save' | translate)}}
+            </button>
+          </div>
+        </div>
+      </div>
+    <div class="clearfix"></div>
+  </form>
+</div>

@@ -8,11 +8,14 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group row">
-          <label class="col-form-label col-md-3" for="LocationRow">Row</label>
+          <label class="col-form-label col-md-3" for="LocationRow">{{'locations.editor.Row' | translate}}</label>
           <div class="col-md-9">
-            <input  type="text" id="LocationRow" name="LocationRow" placeholder="Enter row" class="form-control"
+            <input  type="text" id="LocationRow" name="LocationRow" placeholder="{{'locations.editor.rowPlaceHolder' | translate}}" class="form-control"
                    [ngClass]="{'is-valid': f.submitted && LocationRow.valid, 'is-invalid' : f.submitted && !LocationRow.valid}"
                     [(ngModel)]="locationEdit.LocationRow" #LocationRow="ngModel" required minlength="1" maxlength="2" />
+                    <span *ngIf="showValidationErrors && f.submitted && !buyingPrice.valid" class="invalid-feedback">
+                      {{'locations.editor.rowRequired' | translate}}
+                    </span>
           </div>
         </div>
       </div>
@@ -28,12 +31,15 @@
 <div class="row">
       <div class="col-sm-12">
         <div class="form-group row">
-          <label class="col-form-label col-md-3" for="locationColumn">Column</label>
+          <label class="col-form-label col-md-3" for="locationColumn">{{'locations.editor.Column' | translate}}</label>
           <div class="col-md-9">
-            <input  type="text" id="locationColumn" name="locationColumn" placeholder="Enter row" class="form-control"
+            <input  type="text" id="locationColumn" name="locationColumn" placeholder="{{'locations.editor.columnPlaceHolder' | translate}}" class="form-control"
             [ngClass]="{'is-valid': f.submitted && locationColumn.valid, 'is-invalid' : f.submitted && !locationColumn.valid}"
              [(ngModel)]="locationEdit.locationColumn" #locationColumn="ngModel" required minlength="1" maxlength="2" />
           </div>
+          <span *ngIf="showValidationErrors && f.submitted && !buyingPrice.valid" class="invalid-feedback">
+            {{'locations.editor.columnRequired' | translate}}
+          </span>
         </div>
       </div>
     </div>
@@ -48,11 +54,15 @@
   <div class="row">
         <div class="col-sm-12">
           <div class="form-group row">
-            <label class="col-form-label col-md-3" for="locationShelf">Shelf</label>
+            <label class="col-form-label col-md-3" for="locationShelf">{{'locations.editor.Shelf' | translate}}</label>
             <div class="col-md-9">
-              <input  type="text" id="locationShelf" name="locationShelf" placeholder="Enter row" class="form-control"
+              <input  type="text" id="locationShelf" name="locationShelf" placeholder="{{'locations.editor.shelfPlaceHolder' | translate}}" class="form-control"
               [ngClass]="{'is-valid': f.submitted && locationShelf.valid, 'is-invalid' : f.submitted && !locationShelf.valid}"
                [(ngModel)]="locationEdit.locationShelf" #locationShelf="ngModel" required minlength="1" maxlength="2" />
+               <span *ngIf="showValidationErrors && f.submitted && !buyingPrice.valid" class="invalid-feedback">
+                {{'locations.editor.shelfRequired' | translate}}
+
+                </span>
             </div>
           </div>
         </div>
@@ -69,9 +79,9 @@
 
         <div class="col-sm-12">
           <div ngPreserveWhitespaces class="float-right">
-            <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'products.editor.Cancel' | translate}}</button>
+            <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'common.Cancel' | translate}}</button>
             <button type="submit" class="btn btn-primary" [disabled]="isSaving">
-              <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('products.editor.Saving' | translate) : ('products.editor.Save' | translate)}}
+              <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('common.Saving' | translate) : ('common.Save' | translate)}}
             </button>
           </div>
         </div>

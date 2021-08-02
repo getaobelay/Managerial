@@ -18,6 +18,7 @@ namespace Infrastructure
         {
             if (configuration.GetSection("UseInMemoryDatabase").Value.Equals("true"))
             {
+ 
                 services.AddDbContext<ManagerialDbContext>(options =>
                             options.UseInMemoryDatabase("Manageril_InMemoryDatabase"));
             }

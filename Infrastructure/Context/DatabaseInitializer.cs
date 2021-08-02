@@ -86,6 +86,28 @@ namespace Infrastructure.Context
                     UpdatedDate = DateTime.UtcNow
                 };
 
+                List<Warehouse> warehouses = new List<Warehouse>()
+                {
+                    new Warehouse { Name = "warehoues_1", Type="pick"},
+                    new Warehouse { Name = "warehoues_2", Type="pack"}
+                };
+
+
+                Stock stock_1 = new Stock
+                {
+                    UnitsInStock = 10,
+                    IsQuanityAvailable = true,
+                    ReorderLevel = 5,
+                    Warehouses = warehouses
+                };
+                Stock stock_2 = new Stock
+                 {
+                     UnitsInStock = 10,
+                     IsQuanityAvailable = true,
+                     ReorderLevel = 5,
+                     Warehouses = warehouses
+                 };
+
                 Customer cust_4 = new Customer
                 {
                     Name = "Jane Doe",
@@ -123,8 +145,11 @@ namespace Infrastructure.Context
                     ProductCategory = prodCat_1,
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow,
-                };
+                    Height = 1400,
+                    Weight = 2000,
+                    Stock = stock_2,
 
+                };
                 Product prod_2 = new Product
                 {
                     Name = "Nissan Patrol",
@@ -133,8 +158,19 @@ namespace Infrastructure.Context
                     SellingPrice = 86990,
                     IsActive = true,
                     ProductCategory = prodCat_1,
+                    Children = new List<Product> { prod_1 },
+                    Stock = stock_1 ,
+                    Height = 1400,
+                    Weight = 2000,
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow
+                };
+
+ 
+                List<WarehouseItem> warehouseItems = new List<WarehouseItem>
+                {
+                    new WarehouseItem { Product = prod_1, Warehouse = warehouses[0],Location = new Location(){ LocationRow = "a", locationColumn ="2",LocationShelf="2"} },
+                    new WarehouseItem { Product = prod_2, Warehouse = warehouses[1],Location = new Location(){ LocationRow = "a", locationColumn ="2",LocationShelf="2"} }
                 };
 
                 Order ordr_1 = new Order
@@ -151,6 +187,14 @@ namespace Infrastructure.Context
                     }
                 };
 
+                Allocation allocation_1 = new Allocation()
+                {
+                    IsCompleted = false,
+                    Order = ordr_1,
+                    IsAvailable = true,
+                    WarehouseItems = warehouseItems
+                };
+
                 Order ordr_2 = new Order
                 {
                     Cashier = await _context.Users.FirstAsync(),
@@ -163,6 +207,14 @@ namespace Infrastructure.Context
                     }
                 };
 
+                Allocation allocation_2 = new Allocation()
+                {
+                    IsCompleted = false,
+                    Order = ordr_2,
+                    IsAvailable = true
+                };
+
+
                 _context.Customers.Add(cust_1);
                 _context.Customers.Add(cust_2);
                 _context.Customers.Add(cust_3);
@@ -170,10 +222,9 @@ namespace Infrastructure.Context
 
                 _context.Products.Add(prod_1);
                 _context.Products.Add(prod_2);
-
-                _context.Orders.Add(ordr_1);
-                _context.Orders.Add(ordr_2);
-
+                _context.Allocations.Add(allocation_2);
+                _context.Allocations.Add(allocation_2);      
+                
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation("Seeding initial data completed");
