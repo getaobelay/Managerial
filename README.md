@@ -1,4 +1,4 @@
-# Managerial
+# Managerial - Warehouse management system
 
 ## Table of Contents
 1. [General Info](#general-info)
