@@ -36,17 +36,31 @@
   <ng-template #isActiveTemplate let-row="row" let-value="value">
     <span *ngIf="row.isActive" class="text-success" >
       <i class="fa fa-check-circle "> </i>
-      Activated
     </span>
     <span *ngIf="!row.isActive" class="text-danger">
       <i class="fa fa-exclamation-triangle"> </i>
-      Disabled
     </span>
   </ng-template>
+
+  <ng-template #productNameTemplate let-row="row">
+    <span>{{row.product.name}}</span>
+  </ng-template>
+
+
+  <ng-template #warehouseNameTemplate let-row="row">
+    <span>{{row.product.name}}</span>
+  </ng-template>
+
+
+  <ng-template #allocationTemplate let-row="row">
+    <span>{{row.allocation.isCompleted}}</span>
+  </ng-template>
+
 
   <ng-template #updatedByTemplate let-value="value">
     <span class="badge badge-pill badge-secondary">{{value}}</span>
   </ng-template>
+
 
   <ng-template #createdByTemplate let-value="value">
     <span class="badge badge-pill badge-secondary">{{value}}</span>

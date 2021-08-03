@@ -36,8 +36,14 @@ export class WarhouesItemManagementComponent implements OnInit {
   @ViewChild('isActiveTemplate', { static: true })
   isActiveTemplate: TemplateRef<any>;
 
-  @ViewChild('updatedByTemplate', { static: true })
-  updatedByTemplate: TemplateRef<any>;
+  @ViewChild('productNameTemplate', { static: true })
+  productNameTemplate: TemplateRef<any>;
+
+  @ViewChild('warehouseNameTemplate', { static: true })
+  warehouseNameTemplate: TemplateRef<any>;
+
+  @ViewChild('allocationTemplate', { static: true })
+  allocationTemplate: TemplateRef<any>;
 
   @ViewChild('createdByTemplate', { static: true })
   createdByTemplate: TemplateRef<any>;
@@ -61,7 +67,7 @@ export class WarhouesItemManagementComponent implements OnInit {
 
       this.columns = [
         { prop: 'id', name: '#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
-        { prop: 'product.name', name: gT('products.editor.Name'), width: 90 },
+        { prop: 'name', name: gT('products.editor.Name'), width: 90 },
       ];
 
 
