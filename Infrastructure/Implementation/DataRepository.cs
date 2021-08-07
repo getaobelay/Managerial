@@ -97,7 +97,7 @@ namespace Infrastructure.Implementation
         [Obsolete]
         public async Task<IEnumerable<TEntity>> GetAllAsync(IConfigurationProvider configuration)
         {
-            var query = Entities.IncludeAll().AsQueryable();
+            var query = Entities.AsQueryable();
 
             return await query.ToListAsync();
         }

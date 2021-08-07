@@ -14,6 +14,7 @@ import { TranslateLanguageLoader } from 'src/app/services/app/app-translation.se
 import { CustomerManagementComponent } from './customer/customer-management/customer-management.component';
 import { CustomersComponent } from './customers.component';
 import { CustomersRoutingModule } from './customers-routing.module';
+import { CustomerEditorComponent } from './customer/customer-editor/customer-editor.component';
 
 @NgModule({
   imports: [
@@ -36,11 +37,11 @@ import { CustomersRoutingModule } from './customers-routing.module';
     ModalModule.forRoot(),
   ],
   declarations: [
-    CustomerManagementComponent, CustomerManagementComponent,
+    CustomerManagementComponent, CustomerEditorComponent,
     CustomersComponent,
   ],
   exports: [
-    CustomerManagementComponent, CustomerManagementComponent,
+    CustomerManagementComponent, CustomerEditorComponent,
     CustomersComponent,
   ]
 })

@@ -18,11 +18,11 @@ using WarehouseAngularApp.Managerial.Controllers;
 namespace Managerial.Controllers
 {
     [Route("api/[controller]")]
-    public class CustomerController : BaseApiController<Customer, CustomerViewModel>
+    public class CustomersController : BaseApiController<Customer, CustomerViewModel>
     {
         private readonly IEmailSender _emailSender;
 
-        public CustomerController(IMediator mediator, IEmailSender emailSender) : base(mediator)
+        public CustomersController(IMediator mediator, IEmailSender emailSender) : base(mediator)
         {
             _emailSender = emailSender;
         }

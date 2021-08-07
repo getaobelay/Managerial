@@ -82,7 +82,6 @@ import { APiService } from './services/generic/api.service';
     ProductsModule,
     WarehousesModule,
     CustomersModule,
-    OrdersModule,
     SettingsModule,
     SharedModule
   ],

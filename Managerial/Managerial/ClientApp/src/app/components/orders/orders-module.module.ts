@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
 import { OrderManagementComponent } from './order/order-management/order-management.component';
 import { OrderEditorComponent } from './order/order-editor/order-editor.component';
 import { OrdersComponent } from './orders.component';
+import { OrderService } from './order.service';
 
 @NgModule({
   imports: [
@@ -43,6 +44,9 @@ import { OrdersComponent } from './orders.component';
   exports: [
     OrderManagementComponent, OrderEditorComponent,
     OrdersComponent,
+  ],
+  providers: [
+    OrderService
   ]
 })
 export class OrdersModule { }
