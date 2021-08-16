@@ -3,10 +3,10 @@ import { AlertService, MessageSeverity } from 'src/app/services/notification/ale
 import { WarehouseItem } from 'src/app/models/warehouse/WarehouseItem.model';
 import { WarehouseService } from '../../warehouse-service.service';
 import { Location } from 'src/app/models/warehouse/Location';
-import { Product } from 'src/app/models/product/Product.model';
 import { Warehouse } from 'src/app/models/warehouse/Warehouse.model';
 import { Utilities } from 'src/app/services/app/utilities';
 import { WarehouseItemService } from '../warehouse-item-service.service';
+import { Product } from 'src/app/models/product/Product.model';
 
 @Component({
   selector: 'app-warehosue-item-editor',
@@ -18,13 +18,12 @@ export class WarehosueItemEditorComponent implements OnInit {
   private isNewWarehouseItem = false;
   public isSaving: boolean;
   public showValidationErrors = true;
+  public warehouseItemEdit: WarehouseItem = new WarehouseItem();
   public warehouseItem: WarehouseItem = new WarehouseItem();
-  public selectedValues: { [key: string]: boolean; } = {};
-  private editingCategoryName: string;
   public allProducts: Product[] = [];
   public allWarehouses: Warehouse[] = [];
-  public allLocations: Location[] = [];
 
+  private editingWarehouseItemName: string;
 
   public formResetToggle = true;
 
@@ -35,131 +34,128 @@ export class WarehosueItemEditorComponent implements OnInit {
   @ViewChild('f')
   private form;
 
-  constructor(private alertService: AlertService, private warehouseService: WarehouseItemService) {
+  constructor(private alertService: AlertService,
+    private warehouseService: WarehouseItemService) {
   }
   ngOnInit(): void {
     this.loadAllDropDowns();
   }
 
-  showErrorAlert(caption: string, message: string) {
-    this.alertService.showMessage(caption, message, MessageSeverity.error);
+
+
+showErrorAlert(caption: string, message: string) {
+  this.alertService.showMessage(caption, message, MessageSeverity.error);
+}
+
+save() {
+  this.isSaving = true;
+  this.alertService.startLoadingMessage('Saving changes...');
+
+  if (this.isNewWarehouseItem) {
+    this.warehouseService.post<WarehouseItem>(this.warehouseItemEdit).subscribe((warehouseItem: WarehouseItem) =>
+      this.saveSuccessHelper(warehouseItem), error => this.saveFailedHelper(error));
+  } else {
+    this.warehouseService.put(this.warehouseItemEdit).subscribe(() =>
+      this.saveSuccessHelper(), error => this.saveFailedHelper(error));
+  }
+}
+
+private saveSuccessHelper(warehouseItem?: WarehouseItem) {
+  if (warehouseItem) {
+    Object.assign(this.warehouseItemEdit, warehouseItem);
   }
 
+  this.isSaving = false;
+  this.alertService.stopLoadingMessage();
+  this.showValidationErrors = false;
 
-
-  save() {
-    this.isSaving = true;
-    this.alertService.startLoadingMessage('Saving changes...');
-
-    if (this.isNewWarehouseItem) {
-      this.warehouseService.post<WarehouseItem>(this.warehouseItem).subscribe((item: WarehouseItem) =>
-        this.saveSuccessHelper(item), error => this.saveFailedHelper(error));
-    } else {
-      this.warehouseService.put(this.warehouseItem).subscribe(() =>
-        this.saveSuccessHelper(), error => this.saveFailedHelper(error));
-    }
+  if (this.isNewWarehouseItem) {
+    this.alertService.showMessage('Success', `warehouseItem \"${this.warehouseItemEdit.id}\" was created successfully`, MessageSeverity.success);
+  } else {
+    this.alertService.showMessage('Success', `Changes to warehouseItem \"${this.warehouseItemEdit.id}\" was saved successfully`, MessageSeverity.success);
   }
 
-  private saveSuccessHelper(item?: WarehouseItem) {
-    if (item) {
-      Object.assign(this.warehouseItem, item);
-    }
+  this.warehouseItemEdit = new WarehouseItem();
+  this.resetForm();
 
-    this.isSaving = false;
-    this.alertService.stopLoadingMessage();
-    this.showValidationErrors = false;
-
-    if (this.isNewWarehouseItem) {
-      this.alertService.showMessage('Success', `item \"${this.warehouseItem.id}\" was created successfully`, MessageSeverity.success);
-    } else {
-      this.alertService.showMessage('Success', `Changes to item \"${this.warehouseItem.id}\" was saved successfully`, MessageSeverity.success);
-    }
-
-    this.warehouseItem = new WarehouseItem();
-    this.resetForm();
-
-    if (this.changesSavedCallback) {
-      this.changesSavedCallback();
-    }
+  if (this.changesSavedCallback) {
+    this.changesSavedCallback();
   }
+}
 
-  private saveFailedHelper(error: any) {
-    this.isSaving = false;
-    this.alertService.stopLoadingMessage();
-    this.alertService.showStickyMessage('Save Error', 'The below errors occured whilst saving your changes:', MessageSeverity.error, error);
-    this.alertService.showStickyMessage(error, null, MessageSeverity.error);
+private saveFailedHelper(error: any) {
+  this.isSaving = false;
+  this.alertService.stopLoadingMessage();
+  this.alertService.showStickyMessage('Save Error', 'The below errors occured whilst saving your changes:', MessageSeverity.error, error);
+  this.alertService.showStickyMessage(error, null, MessageSeverity.error);
 
-    if (this.changesFailedCallback) {
-      this.changesFailedCallback();
-    }
+  if (this.changesFailedCallback) {
+    this.changesFailedCallback();
   }
+}
 
-  cancel() {
-    this.warehouseItem = new WarehouseItem();
+cancel() {
+  this.warehouseItemEdit = new WarehouseItem();
 
-    this.showValidationErrors = false;
-    this.resetForm();
+  this.showValidationErrors = false;
+  this.resetForm();
 
-    this.alertService.showMessage('Cancelled', 'Operation cancelled by user', MessageSeverity.default);
-    this.alertService.resetStickyMessage();
+  this.alertService.showMessage('Cancelled', 'Operation cancelled by user', MessageSeverity.default);
+  this.alertService.resetStickyMessage();
 
-    if (this.changesCancelledCallback) {
-      this.changesCancelledCallback();
-    }
+  if (this.changesCancelledCallback) {
+    this.changesCancelledCallback();
   }
+}
 
-  resetForm(replace = false) {
-    if (!replace) {
-      this.form.reset();
-    } else {
-      this.formResetToggle = false;
+resetForm(replace = false) {
+  if (!replace) {
+    this.form.reset();
+  } else {
+    this.formResetToggle = false;
 
-      setTimeout(() => {
-        this.formResetToggle = true;
-      });
-    }
+    setTimeout(() => {
+      this.formResetToggle = true;
+    });
   }
+}
 
-  newWarehouseItem() {
-    this.isNewWarehouseItem = true;
+newWarehouseItem() {
+  this.isNewWarehouseItem = true;
+  this.showValidationErrors = true;
+
+  this.editingWarehouseItemName = null;
+  this.warehouseItemEdit = new WarehouseItem();
+
+  return this.warehouseItemEdit;
+}
+
+editWarehouseItem(warehouseItem: WarehouseItem) {
+  if (warehouseItem) {
+    this.isNewWarehouseItem = false;
     this.showValidationErrors = true;
+    this.warehouseItemEdit = new WarehouseItem();
+    Object.assign(this.warehouseItemEdit, warehouseItem);
 
-    this.editingCategoryName = null;
-    this.selectedValues = {};
-    this.warehouseItem = new WarehouseItem();
-
-    return this.warehouseItem;
+    return this.warehouseItemEdit;
+  } else {
+    return this.newWarehouseItem();
   }
+}
 
-  editWarehouseItem(item: WarehouseItem) {
-    if (item) {
-      this.isNewWarehouseItem = false;
-      this.showValidationErrors = true;
-
-      this.editingCategoryName = item.id.toString();
-      this.selectedValues = {};
-      this.warehouseItem = new WarehouseItem();
-      Object.assign(this.warehouseItem, item);
-
-      return this.warehouseItem;
-    } else {
-      return this.newWarehouseItem();
-    }
-  }
 
   private loadAllDropDowns() {
     this.alertService.startLoadingMessage();
 
       this.warehouseService.loadWarehouseItemEditor().subscribe(results => {
-        return this.onLoadAllDropDownsDataLoadSuccessful(results[0], results[1], results[2]);
+        return this.onLoadAllDropDownsDataLoadSuccessful(results[0], results[1]);
       }, error => this.onLoadAllDropDownsDataLoadFailed(error));
   }
 
-  private onLoadAllDropDownsDataLoadSuccessful(products: Product[], warehouses: Warehouse[], locations: Location[]) {
+  private onLoadAllDropDownsDataLoadSuccessful(warehouseItems: Product[], warehouses: Warehouse[]) {
     this.alertService.stopLoadingMessage();
-    this.allProducts = [...products];
+    this.allProducts = [...warehouseItems];
     this.allWarehouses = [...warehouses];
-    this.allLocations = [...locations];
   }
 
   private onLoadAllDropDownsDataLoadFailed(error: any) {
@@ -168,17 +164,16 @@ export class WarehosueItemEditorComponent implements OnInit {
       MessageSeverity.error, error);
 
     this.allProducts = [];
-    this.allLocations = [];
     this.allWarehouses = []
   }
 
 
   selectWarehouseChange(value){
-    this.warehouseItem.Warehouse = this.allWarehouses?.find(r => r.name === value)
+    this.warehouseItemEdit.Warehouse = this.allWarehouses?.find(r => r.id === value)
   }
 
   selectProductChange(value){
-    this.warehouseItem.Product = this.allProducts?.find(r => r.name === value)
+    this.warehouseItemEdit.Product = this.allProducts?.find(r => r.id === value)
   }
 
 }

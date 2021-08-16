@@ -19,13 +19,10 @@ namespace Infrastructure.Configuration
                  .WithMany(p => p.WarehouseItems)
                  .HasForeignKey(d => d.WarehouseId);
 
-            builder.HasOne(d => d.Location)
-                 .WithMany(p => p.WarehouseItems)
-                 .HasForeignKey(d => d.LocationID);
+            builder.HasOne(w => w.OrderDetail)
+                   .WithOne(w => w.WarehouseItem)
+                   .HasForeignKey<OrderDetail>(w=> w.Id);
 
-            builder.HasOne(d => d.Batch)
-              .WithMany(p => p.WarehouseItems)
-              .HasForeignKey(d => d.BatchID);
         }
     }
 }

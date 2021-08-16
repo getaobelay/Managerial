@@ -3,6 +3,7 @@
         (ngSubmit)="f.form.valid ? save() :
           (!product.valid && showErrorAlert('Category name is required', 'Please enter a Category name (minimum of 2 and maximum of 200 characters)'));">
 
+
     <div [ngClass]="{'is-valid': f.submitted && product.valid, 'is-invalid' : f.submitted && !product.valid}" class="col-lg-9">
         <ng-select id="warehouseItem-product"
         name="product"
@@ -11,7 +12,7 @@
         [multiple]="false"
         [closeOnSelect]="false"
         placeholder="Select Product"
-        [(ngModel)]="warehouseItem.product"
+        [(ngModel)]="warehouseItemEdit.product"
         (change)="selectProductChange($event)"
         #product="ngModel"
         class="form-control left-status pill-items" required>
@@ -29,7 +30,12 @@
         </span>
       </div>
 
+      <div class="col-12" *ngIf="warehouseItemEdit.product != null">
+        <p>{{warehouseItemEdit.product.name}}</p>
+        <p>{{warehouseItemEdit.product.name}}</p>
+        <p>{{warehouseItemEdit.product.name}}</p>
 
+      </div>
 
       <div class="row">
         <div class="col-md-12">
@@ -43,7 +49,7 @@
                  bindLabel="name" [multiple]="false"
                  [closeOnSelect]="false"
                  placeholder="Select Warehouse"
-                 [(ngModel)]="warehouseItem.warehouse"
+                 [(ngModel)]="warehouseItemEdit.warehouse"
                  (change)="selectWarehouseChange($event)"
                  #warehouse="ngModel"
                  class="form-control left-status pill-items"

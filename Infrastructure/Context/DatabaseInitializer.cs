@@ -92,22 +92,6 @@ namespace Infrastructure.Context
                     new Warehouse { Name = "warehoues_2", Type="pack"}
                 };
 
-
-                Stock stock_1 = new Stock
-                {
-                    UnitsInStock = 10,
-                    IsQuanityAvailable = true,
-                    ReorderLevel = 5,
-                    Warehouses = warehouses
-                };
-                Stock stock_2 = new Stock
-                 {
-                     UnitsInStock = 10,
-                     IsQuanityAvailable = true,
-                     ReorderLevel = 5,
-                     Warehouses = warehouses
-                 };
-
                 Customer cust_4 = new Customer
                 {
                     Name = "Jane Doe",
@@ -147,7 +131,8 @@ namespace Infrastructure.Context
                     UpdatedDate = DateTime.UtcNow,
                     Height = 1400,
                     Weight = 2000,
-                    Stock = stock_2,
+                    UnitsInStock = 10,
+                    ReorderLevel = 5,
 
                 };
                 Product prod_2 = new Product
@@ -159,18 +144,19 @@ namespace Infrastructure.Context
                     IsActive = true,
                     ProductCategory = prodCat_1,
                     Children = new List<Product> { prod_1 },
-                    Stock = stock_1 ,
                     Height = 1400,
                     Weight = 2000,
                     CreatedDate = DateTime.UtcNow,
-                    UpdatedDate = DateTime.UtcNow
+                    UpdatedDate = DateTime.UtcNow,
+                    UnitsInStock = 10,
+                    ReorderLevel = 5,
                 };
 
  
                 List<WarehouseItem> warehouseItems = new List<WarehouseItem>
                 {
-                    new WarehouseItem { Product = prod_1, Warehouse = warehouses[0],Location = new Location(){ LocationRow = "a", locationColumn ="2",LocationShelf="2"} },
-                    new WarehouseItem { Product = prod_2, Warehouse = warehouses[1],Location = new Location(){ LocationRow = "a", locationColumn ="2",LocationShelf="2"} }
+                    new WarehouseItem { Product = prod_1, Warehouse = warehouses[0]},
+                    new WarehouseItem { Product = prod_2, Warehouse = warehouses[1]}
                 };
 
                 Order ordr_1 = new Order
@@ -180,20 +166,9 @@ namespace Infrastructure.Context
                     Customer = cust_1,
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow,
-                    OrderDetails = new List<OrderDetail>()
-                    {
-                        new OrderDetail() {UnitPrice = prod_1.SellingPrice, Quantity=1, Product = prod_1 },
-                        new OrderDetail() {UnitPrice = prod_2.SellingPrice, Quantity=1, Product = prod_2 },
-                    }
                 };
 
-                Allocation allocation_1 = new Allocation()
-                {
-                    IsCompleted = false,
-                    Order = ordr_1,
-                    IsAvailable = true,
-                    WarehouseItems = warehouseItems
-                };
+
 
                 Order ordr_2 = new Order
                 {
@@ -201,19 +176,9 @@ namespace Infrastructure.Context
                     Customer = cust_2,
                     CreatedDate = DateTime.UtcNow,
                     UpdatedDate = DateTime.UtcNow,
-                    OrderDetails = new List<OrderDetail>()
-                    {
-                        new OrderDetail() {UnitPrice = prod_2.SellingPrice, Quantity=1, Product = prod_2 },
-                    }
                 };
 
-                Allocation allocation_2 = new Allocation()
-                {
-                    IsCompleted = false,
-                    Order = ordr_2,
-                    IsAvailable = true
-                };
-
+             
 
                 _context.Customers.Add(cust_1);
                 _context.Customers.Add(cust_2);
@@ -222,8 +187,7 @@ namespace Infrastructure.Context
 
                 _context.Products.Add(prod_1);
                 _context.Products.Add(prod_2);
-                _context.Allocations.Add(allocation_2);
-                _context.Allocations.Add(allocation_2);      
+   
                 
                 await _context.SaveChangesAsync();
 

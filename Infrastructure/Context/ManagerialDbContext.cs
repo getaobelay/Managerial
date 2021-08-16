@@ -28,11 +28,7 @@ namespace Infrastructure.Context
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Batch> Batches { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Stock> Stocks { get; set; }
-        public DbSet<Inventory> Inventories { get; set; }
-        public DbSet<Allocation> Allocations { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
-        public DbSet<Location> Locations { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<WarehouseItem> WarehouseItems { get; set; }
 

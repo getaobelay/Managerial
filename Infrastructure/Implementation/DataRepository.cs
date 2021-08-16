@@ -43,12 +43,12 @@ namespace Infrastructure.Implementation
             {
                 if (entity != null)
                 {
-                    await Entities.AddAsync(entity);
+                     Entities.Attach(entity);
 
                     if (Context == null || _isDisposed)
                         Context = new ManagerialDbContext();
 
-                    return entity;
+                    return await Task.FromResult(entity);
                 }
                 else
                     throw new ArgumentNullException("object is not set");
@@ -97,7 +97,7 @@ namespace Infrastructure.Implementation
         [Obsolete]
         public async Task<IEnumerable<TEntity>> GetAllAsync(IConfigurationProvider configuration)
         {
-            var query = Entities.AsQueryable();
+            var query = Entities.IncludeAll().AsQueryable();
 
             return await query.ToListAsync();
         }

@@ -21,7 +21,6 @@ r
     apiEndPoint: ApiEndpoint,
     configuration: ConfigurationService,
     private _productService: ProductService,
-    private _locationService: LocationService,
     private _warehouseService: WarehouseService){
 
     super(apiEndPoint, configuration );
@@ -33,8 +32,7 @@ r
   loadWarehouseItemEditor(page?: number, pageSize?: number) {
     return forkJoin([
         this._productService.getAll<Product>(),
-        this._warehouseService.getAll<Warehouse>(),
-        this._locationService.getAll<Location>()]);
+        this._warehouseService.getAll<Warehouse>()]);
   }
 
 }

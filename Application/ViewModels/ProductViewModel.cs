@@ -13,13 +13,12 @@ namespace Application.ViewModels
         public decimal Weight { get; set; }
         public decimal Height { get; set; }
         public bool IsActive { get; set; }
-        public ProductViewModel Product { get; set; }
-        public ProductCategoryViewModel productCategory { get; set; }
+        public decimal UnitsInStock { get; set; }
+        public decimal ReorderLevel { get; set; }
+        public ProductViewModel Parent { get; set; }
+        public ProductCategoryViewModel ProductCategory { get; set; }
         public IEnumerable<ProductViewModel> Children { get; set; }
         public IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
-        public StockViewModel Stock { get; set; }
-        public InventoryViewModel Inventory { get; set; }
-        public List<WarehouseItem> WarehouseItems { get; set; }
-        public List<Batch> Batches { get; set; }
+        public IEnumerable<WarehouseItemViewModel> WarehouseItems { get; set; }
     }
 }

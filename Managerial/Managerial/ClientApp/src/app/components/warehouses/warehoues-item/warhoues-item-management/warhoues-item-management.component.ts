@@ -9,6 +9,7 @@ import { AppTranslationService } from 'src/app/services/app/app-translation.serv
 import { Utilities } from 'src/app/services/app/utilities';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
 import { WarehosueItemEditorComponent } from '../warehosue-item-editor/warehosue-item-editor.component';
+import { WarehouseItemService } from '../warehouse-item-service.service';
 
 @Component({
   selector: 'app-warhoues-item-management',
@@ -48,6 +49,9 @@ export class WarhouesItemManagementComponent implements OnInit {
   @ViewChild('createdByTemplate', { static: true })
   createdByTemplate: TemplateRef<any>;
 
+  @ViewChild('updatedByTemplate', { static: true })
+  updatedByTemplate: TemplateRef<any>;
+
   @ViewChild('actionsTemplate', { static: true })
   actionsTemplate: TemplateRef<any>;
 
@@ -58,7 +62,7 @@ export class WarhouesItemManagementComponent implements OnInit {
   warhouseItemEditor: WarehosueItemEditorComponent;
 
   constructor(private alertService: AlertService, private translationService: AppTranslationService,
-    private productService: ProductService,
+    private warehouseItemService: WarehouseItemService,
     private accountService: AccountService) {
   }
 
@@ -67,7 +71,13 @@ export class WarhouesItemManagementComponent implements OnInit {
 
       this.columns = [
         { prop: 'id', name: '#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
-        { prop: 'name', name: gT('products.editor.Name'), width: 90 },
+        { prop: 'productName', name: gT('products.editor.Name'), width: 90 },
+        { prop: 'warehouseName', name: 'WarehouseName', width: 90 },
+        { prop: 'location', name: 'Location', width: 90 },
+        { prop: 'sellingPrice', name: 'Sell', width: 90 },
+        { prop: 'buyingPrice', name: 'Buy', width: 90 },
+        { prop: 'createdBy', name: 'Created By', width: 30, cellTemplate: this.createdByTemplate},
+        { prop: 'updatedBy', name: 'Updated By', width: 30,cellTemplate: this.updatedByTemplate},
       ];
 
 
@@ -130,7 +140,7 @@ export class WarhouesItemManagementComponent implements OnInit {
     this.alertService.startLoadingMessage();
     this.loadingIndicator = true;
 
-    this.productService.getAll<WarehouseItem>()
+    this.warehouseItemService.getAll<WarehouseItem>()
       .subscribe(results => {
         this.alertService.stopLoadingMessage();
         this.loadingIndicator = false;
@@ -150,7 +160,7 @@ export class WarhouesItemManagementComponent implements OnInit {
   }
 
   onSearchChanged(value: string) {
-    this.rows = this.rowsCache.filter(r => Utilities.searchArray(value, false, r.Product.name, r.Allocation.IsAvailable, r.Location));
+    this.rows = this.rowsCache.filter(r => Utilities.searchArray(value, false, r.Product.name, r.Location));
   }
 
   onEditorModalHidden() {
@@ -182,7 +192,7 @@ a
     this.alertService.startLoadingMessage(this.gT('products.alerts.Deleting'));
     this.loadingIndicator = true;
 
-    this.productService.delete(row.id)
+    this.warehouseItemService.delete(row.id)
       .subscribe(results => {
         this.alertService.stopLoadingMessage();
         this.loadingIndicator = false;

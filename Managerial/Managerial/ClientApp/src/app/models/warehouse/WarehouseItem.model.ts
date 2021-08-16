@@ -8,13 +8,12 @@ import { Warehouse } from "./Warehouse.model";
 
 export class WarehouseItem extends BaseModel{
 
-  public ProductId: number
-  public WarehouseId:number
-  public AlloactionId: number
-  public LocationId: number
-  public Product: Product
+  public ProductName: string
+  public WarehouseName: string
+  public BuyingPrice:number
+  public SellingPrice: number
+  public Location: string
   public Warehouse: Warehouse
-  public Allocation: Allocation
-  public Location: Location
+  public Product: Product
   public Batch: Batch
 }

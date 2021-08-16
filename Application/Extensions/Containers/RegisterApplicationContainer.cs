@@ -15,9 +15,7 @@ namespace Application.Extensions.Containers
                    .GetTypeInfo().Assembly)
                    .AsImplementedInterfaces();
 
-            builder.RegisterHandlers<Allocation, AllocationViewModel>();
             builder.RegisterHandlers<Warehouse, WarehouseViewModel>();
-            builder.RegisterHandlers<Location, LocationViewModel>();
             builder.RegisterHandlers<WarehouseItem, WarehouseItemViewModel>();
             builder.RegisterHandlers<Product, ProductViewModel>();
             builder.RegisterHandlers<Order, OrderViewModel>();

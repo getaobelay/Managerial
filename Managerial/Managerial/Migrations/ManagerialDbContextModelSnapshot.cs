@@ -19,54 +19,6 @@ namespace Managerial.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Domain.Entites.Allocation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("OrderID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("WarehouseId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WarehouseItemID")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderID");
-
-                    b.HasIndex("WarehouseId");
-
-                    b.ToTable("Allocations");
-                });
-
             modelBuilder.Entity("Domain.Entites.Batch", b =>
                 {
                     b.Property<int>("Id")
@@ -83,13 +35,10 @@ namespace Managerial.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("InventoryId")
-                        .HasColumnType("int");
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StockId")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
@@ -100,21 +49,9 @@ namespace Managerial.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("WarehouseId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WarehouseItemId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("InventoryId");
-
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("StockId");
-
-                    b.HasIndex("WarehouseId");
 
                     b.ToTable("Batches");
                 });
@@ -349,118 +286,12 @@ namespace Managerial.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Domain.Entites.Inventory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("BatchQuantity")
-                        .HasColumnType("decimal(8,2)");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsQuanityAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ProductQuantity")
-                        .HasColumnType("decimal(8,2)");
-
-                    b.Property<decimal>("ReorderLevel")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalUnitsQuantity")
-                        .HasColumnType("decimal(8,2)");
-
-                    b.Property<decimal>("UnitsInInventory")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("UnitsInOrder")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("WarehouseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Inventories");
-                });
-
-            modelBuilder.Entity("Domain.Entites.Location", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LocationRow")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LocationShelf")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("WarehouseID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WarehouseItemID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("locationColumn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Locations");
-                });
-
             modelBuilder.Entity("Domain.Entites.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AllocationId")
-                        .HasColumnType("int");
 
                     b.Property<string>("CashierId")
                         .HasColumnType("nvarchar(450)");
@@ -505,8 +336,7 @@ namespace Managerial.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .ValueGeneratedOnAdd()
@@ -523,9 +353,6 @@ namespace Managerial.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -540,11 +367,12 @@ namespace Managerial.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("WarehouseItemId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -578,9 +406,6 @@ namespace Managerial.Migrations
                     b.Property<decimal>("Height")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("InventoryId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -595,11 +420,14 @@ namespace Managerial.Migrations
                     b.Property<int?>("ProductCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("ReorderLevel")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("SellingPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("StockId")
-                        .HasColumnType("int");
+                    b.Property<decimal>("UnitsInStock")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(50)
@@ -609,9 +437,6 @@ namespace Managerial.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("WarehouseId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("WarehouseItemId")
                         .HasColumnType("int");
 
@@ -620,17 +445,11 @@ namespace Managerial.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InventoryId");
-
                     b.HasIndex("Name");
 
                     b.HasIndex("ParentId");
 
                     b.HasIndex("ProductCategoryId");
-
-                    b.HasIndex("StockId");
-
-                    b.HasIndex("WarehouseId");
 
                     b.ToTable("Products");
                 });
@@ -670,74 +489,12 @@ namespace Managerial.Migrations
                     b.ToTable("product_categories");
                 });
 
-            modelBuilder.Entity("Domain.Entites.Stock", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("BatchQuantity")
-                        .HasColumnType("decimal(8,2)");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsQuanityAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ProductQuantity")
-                        .HasColumnType("decimal(8,2)");
-
-                    b.Property<decimal>("ReorderLevel")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalUnitsQuantity")
-                        .HasColumnType("decimal(8,2)");
-
-                    b.Property<decimal>("UnitsInStock")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(50)
-                        .IsUnicode(true)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("WarehouseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Stocks");
-                });
-
             modelBuilder.Entity("Domain.Entites.Warehouse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("BatchId")
-                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .ValueGeneratedOnAdd()
@@ -751,21 +508,12 @@ namespace Managerial.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("LocationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StockId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
@@ -783,8 +531,6 @@ namespace Managerial.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StockId");
-
                     b.ToTable("Warehouses");
                 });
 
@@ -794,9 +540,6 @@ namespace Managerial.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AllocationId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("BatchID")
                         .HasColumnType("int");
@@ -810,7 +553,10 @@ namespace Managerial.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("LocationID")
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OrderDetailId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ProductID")
@@ -829,32 +575,11 @@ namespace Managerial.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AllocationId");
-
-                    b.HasIndex("BatchID");
-
-                    b.HasIndex("LocationID");
-
                     b.HasIndex("ProductID");
 
                     b.HasIndex("WarehouseId");
 
                     b.ToTable("WarehouseItems");
-                });
-
-            modelBuilder.Entity("LocationWarehouse", b =>
-                {
-                    b.Property<int>("LocationsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WarehousesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("LocationsId", "WarehousesId");
-
-                    b.HasIndex("WarehousesId");
-
-                    b.ToTable("LocationWarehouse");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -961,46 +686,13 @@ namespace Managerial.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Domain.Entites.Allocation", b =>
-                {
-                    b.HasOne("Domain.Entites.Order", "Order")
-                        .WithMany("Allocations")
-                        .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entites.Warehouse", "Warehouse")
-                        .WithMany("Allocations")
-                        .HasForeignKey("WarehouseId");
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Warehouse");
-                });
-
             modelBuilder.Entity("Domain.Entites.Batch", b =>
                 {
-                    b.HasOne("Domain.Entites.Inventory", "Inventory")
-                        .WithMany("Batches")
-                        .HasForeignKey("InventoryId");
-
                     b.HasOne("Domain.Entites.Product", "Product")
                         .WithMany("Batches")
                         .HasForeignKey("ProductId");
 
-                    b.HasOne("Domain.Entites.Stock", "Stock")
-                        .WithMany("Batches")
-                        .HasForeignKey("StockId");
-
-                    b.HasOne("Domain.Entites.Warehouse", null)
-                        .WithMany("Batches")
-                        .HasForeignKey("WarehouseId");
-
-                    b.Navigation("Inventory");
-
                     b.Navigation("Product");
-
-                    b.Navigation("Stock");
                 });
 
             modelBuilder.Entity("Domain.Entites.Order", b =>
@@ -1022,29 +714,25 @@ namespace Managerial.Migrations
 
             modelBuilder.Entity("Domain.Entites.OrderDetail", b =>
                 {
+                    b.HasOne("Domain.Entites.WarehouseItem", "WarehouseItem")
+                        .WithOne("OrderDetail")
+                        .HasForeignKey("Domain.Entites.OrderDetail", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entites.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entites.Product", "Product")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Order");
 
-                    b.Navigation("Product");
+                    b.Navigation("WarehouseItem");
                 });
 
             modelBuilder.Entity("Domain.Entites.Product", b =>
                 {
-                    b.HasOne("Domain.Entites.Inventory", "Inventory")
-                        .WithMany("Products")
-                        .HasForeignKey("InventoryId");
-
                     b.HasOne("Domain.Entites.Product", "Parent")
                         .WithMany("Children")
                         .HasForeignKey("ParentId")
@@ -1054,44 +742,13 @@ namespace Managerial.Migrations
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId");
 
-                    b.HasOne("Domain.Entites.Stock", "Stock")
-                        .WithMany("Products")
-                        .HasForeignKey("StockId");
-
-                    b.HasOne("Domain.Entites.Warehouse", null)
-                        .WithMany("Products")
-                        .HasForeignKey("WarehouseId");
-
-                    b.Navigation("Inventory");
-
                     b.Navigation("Parent");
 
                     b.Navigation("ProductCategory");
-
-                    b.Navigation("Stock");
-                });
-
-            modelBuilder.Entity("Domain.Entites.Warehouse", b =>
-                {
-                    b.HasOne("Domain.Entites.Stock", null)
-                        .WithMany("Warehouses")
-                        .HasForeignKey("StockId");
                 });
 
             modelBuilder.Entity("Domain.Entites.WarehouseItem", b =>
                 {
-                    b.HasOne("Domain.Entites.Allocation", "Allocation")
-                        .WithMany("WarehouseItems")
-                        .HasForeignKey("AllocationId");
-
-                    b.HasOne("Domain.Entites.Batch", "Batch")
-                        .WithMany("WarehouseItems")
-                        .HasForeignKey("BatchID");
-
-                    b.HasOne("Domain.Entites.Location", "Location")
-                        .WithMany("WarehouseItems")
-                        .HasForeignKey("LocationID");
-
                     b.HasOne("Domain.Entites.Product", "Product")
                         .WithMany("WarehouseItems")
                         .HasForeignKey("ProductID");
@@ -1100,30 +757,9 @@ namespace Managerial.Migrations
                         .WithMany("WarehouseItems")
                         .HasForeignKey("WarehouseId");
 
-                    b.Navigation("Allocation");
-
-                    b.Navigation("Batch");
-
-                    b.Navigation("Location");
-
                     b.Navigation("Product");
 
                     b.Navigation("Warehouse");
-                });
-
-            modelBuilder.Entity("LocationWarehouse", b =>
-                {
-                    b.HasOne("Domain.Entites.Location", null)
-                        .WithMany()
-                        .HasForeignKey("LocationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entites.Warehouse", null)
-                        .WithMany()
-                        .HasForeignKey("WarehousesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1177,16 +813,6 @@ namespace Managerial.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Entites.Allocation", b =>
-                {
-                    b.Navigation("WarehouseItems");
-                });
-
-            modelBuilder.Entity("Domain.Entites.Batch", b =>
-                {
-                    b.Navigation("WarehouseItems");
-                });
-
             modelBuilder.Entity("Domain.Entites.Customer", b =>
                 {
                     b.Navigation("Orders");
@@ -1208,22 +834,8 @@ namespace Managerial.Migrations
                     b.Navigation("Roles");
                 });
 
-            modelBuilder.Entity("Domain.Entites.Inventory", b =>
-                {
-                    b.Navigation("Batches");
-
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Domain.Entites.Location", b =>
-                {
-                    b.Navigation("WarehouseItems");
-                });
-
             modelBuilder.Entity("Domain.Entites.Order", b =>
                 {
-                    b.Navigation("Allocations");
-
                     b.Navigation("OrderDetails");
                 });
 
@@ -1233,8 +845,6 @@ namespace Managerial.Migrations
 
                     b.Navigation("Children");
 
-                    b.Navigation("OrderDetails");
-
                     b.Navigation("WarehouseItems");
                 });
 
@@ -1243,24 +853,14 @@ namespace Managerial.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("Domain.Entites.Stock", b =>
-                {
-                    b.Navigation("Batches");
-
-                    b.Navigation("Products");
-
-                    b.Navigation("Warehouses");
-                });
-
             modelBuilder.Entity("Domain.Entites.Warehouse", b =>
                 {
-                    b.Navigation("Allocations");
-
-                    b.Navigation("Batches");
-
-                    b.Navigation("Products");
-
                     b.Navigation("WarehouseItems");
+                });
+
+            modelBuilder.Entity("Domain.Entites.WarehouseItem", b =>
+                {
+                    b.Navigation("OrderDetail");
                 });
 #pragma warning restore 612, 618
         }

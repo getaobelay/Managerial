@@ -9,13 +9,6 @@ namespace Domain.Entites
         public string Type { get; set; }
         public bool IsActive { get; set; }
         public int? WarehouseItemId { get; set; }
-        public int? LocationId { get; set; }
-        public int? ProductId { get; set; }
-        public int? BatchId { get; set; }
-        public ICollection<Allocation> Allocations { get; set; }
         public ICollection<WarehouseItem> WarehouseItems { get; set; }
-        public ICollection<Location> Locations { get; set; }
-        public ICollection<Product> Products { get; set; }
-        public ICollection<Batch> Batches { get; set; }
     }
 }

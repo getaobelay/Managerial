@@ -21,9 +21,7 @@ namespace Infrastructure.Configuration
             builder.Property(p => p.BuyingPrice).HasColumnType(priceDecimalType);
             builder.Property(p => p.SellingPrice).HasColumnType(priceDecimalType);
 
-            builder.HasMany(d => d.Batches)
-                  .WithOne(p => p.Product)
-                  .HasForeignKey(d => d.ProductId);
+    
         }
     }
 }
