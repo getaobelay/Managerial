@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Order } from 'src/app/models/order/Order.model';
+import { OrderDetail } from 'src/app/models/order/OrderDetail.model';
+import { WarehouseItem } from 'src/app/models/warehouse/WarehouseItem.model';
+import { Utilities } from 'src/app/services/app/utilities';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
 import { OrderService } from '../../order.service';
 
@@ -8,15 +11,17 @@ import { OrderService } from '../../order.service';
   templateUrl: './order-editor.component.html',
   styleUrls: ['./order-editor.component.scss']
 })
-export class OrderEditorComponent {
+export class OrderEditorComponent implements OnInit {
   private isNewOrder = false;
   public isSaving: boolean;
   public showValidationErrors = true;
   public order: Order = new Order();
   public selectedValues: { [key: string]: boolean; } = {};
   private editingOrderName: string;
-
+  public allWarehouseItems: WarehouseItem[] = [];
   public formResetToggle = true;
+  public addedOrderDetial: OrderDetail;
+  public allOrderDetails: OrderDetail[] = [];
 
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
@@ -26,6 +31,9 @@ export class OrderEditorComponent {
   private form;
 
   constructor(private alertService: AlertService, private orderService: OrderService) {
+  }
+  ngOnInit(): void {
+      this.loadAllDropDowns();
   }
 
 
@@ -134,6 +142,29 @@ export class OrderEditorComponent {
       return this.newOrder();
     }
   }
+
+  private loadAllDropDowns() {
+    this.alertService.startLoadingMessage();
+
+      this.orderService.loadWarehouseItemEditor().subscribe(results => {
+        return this.onLoadAllDropDownsDataLoadSuccessful(results[0]);
+      }, error => this.onLoadAllDropDownsDataLoadFailed(error));
+  }
+
+  private onLoadAllDropDownsDataLoadSuccessful(warehouseItems: WarehouseItem[]) {
+    this.alertService.stopLoadingMessage();
+    this.allWarehouseItems = [...warehouseItems];
+  }
+
+  private onLoadAllDropDownsDataLoadFailed(error: any) {
+    this.alertService.stopLoadingMessage();
+    this.alertService.showStickyMessage('Load Error', `Unable to retrieve user data from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
+      MessageSeverity.error, error);
+
+    this.allWarehouseItems = [];
+  }
+
+
 
 
 }

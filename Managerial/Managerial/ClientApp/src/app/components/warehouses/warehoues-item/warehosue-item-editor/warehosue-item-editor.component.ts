@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
 import { WarehouseItem } from 'src/app/models/warehouse/WarehouseItem.model';
-import { WarehouseService } from '../../warehouse-service.service';
-import { Location } from 'src/app/models/warehouse/Location';
 import { Warehouse } from 'src/app/models/warehouse/Warehouse.model';
 import { Utilities } from 'src/app/services/app/utilities';
 import { WarehouseItemService } from '../warehouse-item-service.service';

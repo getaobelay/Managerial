@@ -10,7 +10,7 @@
         [items]="allProducts"
         bindLabel="name"
         [multiple]="false"
-        [closeOnSelect]="false"
+        [closeOnSelect]="true"
         placeholder="Select Product"
         [(ngModel)]="warehouseItemEdit.product"
         (change)="selectProductChange($event)"
@@ -30,11 +30,45 @@
         </span>
       </div>
 
-      <div class="col-12" *ngIf="warehouseItemEdit.product != null">
-        <p>{{warehouseItemEdit.product.name}}</p>
-        <p>{{warehouseItemEdit.product.name}}</p>
-        <p>{{warehouseItemEdit.product.name}}</p>
+      <div class="row">
+        <div class="col-md-12">
+          <hr class="edit-separator-hr" />
+        </div>
+      </div>
 
+      <div class="col-12" *ngIf="warehouseItemEdit.product != null">
+        <div class="row mt-2 mb-2">
+          <div class="col-6">
+            <p class="h4">Product Name: <span class="text-muted">{{warehouseItemEdit.product.name}}</span>
+            </p>
+          </div>
+          <div class="col-6">
+            <p class="h4">Description: <span class="text-muted">{{warehouseItemEdit.product.description}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <p class="h4">Selling:             <span class="text-muted">{{warehouseItemEdit.product.sellingPrice}}</span>
+            </p>
+          </div>
+          <div class="col-6">
+            <p class="h4">Buying:             <span class="text-muted">{{warehouseItemEdit.product.buyingPrice}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="row mt-2 mb-2">
+          <div class="col-6">
+            <p class="h4">Weight:             <span class="text-muted">{{warehouseItemEdit.product.weight}}</span>
+            </p>
+          </div>
+          <div class="col-6">
+            <p class="h4">Height:             <span class="text-muted">{{warehouseItemEdit.product.weight}}</span>
+            </p>
+            <span class="text-muted">{{warehouseItemEdit.product.height}}</span>
+          </div>
+        </div>
+        <p></p>
       </div>
 
       <div class="row">
@@ -43,11 +77,31 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label class="col-form-label col-md-3" for="name">Location</label>
+            <div class="col-md-9">
+              <input  type="text" id="location" name="location" placeholder="Location" class="form-control"
+                     [ngClass]="{'is-valid': f.submitted && location.valid, 'is-invalid' : f.submitted && !location.valid}"
+                      [(ngModel)]="warehouseItemEdit.location" #location="ngModel" required minlength="2" maxlength="200" />
+            </div>
+            <span *ngIf="showValidationErrors && f.submitted && !location.valid" class="invalid-feedback">
+            location is required
+            </span>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr class="edit-separator-hr" />
+          </div>
+        </div>
     <div [ngClass]="{'is-valid': f.submitted && warehouse.valid, 'is-invalid' : f.submitted && !warehouse.valid}" class="col-lg-9">
       <ng-select id="warehouseItem-warehouse"
                  name="warehouse" [items]="allWarehouses"
                  bindLabel="name" [multiple]="false"
-                 [closeOnSelect]="false"
+                 [closeOnSelect]="true"
                  placeholder="Select Warehouse"
                  [(ngModel)]="warehouseItemEdit.warehouse"
                  (change)="selectWarehouseChange($event)"
@@ -67,6 +121,25 @@
       <span *ngIf="showValidationErrors && f.submitted && !warehouse.valid" class="invalid-feedback">
         {{'users.editor.RoleRequired' | translate}}
       </span>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <hr class="edit-separator-hr" />
+      </div>
+    </div>
+
+    <div class="col-12" *ngIf="warehouseItemEdit.warehouse != null">
+      <div class="row mt-2 mb-2">
+        <div class="col-6">
+          <p class="h4">Warehouse: <span class="text-muted">{{warehouseItemEdit.warehouse.name}}</span>
+          </p>
+        </div>
+        <div class="col-6">
+          <p class="h4">Type: <span class="text-muted">{{warehouseItemEdit.warehouse.type}}</span>
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="row">
