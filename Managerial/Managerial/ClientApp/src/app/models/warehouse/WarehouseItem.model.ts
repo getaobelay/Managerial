@@ -15,5 +15,5 @@ export class WarehouseItem extends BaseModel{
   public Location: string
   public Warehouse: Warehouse
   public Product: Product
-  public Batch: Batch
+  public Allocation: Allocation
 }

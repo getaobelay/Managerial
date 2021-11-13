@@ -6,7 +6,7 @@ import { APiService } from 'src/app/services/generic/api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CustomersService extends APiService {
+export class CustomerService extends APiService {
   constructor(apiEndPoint: ApiEndpoint,
     configuration: ConfigurationService){
     super(apiEndPoint, configuration );

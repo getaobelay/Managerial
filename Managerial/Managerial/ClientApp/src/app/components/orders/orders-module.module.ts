@@ -1,3 +1,4 @@
+import { OrderDetailsEditorComponent } from './order-details-editor/order-details-editor.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrdersRoutingModule } from './orders-routing.module';
@@ -40,10 +41,12 @@ import { OrderService } from './order.service';
   declarations: [
     OrderManagementComponent, OrderEditorComponent,
     OrdersComponent,
+    OrderDetailsEditorComponent
   ],
   exports: [
     OrderManagementComponent, OrderEditorComponent,
     OrdersComponent,
+    OrderDetailsEditorComponent
   ],
   providers: [
     OrderService

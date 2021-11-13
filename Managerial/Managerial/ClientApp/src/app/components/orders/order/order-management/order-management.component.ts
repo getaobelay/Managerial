@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Order } from 'src/app/models/order/Order.model';
 import { AccountService } from 'src/app/services/api/account.service';
@@ -13,7 +13,7 @@ import { OrderEditorComponent } from '../order-editor/order-editor.component';
   templateUrl: './order-management.component.html',
   styleUrls: ['./order-management.component.scss']
 })
-export class OrderManagementComponent implements OnInit {
+export class OrderManagementComponent implements OnInit, AfterViewInit {
 
   columns: any[] = [];
   rows: Order[] = [];
@@ -34,6 +34,15 @@ export class OrderManagementComponent implements OnInit {
   @ViewChild('createdByTemplate', { static: true })
   createdByTemplate: TemplateRef<any>;
 
+  @ViewChild('updatedByTemplate', { static: true })
+  updatedByTemplate: TemplateRef<any>;
+
+  @ViewChild('createdDateTemplate', { static: true })
+  createdDateTemplate: TemplateRef<any>;
+
+  @ViewChild('updatedDateTemplate', { static: true })
+  updatedDateTemplate: TemplateRef<any>;
+
   @ViewChild('actionsTemplate', { static: true })
   actionsTemplate: TemplateRef<any>;
 
@@ -52,9 +61,18 @@ export class OrderManagementComponent implements OnInit {
       const gT = (key: string) => this.translationService.getTranslation(key);
 
       this.columns = [
-        { prop: 'id', name:'#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
-        { prop: 'discount', name: "Discount", width: 90 },
-        { prop: 'comments', name: 'Comments', width: 90 },
+        { prop: 'id', name: '#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
+        { prop: 'customerName', name: gT('orders.management.CustomerName'), width: 90 },
+        { prop: 'customerNumber', name: gT('orders.management.CustomerNumber'), width: 90 },
+        { prop: 'totalItems', name: gT('orders.management.TotalItems'), width: 90 },
+        { prop: 'discount', name: gT('orders.management.Discount'), width: 90 },
+        { prop: 'totalPrice', name: gT('orders.management.TotalPrice'), width: 90 },
+        { prop: 'comments', name: gT('orders.management.Comments'), width: 90 },
+        { prop: 'createdBy', name: gT('common.CreatedBy'), width: 30, cellTemplate: this.createdByTemplate},
+        { prop: 'updatedBy', name: gT('common.UpdatedBy'), width: 30,cellTemplate: this.updatedByTemplate},
+        { prop: 'createdDate', name: gT('common.CreatedDate'), width: 30, cellTemplate: this.createdDateTemplate},
+        { prop: 'updatedDate', name: gT('common.UpdatedDate'), width: 30,cellTemplate: this.updatedDateTemplate},
+
       ];
 
       this.columns.push({ name: '', width: 160, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
@@ -64,7 +82,7 @@ export class OrderManagementComponent implements OnInit {
 
   ngAfterViewInit() {
     this.orderEditor.changesSavedCallback = () => {
-      this.AddNewOrderItemToList();
+      this.AddNewOrderToList();
       this.editorModal.hide();
     };
 
@@ -75,7 +93,7 @@ export class OrderManagementComponent implements OnInit {
     };
   }
 
-  AddNewOrderItemToList() {
+  AddNewOrderToList() {
 
         if (this.sourceOrder) {
       Object.assign(this.sourceOrder, this.editedOrder);
@@ -121,16 +139,16 @@ export class OrderManagementComponent implements OnInit {
         this.alertService.stopLoadingMessage();
         this.loadingIndicator = false;
 
-        const products = results;
-        console.log(products)
-        this.rowsCache = [...products];
-        this.rows = products;
+        const orders = results;
+        console.log(orders)
+        this.rowsCache = [...orders];
+        this.rows = orders;
       },
         error => {
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage(this.gT('products.alerts.LoadError') ,this.gT('products.alerts.RetrieveError') + `: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('orders.alerts.LoadError') ,this.gT('orders.alerts.RetrieveError') + `: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }
@@ -160,12 +178,12 @@ export class OrderManagementComponent implements OnInit {
 
   deleteOrder(row: Order) {
 
-    this.alertService.showDialog(this.gT('products.alerts.Delete') + '\"' + row.id + '\"' + this.gT('products.alerts.Order'),
+    this.alertService.showDialog(this.gT('orders.alerts.Delete') + '\"' + row.id + '\"' + this.gT('orders.alerts.Order'),
       DialogType.confirm, () => this.deleteOrdeHelper (row));
   }
 a
   deleteOrdeHelper (row: Order) {
-    this.alertService.startLoadingMessage(this.gT('products.alerts.Deleting'));
+    this.alertService.startLoadingMessage(this.gT('orders.alerts.Deleting'));
     this.loadingIndicator = true;
 
     this.orderService.delete(row.id)
@@ -180,7 +198,7 @@ a
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage(this.gT('products.alerts.Deleting'), this.gT("products.alerts.ErrorOccured") + `: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('orders.alerts.Deleting'), this.gT("orders.alerts.ErrorOccured") + `: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }

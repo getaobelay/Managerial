@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Managerial.Migrations
 {
     [DbContext(typeof(ManagerialDbContext))]
-    [Migration("20210816153829_changes_realthionships")]
-    partial class changes_realthionships
+    [Migration("20211113083325_initial-database")]
+    partial class initialdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,48 @@ namespace Managerial.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Application.ViewModels.Allocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comments")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAllocated")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("OrderDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("WarehouseItemId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderDetailId");
+
+                    b.ToTable("Allocation");
+                });
 
             modelBuilder.Entity("Domain.Entites.Batch", b =>
                 {
@@ -338,7 +380,8 @@ namespace Managerial.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
                         .ValueGeneratedOnAdd()
@@ -372,9 +415,14 @@ namespace Managerial.Migrations
                     b.Property<int>("WarehouseItemId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("WarehouseItemId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("WarehouseItemId1");
 
                     b.ToTable("OrderDetails");
                 });
@@ -688,6 +736,23 @@ namespace Managerial.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Application.ViewModels.Allocation", b =>
+                {
+                    b.HasOne("Domain.Entites.WarehouseItem", "WarehouseItem")
+                        .WithOne("Allocation")
+                        .HasForeignKey("Application.ViewModels.Allocation", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entites.OrderDetail", "OrderDetail")
+                        .WithMany()
+                        .HasForeignKey("OrderDetailId");
+
+                    b.Navigation("OrderDetail");
+
+                    b.Navigation("WarehouseItem");
+                });
+
             modelBuilder.Entity("Domain.Entites.Batch", b =>
                 {
                     b.HasOne("Domain.Entites.Product", "Product")
@@ -716,17 +781,15 @@ namespace Managerial.Migrations
 
             modelBuilder.Entity("Domain.Entites.OrderDetail", b =>
                 {
-                    b.HasOne("Domain.Entites.WarehouseItem", "WarehouseItem")
-                        .WithOne("OrderDetail")
-                        .HasForeignKey("Domain.Entites.OrderDetail", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entites.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entites.WarehouseItem", "WarehouseItem")
+                        .WithMany()
+                        .HasForeignKey("WarehouseItemId1");
 
                     b.Navigation("Order");
 
@@ -862,7 +925,7 @@ namespace Managerial.Migrations
 
             modelBuilder.Entity("Domain.Entites.WarehouseItem", b =>
                 {
-                    b.Navigation("OrderDetail");
+                    b.Navigation("Allocation");
                 });
 #pragma warning restore 612, 618
         }

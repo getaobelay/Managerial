@@ -1,4 +1,5 @@
-﻿using Domain.Common;
+﻿using Application.ViewModels;
+using Domain.Common;
 
 namespace Domain.Entites
 {
@@ -11,6 +12,6 @@ namespace Domain.Entites
         public int? OrderDetailId { get; set; }
         public virtual Product Product { get; set; }
         public virtual Warehouse Warehouse { get; set; }
-        public virtual OrderDetail OrderDetail { get; set; }
+        public virtual Allocation Allocation { get; set; }
     }
 }

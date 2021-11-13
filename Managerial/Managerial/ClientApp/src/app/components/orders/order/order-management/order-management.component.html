@@ -2,14 +2,14 @@
   <div class="row control-box">
     <div class="col-lg-8">
       <div class="form-group search-box">
-        <app-search-box (searchChange)="onSearchChanged($event)" placeholder="{{'products.management.Search' | translate}}"></app-search-box>
+        <app-search-box (searchChange)="onSearchChanged($event)" placeholder="{{'orders.management.Search' | translate}}"></app-search-box>
       </div>
     </div>
     <div class="col-lg-4 pr-lg-5">
       <ul class="nav flex-column flex-lg-row justify-content-end">
         <li class="nav-item toolbaritem">
           <a class="nav-link" href="javascript:;" (click)="newOrder()">
-            <i class="fa fa-plus-circle"></i> {{'products.management.NewProduct' | translate}}
+            <i class="fa fa-plus-circle"></i> {{'orders.management.NewOrder' | translate}}
           </a>
         </li>
       </ul>

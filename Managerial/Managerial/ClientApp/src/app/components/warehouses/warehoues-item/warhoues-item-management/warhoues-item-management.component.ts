@@ -1,7 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { ProductService } from 'src/app/components/products/product.service';
-import { Product } from 'src/app/models/product/Product.model';
 import { Warehouse } from 'src/app/models/warehouse/Warehouse.model';
 import { WarehouseItem } from 'src/app/models/warehouse/WarehouseItem.model';
 import { AccountService } from 'src/app/services/api/account.service';
@@ -25,7 +23,7 @@ export class WarhouesItemManagementComponent implements OnInit {
   sourceWarehouseItem: WarehouseItem;
   editingWarehouseItemName: { name: string };
   loadingIndicator: boolean;
-  selectedProduct: Product;
+  selectedWarehouseItem: WarehouseItem;
   selectedWarehouse: Warehouse;
   selectedLocation: Location;
 
@@ -37,20 +35,17 @@ export class WarhouesItemManagementComponent implements OnInit {
   @ViewChild('isActiveTemplate', { static: true })
   isActiveTemplate: TemplateRef<any>;
 
-  @ViewChild('productNameTemplate', { static: true })
-  productNameTemplate: TemplateRef<any>;
-
-  @ViewChild('warehouseNameTemplate', { static: true })
-  warehouseNameTemplate: TemplateRef<any>;
-
-  @ViewChild('allocationTemplate', { static: true })
-  allocationTemplate: TemplateRef<any>;
-
   @ViewChild('createdByTemplate', { static: true })
   createdByTemplate: TemplateRef<any>;
 
   @ViewChild('updatedByTemplate', { static: true })
   updatedByTemplate: TemplateRef<any>;
+
+  @ViewChild('createdDateTemplate', { static: true })
+  createdDateTemplate: TemplateRef<any>;
+
+  @ViewChild('updatedDateTemplate', { static: true })
+  updatedDateTemplate: TemplateRef<any>;
 
   @ViewChild('actionsTemplate', { static: true })
   actionsTemplate: TemplateRef<any>;
@@ -71,13 +66,15 @@ export class WarhouesItemManagementComponent implements OnInit {
 
       this.columns = [
         { prop: 'id', name: '#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
-        { prop: 'productName', name: gT('products.editor.Name'), width: 90 },
-        { prop: 'warehouseName', name: 'WarehouseName', width: 90 },
-        { prop: 'location', name: 'Location', width: 90 },
-        { prop: 'sellingPrice', name: 'Sell', width: 90 },
-        { prop: 'buyingPrice', name: 'Buy', width: 90 },
-        { prop: 'createdBy', name: 'Created By', width: 30, cellTemplate: this.createdByTemplate},
-        { prop: 'updatedBy', name: 'Updated By', width: 30,cellTemplate: this.updatedByTemplate},
+        { prop: 'productName', name: gT('warehouseItem.management.productName'), width: 90 },
+        { prop: 'warehouseName', name:  gT('warehouseItem.management.warehouseName'), width: 90 },
+        { prop: 'location', name: gT('warehouseItem.management.Location'), width: 90 },
+        { prop: 'sellingPrice', name: gT('warehouseItem.management.Sell'), width: 90 },
+        { prop: 'buyingPrice', name: gT('warehouseItem.management.Buy'), width: 90 },
+        { prop: 'createdBy', name: gT('common.CreatedBy'), width: 30, cellTemplate: this.createdByTemplate},
+        { prop: 'updatedBy', name: gT('common.UpdatedBy'), width: 30,cellTemplate: this.updatedByTemplate},
+        { prop: 'createdDate', name: gT('common.CreatedDate'), width: 30, cellTemplate: this.createdDateTemplate},
+        { prop: 'updatedDate', name: gT('common.UpdatedDate'), width: 30,cellTemplate: this.updatedDateTemplate},
       ];
 
 
@@ -145,22 +142,22 @@ export class WarhouesItemManagementComponent implements OnInit {
         this.alertService.stopLoadingMessage();
         this.loadingIndicator = false;
 
-        const products = results;
-        console.log(products)
-        this.rowsCache = [...products];
-        this.rows = products;
+        const warehouseItems = results;
+        console.log(warehouseItems)
+        this.rowsCache = [...warehouseItems];
+        this.rows = warehouseItems;
       },
         error => {
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage(this.gT('products.alerts.LoadError') ,this.gT('products.alerts.RetrieveError') + `: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('warehouseItems.alerts.LoadError') ,this.gT('warehouseItems.alerts.RetrieveError') + `: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }
 
   onSearchChanged(value: string) {
-    this.rows = this.rowsCache.filter(r => Utilities.searchArray(value, false, r.Product.name, r.Location));
+    this.rows = this.rowsCache.filter(r => Utilities.searchArray(value, false, r.ProductName, r.Location));
   }
 
   onEditorModalHidden() {
@@ -168,28 +165,28 @@ export class WarhouesItemManagementComponent implements OnInit {
     this.warhouseItemEditor.resetForm(true);
   }
 
-  newProduct() {
+  newWarehouseItem() {
     this.editingWarehouseItemName = null;
     this.sourceWarehouseItem = null;
     this.editedWarehouseItem = this.warhouseItemEditor.newWarehouseItem();
     this.editorModal.show();
   }
 
-  editProduct(row: WarehouseItem) {
+  editWarehouseItem(row: WarehouseItem) {
     this.editingWarehouseItemName = { name: row.id.toString() };
     this.sourceWarehouseItem = row;
     this.editedWarehouseItem = this.warhouseItemEditor.editWarehouseItem(row);
     this.editorModal.show();
   }
 
-  deleteProduct(row: WarehouseItem) {
+  deleteWarehouseItem(row: WarehouseItem) {
 
-    this.alertService.showDialog(this.gT('products.alerts.Delete') + '\"' + row.id + '\"' + this.gT('products.alerts.WarehouseItem'),
+    this.alertService.showDialog(this.gT('warehouseItems.alerts.Delete') + '\"' + row.id + '\"' + this.gT('warehouseItems.alerts.WarehouseItem'),
       DialogType.confirm, () => this.deleteWarehouseItemHelper (row));
   }
 a
   deleteWarehouseItemHelper (row: WarehouseItem) {
-    this.alertService.startLoadingMessage(this.gT('products.alerts.Deleting'));
+    this.alertService.startLoadingMessage(this.gT('warehouseItems.alerts.Deleting'));
     this.loadingIndicator = true;
 
     this.warehouseItemService.delete(row.id)
@@ -204,7 +201,7 @@ a
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage(this.gT('products.alerts.Deleting'), this.gT("products.alerts.ErrorOccured") + `: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('warehouseItems.alerts.Deleting'), this.gT("warehouseItems.alerts.ErrorOccured") + `: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }

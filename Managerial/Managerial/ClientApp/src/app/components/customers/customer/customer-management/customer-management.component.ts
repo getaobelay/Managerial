@@ -5,7 +5,7 @@ import { AccountService } from 'src/app/services/api/account.service';
 import { AppTranslationService } from 'src/app/services/app/app-translation.service';
 import { Utilities } from 'src/app/services/app/utilities';
 import { AlertService, MessageSeverity, DialogType } from 'src/app/services/notification/alert.service';
-import { CustomersService } from '../../customers-service.service';
+import { CustomerService } from '../../customers-service.service';
 import { CustomerEditorComponent } from '../customer-editor/customer-editor.component';
 
 @Component({
@@ -44,7 +44,7 @@ export class CustomerManagementComponent implements OnInit {
   customerEditor: CustomerEditorComponent;
 
   constructor(private alertService: AlertService, private translationService: AppTranslationService,
-    private customerService: CustomersService,
+    private customerService: CustomerService,
     private accountService: AccountService) {
   }
 
@@ -53,11 +53,11 @@ export class CustomerManagementComponent implements OnInit {
 
       this.columns = [
         { prop: 'id', name:'#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
-        { prop: 'name', name: gT('products.editor.Name'), width: 90 },
-        { prop: 'email', name: 'Email', width: 90 },
-        { prop: 'phoneNumber', name: 'Phone Number', width: 90 },
-        { prop: 'address', name: 'Address', width: 90 },
-        { prop: 'city', name: 'City', width: 90 },
+        { prop: 'name', name: gT('customers.management.CustomerName'), width: 90 },
+        { prop: 'email', name: gT('customers.management.Email'), width: 90 },
+        { prop: 'phoneNumber', name: gT('customers.management.CustomerNumber'), width: 90 },
+        { prop: 'address', name: gT('customers.management.Address'), width: 90 },
+        { prop: 'city', name: gT('customers.management.City'), width: 90 },
 
       ];
 
@@ -125,16 +125,16 @@ export class CustomerManagementComponent implements OnInit {
         this.alertService.stopLoadingMessage();
         this.loadingIndicator = false;
 
-        const products = results;
-        console.log(products)
-        this.rowsCache = [...products];
-        this.rows = products;
+        const customers = results;
+        console.log(customers)
+        this.rowsCache = [...customers];
+        this.rows = customers;
       },
         error => {
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage(this.gT('products.alerts.LoadError') ,this.gT('products.alerts.RetrieveError') + `: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('customers.alerts.LoadError') ,this.gT('customers.alerts.RetrieveError') + `: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }
@@ -164,12 +164,12 @@ export class CustomerManagementComponent implements OnInit {
 
   deleteProduct(row: Customer) {
 
-    this.alertService.showDialog(this.gT('products.alerts.Delete') + '\"' + row.id + '\"' + this.gT('products.alerts.Customer'),
+    this.alertService.showDialog(this.gT('customers.alerts.Delete') + '\"' + row.id + '\"' + this.gT('customers.alerts.Customer'),
       DialogType.confirm, () => this.deleteWarehouseItemHelper (row));
   }
 a
   deleteWarehouseItemHelper (row: Customer) {
-    this.alertService.startLoadingMessage(this.gT('products.alerts.Deleting'));
+    this.alertService.startLoadingMessage(this.gT('customers.alerts.Deleting'));
     this.loadingIndicator = true;
 
     this.customerService.delete(row.id)
@@ -184,7 +184,7 @@ a
           this.alertService.stopLoadingMessage();
           this.loadingIndicator = false;
 
-          this.alertService.showStickyMessage(this.gT('products.alerts.Deleting'), this.gT("products.alerts.ErrorOccured") + `: "${Utilities.getHttpResponseMessages(error)}"`,
+          this.alertService.showStickyMessage(this.gT('customers.alerts.Deleting'), this.gT("customers.alerts.ErrorOccured") + `: "${Utilities.getHttpResponseMessages(error)}"`,
             MessageSeverity.error, error);
         });
   }

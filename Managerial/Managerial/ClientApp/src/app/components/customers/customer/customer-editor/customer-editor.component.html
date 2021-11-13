@@ -1,0 +1,125 @@
+<div>
+  <form *ngIf="formResetToggle" name="customerEditorForm" #f="ngForm" novalidate
+        (ngSubmit)="f.form.valid ? save() :
+          (!name.valid && showErrorAlert('Product name is required', 'Please enter a product name (minimum of 2 and maximum of 200 characters)'));">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group row">
+          <label class="col-form-label col-md-3" for="name">{{'customers.editor.Name' | translate}}</label>
+          <div class="col-md-9">
+            <input  type="text" id="name" name="name" placeholder="{{'customers.editor.NamePlaceHolder' | translate}}" class="form-control"
+                   [ngClass]="{'is-valid': f.submitted && name.valid, 'is-invalid' : f.submitted && !name.valid}"
+                    [(ngModel)]="customerEdit.name" #name="ngModel" required minlength="2" maxlength="200" />
+          </div>
+          <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="invalid-feedback">
+          </span>
+        </div>
+      </div>
+  </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <hr class="edit-separator-hr" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group row">
+          <label class="col-form-label col-md-3" for="email">{{'customers.editor.Email' | translate}}</label>
+          <div class="col-md-9">
+            <input  type="email" id="name" name="email" placeholder="{{'customers.editor.EmailPlaceHolder' | translate}}" class="form-control"
+                   [ngClass]="{'is-valid': f.submitted && email.valid, 'is-invalid' : f.submitted && !email.valid}"
+                    [(ngModel)]="customerEdit.email" #email="ngModel" required minlength="2" maxlength="200" />
+          </div>
+          <span *ngIf="showValidationErrors && f.submitted && !email.valid" class="invalid-feedback">
+
+          </span>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr class="edit-separator-hr" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group row">
+        <label class="col-form-label col-md-3" for="address">{{'customers.editor.Address' | translate}}</label>
+        <div class="col-md-9">
+          <input  type="phone" id="address" name="address" placeholder="{{'customers.editor.AddressPlaceHolder' | translate}}" class="form-control"
+                 [ngClass]="{'is-valid': f.submitted && phone.valid, 'is-invalid' : f.submitted && !address.valid}"
+                  [(ngModel)]="customerEdit.address" #address="ngModel" required minlength="2" maxlength="200" />
+        </div>
+        <span *ngIf="showValidationErrors && f.submitted && !address.valid" class="invalid-feedback">
+
+        </span>
+      </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <hr class="edit-separator-hr" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-group row">
+      <label class="col-form-label col-md-3" for="city">{{'customers.editor.City' | translate}}</label>
+      <div class="col-md-9">
+        <input  type="text" id="city" name="city" placeholder="{{'customers.editor.CityPlaceHolder' | translate}}" class="form-control"
+               [ngClass]="{'is-valid': f.submitted && city.valid, 'is-invalid' : f.submitted && !city.valid}"
+                [(ngModel)]="customerEdit.City" #city="ngModel" required minlength="2" maxlength="200" />
+      </div>
+      <span *ngIf="showValidationErrors && f.submitted && !phone.valid" class="invalid-feedback">
+
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <hr class="edit-separator-hr" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-group row">
+      <label class="col-form-label col-md-3" for="phone">{{'customers.editor.Phone' | translate}}</label>
+      <div class="col-md-9">
+        <input  type="phone" id="phone" name="phone" placeholder="{{'customers.editor.PhonePlaceHolder' | translate}}" class="form-control"
+               [ngClass]="{'is-valid': f.submitted && phone.valid, 'is-invalid' : f.submitted && !phone.valid}"
+                [(ngModel)]="customerEdit.PhoneNumber" #phone="ngModel" required minlength="2" maxlength="200" />
+      </div>
+      <span *ngIf="showValidationErrors && f.submitted && !phone.valid" class="invalid-feedback">
+
+      </span>
+    </div>
+  </div>
+</div>
+
+
+    <div class="form-group row">
+      <div class="col-md-12">
+        <div ngPreserveWhitespaces class="float-right">
+          <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'common.Cancel' | translate}}</button>
+          <button type="submit" class="btn btn-primary" [disabled]="isSaving">
+            <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('common.Saving' | translate) : ('common.Save' | translate)}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </form>
+</div>

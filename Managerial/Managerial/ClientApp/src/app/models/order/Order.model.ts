@@ -9,7 +9,11 @@ export class Order extends BaseModel {
   public CustomerName: string;
   public CustomerNumber: string;
   public Customer: Customer
+  public TotalPrice: number;
+  public TotalItems: number;
   public OrderDetails: OrderDetail[]
+  Warehouse: import("c:/Users/gadi/source/repos/getaobelay/Managerial/Managerial/Managerial/ClientApp/src/app/models/warehouse/WarehouseItem.model").WarehouseItem;
+  Product: Customer;
 }
 
 

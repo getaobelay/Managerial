@@ -4,8 +4,8 @@ import { WarehouseItem } from "./WarehouseItem.model";
 
 export class Allocation extends BaseModel {
 
-  public IsAvailable: boolean;
-  public IsCompleted:  boolean;
+  public IsAllocated: boolean;
+  public IsAvailable:  boolean;
   public WarehouseItems: WarehouseItem;
   public Order: Order;
 

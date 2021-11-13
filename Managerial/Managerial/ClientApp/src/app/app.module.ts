@@ -54,6 +54,7 @@ import { OrdersModule } from './components/orders/orders-module.module';
 import { CustomersModule } from './components/customers/customers-module.module';
 import { ApiEndpoint } from './services/generic/api-endpoint.service';
 import { APiService } from './services/generic/api.service';
+import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -91,6 +92,7 @@ import { APiService } from './services/generic/api.service';
     HomeComponent,
     AboutComponent,
     StatisticsDemoComponent, TodoDemoComponent, BannerDemoComponent,
+    DashboardComponent
 
   ],
   providers: [

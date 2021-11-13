@@ -13,7 +13,6 @@ namespace Infrastructure.Configuration
 
             const string priceDecimalType = "decimal(18,2)";
             builder.ToTable("OrderDetails");
-            builder.Property(p => p.UnitPrice).HasColumnType(priceDecimalType);
             builder.Property(p => p.Discount).HasColumnType(priceDecimalType);
         }
     }

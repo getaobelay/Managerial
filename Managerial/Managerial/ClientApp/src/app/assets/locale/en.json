@@ -9,7 +9,11 @@
   "Disabled":"לא Disabled",
   "Saving": "Saving...",
   "Details": "Details",
-  "Delete": "Delete"
+  "Delete": "Delete",
+  "CreatedBy": "Created By",
+  "UpdatedBy": "Updated By",
+  "CreatedDate": "Created",
+  "UpdatedDate": "Updated"
 },
   "app": {
     "Welcome": "Welcome",
@@ -30,6 +34,8 @@
     "Dashboard": "Dashboard",
     "Customers": "Customers",
     "Products": "Products",
+    "Warehouses": "Warehouses",
+    "WarehouseItems": "Warehouse Items",
     "Orders": "Orders",
     "NotFound": "Not-Found",
     "About": "About",
@@ -282,6 +288,124 @@
       "ErrorOccured": "An error occured whilst deleting the location.\r\nError",
       "LoadError":"Load Error",
       "RetrieveError": "Unable to retrieve locations from the server.\r\nErrors"
+    }
+  },
+  "warehouseItem": {
+    "management": {
+      "WarehouseItem": "Warehouse Items",
+      "Search": "Search for item...",
+      "NewWarehouseItem": "New Item",
+      "WarehouseItemDetails": "Item Details \"{{name}}\"",
+      "EditWarehouseItem": "Item \"{{name}}\"",
+      "productName": "Product",
+      "warehouseName": "Warehouse",
+      "Location": "Location",
+      "Sell": "Sell",
+      "Buy": "Buy"
+    },
+    "editor": {
+      "Product": "Please Select Product",
+      "Location": "Location:",
+      "Warehouse": "Please Select Warehouse:",
+      "ProductRequired": "Prpduct is required",
+      "LocationRequired": "Location name is required",
+      "WarhouseRequired": "Warehouse is required",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    },
+    "alerts": {
+      "Delete": "Are you sure you want to delete the",
+      "WarehouseItem": "item?",
+      "Deleting": "Deleting...",
+      "DeleteError": "Delete Error",
+      "ErrorOccured": "An error occured whilst deleting the item.\r\nError",
+      "LoadError":"Load Error",
+      "RetrieveError": "Unable to retrieve locations from the server.\r\nErrors"
+    }
+  },
+  "orders": {
+    "management": {
+      "Orders": "Orders",
+      "Search": "Search for order...",
+      "NewOrder": "New Order",
+      "OrderDetails": "Order Details \"{{name}}\"",
+      "EditOrder": "Order \"{{name}}\"",
+      "CustomerName": "Customer",
+      "CustomerNumber": "Phone",
+      "TotalItems": "Total Items",
+      "TotalPrice": "Total Price",
+      "Discount": "Discount",
+      "Comments": "Comments"
+
+    },
+    "editor": {
+      "Customer": "Customer",
+      "Comments": "Comments :",
+      "CustomerRequired": "Customer is required",
+      "CommentsRequired": "Comments is required",
+      "CustomerPlaceHolder": "Please select customer",
+      "CommentsPlaceHolder": "Enter comments",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    },
+    "alerts": {
+      "Delete": "Are you sure you want to delete the",
+      "WarehouseItem": "Order?",
+      "Deleting": "Deleting...",
+      "DeleteError": "Delete Error",
+      "ErrorOccured": "An error occured whilst deleting the item.\r\nError",
+      "LoadError":"Load Error",
+      "RetrieveError": "Unable to retrieve locations from the server.\r\nErrors"
+    }
+  },
+  "customers": {
+    "management": {
+      "Customers": "Customers",
+      "Search": "Search for customer...",
+      "NewCustomer": "New Customer",
+      "CustomerDetails": "Customer Details \"{{name}}\"",
+      "EditOrder": "Customer \"{{name}}\"",
+      "CustomerName": "Customer",
+      "CustomerNumber": "Phone",
+      "Email": "Email",
+      "Address": "Address",
+      "City": "City"
+
+    },
+    "editor": {
+      "NamePlaceHolder": "Please enter a customer name",
+      "PhonePlaceHolder": "Please enter a phone number",
+      "EmailPlaceHolder": "Please enter email",
+      "AddressPlaceHolder": "Please enter address",
+      "CityPlaceHolder": "Please enter a city",
+      "NameRequired": "Customer name is required",
+      "AddressRequired": "Address is required",
+      "CityRequired": "City is required",
+      "EmailRequired": "Email is required",
+      "PhoneRequired": "Phone is required",
+      "CustomerRequired": "Customer is required",
+      "Name": "Customer Name",
+      "City": "City",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Address": "Address",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    },
+    "alerts": {
+      "Delete": "Are you sure you want to delete the",
+      "Customer": "Customer?",
+      "Deleting": "Deleting...",
+      "DeleteError": "Delete Error",
+      "ErrorOccured": "An error occured whilst deleting the customer.\r\nError",
+      "LoadError":"Load Error",
+      "RetrieveError": "Unable to retrieve customers from the server.\r\nErrors"
     }
   }
 

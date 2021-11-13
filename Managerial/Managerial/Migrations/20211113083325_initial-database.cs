@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Managerial.Migrations
 {
-    public partial class changes_realthionships : Migration
+    public partial class initialdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -379,11 +379,13 @@ namespace Managerial.Migrations
                 name: "OrderDetails",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     WarehouseItemId = table.Column<int>(type: "int", nullable: false),
+                    WarehouseItemId1 = table.Column<int>(type: "int", nullable: true),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -400,12 +402,48 @@ namespace Managerial.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_WarehouseItems_Id",
+                        name: "FK_OrderDetails_WarehouseItems_WarehouseItemId1",
+                        column: x => x.WarehouseItemId1,
+                        principalTable: "WarehouseItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Allocation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WarehouseItemId = table.Column<int>(type: "int", nullable: true),
+                    OrderDetailId = table.Column<int>(type: "int", nullable: true),
+                    IsAllocated = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Allocation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Allocation_OrderDetails_OrderDetailId",
+                        column: x => x.OrderDetailId,
+                        principalTable: "OrderDetails",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Allocation_WarehouseItems_Id",
                         column: x => x.Id,
                         principalTable: "WarehouseItems",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Allocation_OrderDetailId",
+                table: "Allocation",
+                column: "OrderDetailId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -462,6 +500,11 @@ namespace Managerial.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_WarehouseItemId1",
+                table: "OrderDetails",
+                column: "WarehouseItemId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_CashierId",
                 table: "Orders",
                 column: "CashierId");
@@ -499,6 +542,9 @@ namespace Managerial.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Allocation");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Customer } from 'src/app/models/order/Customer.model';
 import { Order } from 'src/app/models/order/Order.model';
-import { OrderDetail } from 'src/app/models/order/OrderDetail.model';
 import { WarehouseItem } from 'src/app/models/warehouse/WarehouseItem.model';
 import { Utilities } from 'src/app/services/app/utilities';
 import { AlertService, MessageSeverity } from 'src/app/services/notification/alert.service';
@@ -12,16 +12,22 @@ import { OrderService } from '../../order.service';
   styleUrls: ['./order-editor.component.scss']
 })
 export class OrderEditorComponent implements OnInit {
+  columns: any[] = [];
+  rows: Order[] = [];
+  rowsCache: Order[] = [];
+
+
   private isNewOrder = false;
   public isSaving: boolean;
   public showValidationErrors = true;
+  public orderEdit: Order = new Order();
   public order: Order = new Order();
-  public selectedValues: { [key: string]: boolean; } = {};
-  private editingOrderName: string;
+  public allCustomers: Customer[] = [];
   public allWarehouseItems: WarehouseItem[] = [];
+
+  private editingOrderName: string;
+
   public formResetToggle = true;
-  public addedOrderDetial: OrderDetail;
-  public allOrderDetails: OrderDetail[] = [];
 
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
@@ -30,129 +36,128 @@ export class OrderEditorComponent implements OnInit {
   @ViewChild('f')
   private form;
 
-  constructor(private alertService: AlertService, private orderService: OrderService) {
+  constructor(private alertService: AlertService,
+    private orderService: OrderService) {
   }
   ngOnInit(): void {
-      this.loadAllDropDowns();
-  }
-
-
-  showErrorAlert(caption: string, message: string) {
-    this.alertService.showMessage(caption, message, MessageSeverity.error);
+    this.loadAllDropDowns();
   }
 
 
 
-  save() {
-    this.isSaving = true;
-    this.alertService.startLoadingMessage('Saving changes...');
 
-    if (this.isNewOrder) {
-      this.orderService.post<Order>(this.order).subscribe((item: Order) =>
-        this.saveSuccessHelper(item), error => this.saveFailedHelper(error));
-    } else {
-      this.orderService.put(this.order).subscribe(() =>
-        this.saveSuccessHelper(), error => this.saveFailedHelper(error));
-    }
+showErrorAlert(caption: string, message: string) {
+  this.alertService.showMessage(caption, message, MessageSeverity.error);
+}
+
+save() {
+  this.isSaving = true;
+  this.alertService.startLoadingMessage('Saving changes...');
+
+  if (this.isNewOrder) {
+    this.orderService.post<Order>(this.orderEdit).subscribe((warehouseItem: Order) =>
+      this.saveSuccessHelper(warehouseItem), error => this.saveFailedHelper(error));
+  } else {
+    this.orderService.put(this.orderEdit).subscribe(() =>
+      this.saveSuccessHelper(), error => this.saveFailedHelper(error));
+  }
+}
+
+private saveSuccessHelper(order?: Order) {
+  if (order) {
+    Object.assign(this.orderEdit, order);
   }
 
-  private saveSuccessHelper(item?: Order) {
-    if (item) {
-      Object.assign(this.order, item);
-    }
+  this.isSaving = false;
+  this.alertService.stopLoadingMessage();
+  this.showValidationErrors = false;
 
-    this.isSaving = false;
-    this.alertService.stopLoadingMessage();
-    this.showValidationErrors = false;
-
-    if (this.isNewOrder) {
-      this.alertService.showMessage('Success', `item \"${this.order.id}\" was created successfully`, MessageSeverity.success);
-    } else {
-      this.alertService.showMessage('Success', `Changes to item \"${this.order.id}\" was saved successfully`, MessageSeverity.success);
-    }
-
-    this.order = new Order();
-    this.resetForm();
-
-    if (this.changesSavedCallback) {
-      this.changesSavedCallback();
-    }
+  if (this.isNewOrder) {
+    this.alertService.showMessage('Success', `warehouseItem \"${this.orderEdit.id}\" was created successfully`, MessageSeverity.success);
+  } else {
+    this.alertService.showMessage('Success', `Changes to warehouseItem \"${this.orderEdit.id}\" was saved successfully`, MessageSeverity.success);
   }
 
-  private saveFailedHelper(error: any) {
-    this.isSaving = false;
-    this.alertService.stopLoadingMessage();
-    this.alertService.showStickyMessage('Save Error', 'The below errors occured whilst saving your changes:', MessageSeverity.error, error);
-    this.alertService.showStickyMessage(error, null, MessageSeverity.error);
+  this.orderEdit = new Order();
+  this.resetForm();
 
-    if (this.changesFailedCallback) {
-      this.changesFailedCallback();
-    }
+  if (this.changesSavedCallback) {
+    this.changesSavedCallback();
   }
+}
 
-  cancel() {
-    this.order = new Order();
+private saveFailedHelper(error: any) {
+  this.isSaving = false;
+  this.alertService.stopLoadingMessage();
+  this.alertService.showStickyMessage('Save Error', 'The below errors occured whilst saving your changes:', MessageSeverity.error, error);
+  this.alertService.showStickyMessage(error, null, MessageSeverity.error);
 
-    this.showValidationErrors = false;
-    this.resetForm();
-
-    this.alertService.showMessage('Cancelled', 'Operation cancelled by user', MessageSeverity.default);
-    this.alertService.resetStickyMessage();
-
-    if (this.changesCancelledCallback) {
-      this.changesCancelledCallback();
-    }
+  if (this.changesFailedCallback) {
+    this.changesFailedCallback();
   }
+}
 
-  resetForm(replace = false) {
-    if (!replace) {
-      this.form.reset();
-    } else {
-      this.formResetToggle = false;
+cancel() {
+  this.orderEdit = new Order();
 
-      setTimeout(() => {
-        this.formResetToggle = true;
-      });
-    }
+  this.showValidationErrors = false;
+  this.resetForm();
+
+  this.alertService.showMessage('Cancelled', 'Operation cancelled by user', MessageSeverity.default);
+  this.alertService.resetStickyMessage();
+
+  if (this.changesCancelledCallback) {
+    this.changesCancelledCallback();
   }
+}
 
-  newOrder() {
-    this.isNewOrder = true;
+resetForm(replace = false) {
+  if (!replace) {
+    this.form.reset();
+  } else {
+    this.formResetToggle = false;
+
+    setTimeout(() => {
+      this.formResetToggle = true;
+    });
+  }
+}
+
+newOrder() {
+  this.isNewOrder = true;
+  this.showValidationErrors = true;
+
+  this.editingOrderName = null;
+  this.orderEdit = new Order();
+
+  return this.orderEdit;
+}
+
+editOrder(warehouseItem: Order) {
+  if (warehouseItem) {
+    this.isNewOrder = false;
     this.showValidationErrors = true;
+    this.orderEdit = new Order();
+    Object.assign(this.orderEdit, warehouseItem);
 
-    this.editingOrderName = null;
-    this.selectedValues = {};
-    this.order = new Order();
-
-    return this.order;
+    return this.orderEdit;
+  } else {
+    return this.newOrder();
   }
+}
 
-  editOrder(item: Order) {
-    if (item) {
-      this.isNewOrder = false;
-      this.showValidationErrors = true;
-
-      this.editingOrderName = item.id.toString();
-      this.selectedValues = {};
-      this.order = new Order();
-      Object.assign(this.order, item);
-
-      return this.order;
-    } else {
-      return this.newOrder();
-    }
-  }
 
   private loadAllDropDowns() {
     this.alertService.startLoadingMessage();
 
-      this.orderService.loadWarehouseItemEditor().subscribe(results => {
-        return this.onLoadAllDropDownsDataLoadSuccessful(results[0]);
+      this.orderService.loadOrderEditor().subscribe(results => {
+        return this.onLoadAllDropDownsDataLoadSuccessful(results[0], results[1]);
       }, error => this.onLoadAllDropDownsDataLoadFailed(error));
   }
 
-  private onLoadAllDropDownsDataLoadSuccessful(warehouseItems: WarehouseItem[]) {
+  private onLoadAllDropDownsDataLoadSuccessful(warehouseItems: WarehouseItem[], customers: Customer[]) {
     this.alertService.stopLoadingMessage();
+    this.allCustomers = [...customers];
     this.allWarehouseItems = [...warehouseItems];
   }
 
@@ -161,10 +166,13 @@ export class OrderEditorComponent implements OnInit {
     this.alertService.showStickyMessage('Load Error', `Unable to retrieve user data from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
       MessageSeverity.error, error);
 
-    this.allWarehouseItems = [];
+    this.allCustomers = [];
+    this.allWarehouseItems = []
   }
 
 
-
+  selectCustomerChange(value){
+    this.orderEdit.Customer = this.allCustomers?.find(r => r.id === value)
+  }
 
 }

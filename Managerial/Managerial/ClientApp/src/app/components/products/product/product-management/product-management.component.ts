@@ -27,6 +27,9 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
   @ViewChild('indexTemplate', { static: true })
   indexTemplate: TemplateRef<any>;
 
+  @ViewChild('selectTemplate', { static: true })
+  selectTemplate: TemplateRef<any>;
+
   @ViewChild('isActiveTemplate', { static: true })
   isActiveTemplate: TemplateRef<any>;
 
@@ -54,7 +57,8 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
       const gT = (key: string) => this.translationService.getTranslation(key);
 
       this.columns = [
-        { prop: 'id', name: '#', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
+        { prop: '', name: '', width: 60, cellTemplate: this.selectTemplate, canAutoResize: false },
+        { prop: 'id', name: 'Id', width: 60, cellTemplate: this.indexTemplate, canAutoResize: false },
         { prop: 'name', name: gT('products.editor.Name'), width: 90 },
         { prop: 'sellingPrice', name: gT('products.editor.Description'), width: 50 },
         { prop: 'sellingPrice', name: gT('products.editor.SellingPrice'), width: 50 },
@@ -169,7 +173,7 @@ export class ProductManagementComponent implements OnInit, AfterViewInit {
 
   deleteProduct(row: Product) {
 
-    this.alertService.showDialog(this.gT('products.alerts.Delete') + '\"' + row.name + '\"' + this.gT('products.alerts.Product'),
+    this.alertService.showDialog(this.gT('products.alerts.Delete') + '\"' + row.id + '\" ' + this.gT('products.alerts.Product'),
       DialogType.confirm, () => this.deleteProductHelper(row));
   }
 a

@@ -4,14 +4,16 @@ using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Managerial.Migrations
 {
     [DbContext(typeof(ManagerialDbContext))]
-    partial class ManagerialDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211113090650_updated-entites")]
+    partial class updatedentites
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,6 +60,8 @@ namespace Managerial.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderDetailId");
 
                     b.ToTable("Allocation");
                 });
@@ -382,12 +386,6 @@ namespace Managerial.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AllocationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comments")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CreatedBy")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
@@ -405,6 +403,9 @@ namespace Managerial.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(50)
@@ -740,17 +741,15 @@ namespace Managerial.Migrations
 
             modelBuilder.Entity("Application.ViewModels.Allocation", b =>
                 {
-                    b.HasOne("Domain.Entites.OrderDetail", "OrderDetail")
-                        .WithOne("Allocation")
-                        .HasForeignKey("Application.ViewModels.Allocation", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entites.WarehouseItem", "WarehouseItem")
                         .WithOne("Allocation")
                         .HasForeignKey("Application.ViewModels.Allocation", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entites.OrderDetail", "OrderDetail")
+                        .WithMany()
+                        .HasForeignKey("OrderDetailId");
 
                     b.Navigation("OrderDetail");
 
@@ -906,11 +905,6 @@ namespace Managerial.Migrations
             modelBuilder.Entity("Domain.Entites.Order", b =>
                 {
                     b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("Domain.Entites.OrderDetail", b =>
-                {
-                    b.Navigation("Allocation");
                 });
 
             modelBuilder.Entity("Domain.Entites.Product", b =>

@@ -14,8 +14,7 @@ namespace Application.ViewModels
         public string Location { get; set; }
         public ProductViewModel Product { get; set; }
         public WarehouseViewModel Warehouse { get; set; }
-        public BatchViewModel Batch { get; set; }
-
+        public AllocationViewModel Allocation { get; set; } 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<WarehouseItem, WarehouseItemViewModel>()

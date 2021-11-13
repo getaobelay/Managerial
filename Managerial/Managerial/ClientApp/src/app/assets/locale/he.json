@@ -11,7 +11,11 @@
     "Saving": "שומר...",
     "Details": "מידע",
     "Delete": "מחק",
-    "Success": "הצלחה"
+    "Success": "הצלחה",
+    "CreatedBy": "נוצר",
+    "UpdatedBy": "עודכן",
+    "CreatedDate": "תאריך יצירה",
+    "UpdatedDate": "תאריך עדכון"
   },
 
   "app": {
@@ -33,6 +37,8 @@
     "Dashboard": "לוח",
     "Customers": "לקוחות",
     "Products": "מוצרים",
+    "Warehouses": "מחסנים",
+    "WarehouseItems": "מוצרי מחסן",
     "Orders": "הזמנות",
     "NotFound": "לא נמצא",
     "About": "אודות",
@@ -136,8 +142,8 @@
       "PasswordHint": "הסיסמה שלך נדרשת בעת שינוי שם משתמש",
       "CurrentPasswordRequired": "נדרשת סיסמה נוכחית...",
       "Email": "אימייל:",
-      "EmailRequired": "Email address is required (maximum of 200 characters)",
-      "InvalidEmail": "Specified email is not valid",
+      "EmailRequired": "שדה אימייל נדרש",
+      "InvalidEmail": "אימייך לא תקין",
       "ChangePassword": "שנה סיסמא",
       "CurrentPassword": "סיסמא נוכחית:",
       "NewPassword": "סיסמא חדשה:",
@@ -249,45 +255,80 @@
       "ErrorOccured": "אירעה שגיאה בעת מחיקת המוצר.\r\n שגיאה",
       "LoadError":"Load Error",
       "RetrieveError": "אין אפשרות לאחזר מוצרים מהשרת.\r\n שגיאות"
-    },
-    "locations": {
-      "management": {
-        "Search": "Search for locaiton...",
-        "NewProduct": "New locaiton",
-        "locationDetails": "location Details \"{{name}}\"",
-        "EditLocation": "location \"{{name}}\"",
-        "Row": "Row",
-        "Column": "Column",
-        "Shelf": "Shelf"
-      },
-      "editor": {
-        "Row": "Row:",
-        "Column": "Column:",
-        "Shelf": "Shelf:",
-        "rowPlaceHolder": "Enter a row",
-        "columnPlaceHolder": "Enter a column",
-        "shelfPlaceHolder": "Enter a shelf",
-        "rowRequired": "Row name is required",
-        "columnRequired": "Column name is required",
-        "shelfRequired": "Shelf name is required",
-        "minRequired":"(minimum of 2 and maximum of 200 characters)",
-        "Close": "Close",
-        "Cancel": "Cancel",
-        "Save": "Save",
-        "Saving": "Saving..."
-      },
-      "alerts": {
-        "Delete": "Are you sure you want to delete the",
-        "Location": "location?",
-        "Deleting": "Deleting...",
-        "DeleteError": "Delete Error",
-        "ErrorOccured": "An error occured whilst deleting the location.\r\nError",
-        "LoadError":"Load Error",
-        "RetrieveError": "Unable to retrieve locations from the server.\r\nErrors"
-      }
     }
 
-
-
+  },
+  "locations": {
+    "management": {
+      "Search": "Search for locaiton...",
+      "NewProduct": "New locaiton",
+      "locationDetails": "location Details \"{{name}}\"",
+      "EditLocation": "location \"{{name}}\"",
+      "Row": "Row",
+      "Column": "Column",
+      "Shelf": "Shelf"
+    },
+    "editor": {
+      "Row": "Row:",
+      "Column": "Column:",
+      "Shelf": "Shelf:",
+      "rowPlaceHolder": "Enter a row",
+      "columnPlaceHolder": "Enter a column",
+      "shelfPlaceHolder": "Enter a shelf",
+      "rowRequired": "Row name is required",
+      "columnRequired": "Column name is required",
+      "shelfRequired": "Shelf name is required",
+      "minRequired":"(minimum of 2 and maximum of 200 characters)",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    },
+    "alerts": {
+      "Delete": "Are you sure you want to delete the",
+      "Location": "location?",
+      "Deleting": "Deleting...",
+      "DeleteError": "Delete Error",
+      "ErrorOccured": "An error occured whilst deleting the location.\r\nError",
+      "LoadError":"Load Error",
+      "RetrieveError": "Unable to retrieve locations from the server.\r\nErrors"
+    }
+  },
+  "warehouseItem": {
+    "management": {
+      "WarehouseItem": "מוצרי מחסן",
+      "Search": "חפש מוצר מחסן...",
+      "NewWarehouseItem": "מוצר מחסן חדש",
+      "WarehouseItemDetails": "מידע מוצר  \"{{name}}\"",
+      "EditWarehouseItem": "מוצר \"{{name}}\"",
+      "productName": "שם מוצר",
+      "warehouseName": "מחסן",
+      "Location": "מיקום",
+      "Sell": "מכירה",
+      "Buy": "קנייה"
+    },
+    "editor": {
+      "Product": "בחר מוצר",
+      "Location": "מיקום : ",
+      "Warehouse": "בחר מחסן",
+      "ProductRequired": "שדה מוצר חובה",
+      "LocationRequired": "שדה מיקום חובה",
+      "WarhouseRequired": "שדה מחסו חובה",
+      "Close": "סגור",
+      "Cancel": "ביטול",
+      "Save": "שמור",
+      "Saving": "שומר..."
+    },
+    "alerts": {
+      "Delete": "האם אתה בטוח שאתה רוצה למחוק",
+      "WarehouseItem": "מוצר מחסן?",
+      "Deleting": "מוחק...",
+      "DeleteError": "שגיאת מחיקה",
+      "ErrorOccured": "שגיאה בזמו מחיקת המוצר.\r\nError",
+      "LoadError":"שגיאת טעינה",
+      "RetrieveError": "שגיאה בזמן טעינת המוצרי מחסן מהשרת.\r\nErrors"
+    }
   }
 }
+
+

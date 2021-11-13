@@ -2,8 +2,56 @@
 <div>
   <form *ngIf="formResetToggle" name="orderEditorForm" #f="ngForm" novalidate
         (ngSubmit)="f.form.valid ? save() :
-          (!product.valid && showErrorAlert('Category name is required', 'Please enter a Category name (minimum of 2 and maximum of 200 characters)'));">
+          (!customer.valid && showErrorAlert('Category name is required', 'Please enter a Category name (minimum of 2 and maximum of 200 characters)'));">
 
+
+          <div [ngClass]="{'is-valid': f.submitted && customer.valid, 'is-invalid' : f.submitted && !customer.valid}" class="col-lg-9">
+            <ng-select id="order-customer"
+            name="customer"
+            [items]="allCustomers"
+            bindLabel="name"
+            [multiple]="false"
+            [closeOnSelect]="true"
+            placeholder="{{'orders.editor.CustomerPlaceHolder' | translate}}"
+            [(ngModel)]="orderEdit.customer"
+            (change)="selectCustomerChange($event)"
+            #customer="ngModel"
+            class="form-control left-status pill-items" required>
+              <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+              </ng-template>
+
+              <ng-template ng-option-tmp let-item="item">
+                <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}</span>
+                <i class="fa fa-check d-none"></i>
+              </ng-template>
+            </ng-select>
+            <span *ngIf="showValidationErrors && f.submitted && !customer.valid" class="invalid-feedback">
+              {{'customers.editor.CustomerRequired' | translate}}
+            </span>
+          </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <hr class="edit-separator-hr" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group row">
+            <label class="col-form-label col-md-2" for="comments">{{'orders.editor.Comments' | translate}}</label>
+            <div class="col-md-7">
+              <textarea  id="comments" name="comments" placeholder="{{'orders.editor.CommentsPlaceHolder' | translate}}" class="form-control"
+                     [ngClass]="{'is-valid': f.submitted && comments.valid, 'is-invalid' : f.submitted && !comments.valid}"
+                      [(ngModel)]="orderEdit.comments" #comments="ngModel" required minlength="2" maxlength="200" ></textarea>
+            </div>
+            <span *ngIf="showValidationErrors && f.submitted && !comments.valid" class="invalid-feedback">
+
+            </span>
+          </div>
+        </div>
+      </div>
 
 
       <div class="row">
@@ -11,6 +59,9 @@
           <hr class="edit-separator-hr" />
         </div>
       </div>
+
+
+
 
       <div class="form-group row">
         <div class="col-sm-12">

@@ -4,14 +4,16 @@ using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Managerial.Migrations
 {
     [DbContext(typeof(ManagerialDbContext))]
-    partial class ManagerialDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211113121912_added-to-order-details-allocation")]
+    partial class addedtoorderdetailsallocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

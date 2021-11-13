@@ -1,6 +1,6 @@
+import { WarehouseItem } from './../warehouse/WarehouseItem.model';
 import { BaseModel } from "../BaseModel.model";
 import { Product } from "../product/Product.model";
-import { WarehouseItem } from "../warehouse/WarehouseItem.model";
 import { Order } from "./Order.model";
 
 export class OrderDetail extends BaseModel {
@@ -12,6 +12,6 @@ export class OrderDetail extends BaseModel {
   public ProductDesc :string
   public BuyingPrice :number
   public SellingPrice :number
-  public Product: Product;
+  public WarehouseItem: WarehouseItem;
   public Order: Order;
 }
